@@ -1,0 +1,541 @@
+{
+  "lessons": {
+    "ser-vs-estar": {
+      "title": "Ser vs Estar",
+      "skills": { "reading": 8, "writing": 7 },
+      "exercises": [
+        {
+          "type": "multiple-choice",
+          "tag": "Identité",
+          "question": "Complétez : Yo ___ francés.",
+          "hint": "💡 Nationalité = identité permanente.",
+          "choices": [
+            { "text": "soy", "correct": true },
+            { "text": "estoy", "correct": false },
+            { "text": "eres", "correct": false },
+            { "text": "estás", "correct": false }
+          ],
+          "explanation": "✅ On utilise \"ser\" pour la nationalité : Yo soy francés."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "État temporaire",
+          "question": "Complétez avec la forme correcte de estar :",
+          "sentence": "Hoy _____ cansado después del trabajo.",
+          "answer": "estoy",
+          "hint": "💡 Fatigue = état passager.",
+          "explanation": "✅ \"Estoy cansado\" exprime un état temporaire."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Localisation",
+          "question": "Quelle phrase est correcte ?",
+          "choices": [
+            { "text": "Madrid es en España.", "correct": false },
+            { "text": "Madrid está en España.", "correct": true },
+            { "text": "Madrid soy en España.", "correct": false },
+            { "text": "Madrid eres en España.", "correct": false }
+          ],
+          "explanation": "✅ Pour indiquer où se trouve un lieu, on utilise estar."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Profession",
+          "question": "Complétez :",
+          "sentence": "Mi hermana _____ médica.",
+          "answer": "es",
+          "hint": "💡 Profession = caractéristique durable.",
+          "explanation": "✅ \"Ser\" s'emploie avec la profession."
+        },
+        {
+          "type": "speaking",
+          "tag": "Pratique orale",
+          "phrase": "Hoy estoy muy contento, pero soy una persona tranquila.",
+          "translation": "Aujourd'hui je suis très heureux, mais je suis une personne calme.",
+          "hint": "💡 Répétez en articulant la différence entre \"estoy\" et \"soy\"."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Différence de sens",
+          "question": "Choisissez la phrase correcte pour parler d'un plat délicieux.",
+          "choices": [
+            { "text": "La sopa es rica hoy.", "correct": false },
+            { "text": "La sopa está rica hoy.", "correct": true },
+            { "text": "La sopa soy rica hoy.", "correct": false },
+            { "text": "La sopa está inteligente.", "correct": false }
+          ],
+          "explanation": "✅ \"Estar rico\" décrit le goût à ce moment-là."
+        }
+      ]
+    },
+    "preterite-vs-imperfect": {
+      "title": "Passé simple vs Imparfait",
+      "skills": { "reading": 8, "writing": 6 },
+      "exercises": [
+        {
+          "type": "multiple-choice",
+          "tag": "Action habituelle",
+          "question": "Quand j'étais enfant, je ___ au parc chaque samedi.",
+          "choices": [
+            { "text": "fui", "correct": false },
+            { "text": "iba", "correct": true },
+            { "text": "iré", "correct": false },
+            { "text": "voy", "correct": false }
+          ],
+          "explanation": "✅ L'habitude passée utilise l'imparfait : iba."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Interruption",
+          "question": "Complétez au passé :",
+          "sentence": "Mientras estudiaba, mi madre me _____ (llamar).",
+          "answer": "llamó",
+          "hint": "💡 Action ponctuelle qui interrompt.",
+          "explanation": "✅ L'événement ponctuel se met au passé simple : llamó."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Chronologie",
+          "question": "Hier, nous ___ un film et ensuite nous sommes sortis.",
+          "choices": [
+            { "text": "veíamos", "correct": false },
+            { "text": "vimos", "correct": true },
+            { "text": "vemos", "correct": false },
+            { "text": "veremos", "correct": false }
+          ],
+          "explanation": "✅ \"Ayer\" + action terminée = passé simple."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Description",
+          "question": "Complétez : La ciudad _____ muy tranquila en esa época.",
+          "sentence": "La ciudad _____ muy tranquila en esa época.",
+          "answer": "era",
+          "hint": "💡 Description de contexte = imparfait.",
+          "explanation": "✅ \"Era\" décrit un état dans le passé."
+        },
+        {
+          "type": "speaking",
+          "tag": "Pratique orale",
+          "phrase": "Cuando era joven, viajé a Perú dos veces.",
+          "translation": "Quand j'étais jeune, j'ai voyagé au Pérou deux fois.",
+          "hint": "💡 Marquez bien \"era\" puis \"viajé\"."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Choix du temps",
+          "question": "Quel verbe est correct ? \"Siempre ___ café por la mañana.\"",
+          "choices": [
+            { "text": "tomé", "correct": false },
+            { "text": "tomaba", "correct": true },
+            { "text": "tomo", "correct": false },
+            { "text": "tomaré", "correct": false }
+          ],
+          "explanation": "✅ \"Siempre\" dans le passé indique une habitude : tomaba."
+        }
+      ]
+    },
+    "object-pronouns": {
+      "title": "Pronoms Objets",
+      "skills": { "reading": 7, "writing": 8 },
+      "exercises": [
+        {
+          "type": "multiple-choice",
+          "tag": "COD",
+          "question": "Remplacez \"el libro\" : Yo compro el libro → Yo ___ compro.",
+          "choices": [
+            { "text": "lo", "correct": true },
+            { "text": "la", "correct": false },
+            { "text": "le", "correct": false },
+            { "text": "se", "correct": false }
+          ],
+          "explanation": "✅ \"Libro\" est masculin singulier : lo."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "COI",
+          "question": "Complétez : Doy un regalo a María → _____ doy un regalo.",
+          "sentence": "_____ doy un regalo.",
+          "answer": "le",
+          "hint": "💡 COI singulier = le.",
+          "explanation": "✅ À María = COI, donc \"le\"."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Double pronom",
+          "question": "Choisissez la forme correcte : Doy el libro a Juan.",
+          "choices": [
+            { "text": "Lo le doy.", "correct": false },
+            { "text": "Se lo doy.", "correct": true },
+            { "text": "Le lo doy.", "correct": false },
+            { "text": "Lo doy se.", "correct": false }
+          ],
+          "explanation": "✅ \"Le lo\" devient \"se lo\"."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Placement",
+          "question": "Complétez : Voy a llamar a mi madre → Voy a _____.",
+          "sentence": "Voy a _____.",
+          "answer": "llamarla",
+          "hint": "💡 Avec infinitif, pronom collé possible.",
+          "explanation": "✅ \"Llamarla\" est correct avec infinitif."
+        },
+        {
+          "type": "speaking",
+          "tag": "Pratique orale",
+          "phrase": "Te lo explico ahora mismo.",
+          "translation": "Je te l'explique tout de suite.",
+          "hint": "💡 Prononcez bien le rythme de \"te lo\"."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Impératif",
+          "question": "Choisissez la bonne phrase :",
+          "choices": [
+            { "text": "Dime la verdad.", "correct": true },
+            { "text": "Me di la verdad.", "correct": false },
+            { "text": "Di me la verdad.", "correct": false },
+            { "text": "Dímelo la verdad.", "correct": false }
+          ],
+          "explanation": "✅ À l'impératif affirmatif : pronom collé (Dime)."
+        }
+      ]
+    },
+    "por-vs-para": {
+      "title": "Por vs Para",
+      "skills": { "reading": 7, "writing": 7 },
+      "exercises": [
+        {
+          "type": "multiple-choice",
+          "tag": "But",
+          "question": "Estudio español ___ trabajar en Madrid.",
+          "choices": [
+            { "text": "por", "correct": false },
+            { "text": "para", "correct": true },
+            { "text": "de", "correct": false },
+            { "text": "con", "correct": false }
+          ],
+          "explanation": "✅ \"Para\" exprime l'objectif."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Cause",
+          "question": "Complétez : Lo hice _____ ti.",
+          "sentence": "Lo hice _____ ti.",
+          "answer": "por",
+          "hint": "💡 Cause / motif = por.",
+          "explanation": "✅ \"Por ti\" = à cause de / pour toi (motif)."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Durée",
+          "question": "Viví en México ___ dos años.",
+          "choices": [
+            { "text": "para", "correct": false },
+            { "text": "por", "correct": true },
+            { "text": "según", "correct": false },
+            { "text": "sobre", "correct": false }
+          ],
+          "explanation": "✅ Durée = por."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Destinataire",
+          "question": "Este regalo es _____ Ana.",
+          "sentence": "Este regalo es _____ Ana.",
+          "answer": "para",
+          "hint": "💡 Destinataire = para.",
+          "explanation": "✅ \"Para\" indique à qui est destiné le cadeau."
+        },
+        {
+          "type": "speaking",
+          "tag": "Pratique orale",
+          "phrase": "Trabajo para una empresa internacional y viajo por placer.",
+          "translation": "Je travaille pour une entreprise internationale et je voyage par plaisir.",
+          "hint": "💡 Insistez sur la différence \"para\" / \"por\"."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Choix contextualisé",
+          "question": "Gracias ___ venir tan rápido.",
+          "choices": [
+            { "text": "por", "correct": true },
+            { "text": "para", "correct": false },
+            { "text": "sobre", "correct": false },
+            { "text": "sin", "correct": false }
+          ],
+          "explanation": "✅ \"Gracias por + infinitif\" est la structure correcte."
+        }
+      ]
+    },
+    "subjunctive-intro": {
+      "title": "Subjonctif",
+      "skills": { "reading": 8, "writing": 8 },
+      "exercises": [
+        {
+          "type": "multiple-choice",
+          "tag": "Désir",
+          "question": "Quiero que tú ___ más despacio.",
+          "choices": [
+            { "text": "hablas", "correct": false },
+            { "text": "hables", "correct": true },
+            { "text": "hablar", "correct": false },
+            { "text": "hablaste", "correct": false }
+          ],
+          "explanation": "✅ Après \"quiero que\", on emploie le subjonctif."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Émotion",
+          "question": "Me alegra que ustedes _____ aquí.",
+          "sentence": "Me alegra que ustedes _____.",
+          "answer": "estén",
+          "hint": "💡 Réaction émotionnelle + que.",
+          "explanation": "✅ \"Estén\" est le subjonctif de estar (ustedes)."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Doute",
+          "question": "No creo que él ___ la respuesta.",
+          "choices": [
+            { "text": "sabe", "correct": false },
+            { "text": "sepa", "correct": true },
+            { "text": "sabrá", "correct": false },
+            { "text": "supo", "correct": false }
+          ],
+          "explanation": "✅ Le doute déclenche le subjonctif : sepa."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Recommandation",
+          "question": "Es importante que nosotros _____ temprano.",
+          "sentence": "Es importante que nosotros _____ temprano.",
+          "answer": "lleguemos",
+          "hint": "💡 \"Es importante que\" + subjonctif.",
+          "explanation": "✅ \"Lleguemos\" est la forme correcte."
+        },
+        {
+          "type": "speaking",
+          "tag": "Pratique orale",
+          "phrase": "Espero que tengas un buen día.",
+          "translation": "J'espère que tu passes une bonne journée.",
+          "hint": "💡 Prononcez clairement \"tengas\"."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Expression fixe",
+          "question": "Ojalá que mañana no ___.",
+          "choices": [
+            { "text": "llueve", "correct": false },
+            { "text": "llueva", "correct": true },
+            { "text": "llovió", "correct": false },
+            { "text": "lloverá", "correct": false }
+          ],
+          "explanation": "✅ \"Ojalá (que)\" prend le subjonctif."
+        }
+      ]
+    },
+    "relative-clauses": {
+      "title": "Propositions Relatives",
+      "skills": { "reading": 7, "writing": 8 },
+      "exercises": [
+        {
+          "type": "multiple-choice",
+          "tag": "que",
+          "question": "El libro ___ compré es interesante.",
+          "choices": [
+            { "text": "que", "correct": true },
+            { "text": "quien", "correct": false },
+            { "text": "cuyo", "correct": false },
+            { "text": "donde", "correct": false }
+          ],
+          "explanation": "✅ \"Que\" introduit la relative la plus fréquente."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "quien",
+          "question": "La profesora, _____ vive en Sevilla, es excelente.",
+          "sentence": "La profesora, _____ vive en Sevilla, es excelente.",
+          "answer": "quien",
+          "hint": "💡 Personne + incise.",
+          "explanation": "✅ \"Quien\" peut remplacer \"que\" pour une personne."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "donde",
+          "question": "Esta es la ciudad ___ nací.",
+          "choices": [
+            { "text": "donde", "correct": true },
+            { "text": "que", "correct": false },
+            { "text": "quien", "correct": false },
+            { "text": "cuyo", "correct": false }
+          ],
+          "explanation": "✅ \"Donde\" renvoie à un lieu."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "lo que",
+          "question": "No entiendo _____ dices.",
+          "sentence": "No entiendo _____ dices.",
+          "answer": "lo que",
+          "hint": "💡 Idée non définie / ce que.",
+          "explanation": "✅ \"Lo que\" = ce que."
+        },
+        {
+          "type": "speaking",
+          "tag": "Pratique orale",
+          "phrase": "La amiga con quien trabajo habla tres idiomas.",
+          "translation": "L'amie avec qui je travaille parle trois langues.",
+          "hint": "💡 Enchaînez \"con quien\" naturellement."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "cuyo",
+          "question": "Conozco a un autor ___ novela ganó un premio.",
+          "choices": [
+            { "text": "que", "correct": false },
+            { "text": "cuyo", "correct": true },
+            { "text": "quien", "correct": false },
+            { "text": "donde", "correct": false }
+          ],
+          "explanation": "✅ \"Cuyo\" exprime la possession."
+        }
+      ]
+    },
+    "passive-voice": {
+      "title": "Voix Passive",
+      "skills": { "reading": 7, "writing": 8 },
+      "exercises": [
+        {
+          "type": "multiple-choice",
+          "tag": "Passif avec ser",
+          "question": "La carta ___ por Ana.",
+          "choices": [
+            { "text": "fue escrita", "correct": true },
+            { "text": "escribió", "correct": false },
+            { "text": "se escribe", "correct": false },
+            { "text": "ha escribir", "correct": false }
+          ],
+          "explanation": "✅ Passif canonique : ser + participe."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Passif avec se",
+          "question": "En España _____ habla mucho de fútbol.",
+          "sentence": "En España _____ habla mucho de fútbol.",
+          "answer": "se",
+          "hint": "💡 Impersonnel fréquent à l'oral.",
+          "explanation": "✅ \"Se habla\" = on parle."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Transformation",
+          "question": "Actif : Los estudiantes hicieron el proyecto. Passif correct ?",
+          "choices": [
+            { "text": "El proyecto fue hecho por los estudiantes.", "correct": true },
+            { "text": "El proyecto se hicieron por los estudiantes.", "correct": false },
+            { "text": "Los estudiantes fueron hecho el proyecto.", "correct": false },
+            { "text": "El proyecto fue hacer por los estudiantes.", "correct": false }
+          ],
+          "explanation": "✅ Accord du participe avec \"proyecto\": hecho."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Accord",
+          "question": "Las puertas fueron _____ (cerrar) a las diez.",
+          "sentence": "Las puertas fueron _____ a las diez.",
+          "answer": "cerradas",
+          "hint": "💡 Participe accordé au féminin pluriel.",
+          "explanation": "✅ \"Puertas\" → cerradas."
+        },
+        {
+          "type": "speaking",
+          "tag": "Pratique orale",
+          "phrase": "El informe fue revisado por el director.",
+          "translation": "Le rapport a été relu par le directeur.",
+          "hint": "💡 Faites sonner \"fue revisado\" clairement."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Usage naturel",
+          "question": "Dans la langue courante, on préfère souvent :",
+          "choices": [
+            { "text": "la pasiva con se", "correct": true },
+            { "text": "ser + participe uniquement", "correct": false },
+            { "text": "l'infinitif", "correct": false },
+            { "text": "aucune forme", "correct": false }
+          ],
+          "explanation": "✅ Le passif avec \"se\" est très fréquent en usage quotidien."
+        }
+      ]
+    },
+    "subjunctive-advanced": {
+      "title": "Subjonctif Avancé",
+      "skills": { "reading": 9, "writing": 8 },
+      "exercises": [
+        {
+          "type": "multiple-choice",
+          "tag": "Hypothèse",
+          "question": "Si yo ___ más tiempo, aprendería japonés.",
+          "choices": [
+            { "text": "tengo", "correct": false },
+            { "text": "tuviera", "correct": true },
+            { "text": "tuve", "correct": false },
+            { "text": "tendré", "correct": false }
+          ],
+          "explanation": "✅ \"Si\" irréel + imparfait du subjonctif : tuviera."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Concession",
+          "question": "Aunque _____ tarde, iré contigo.",
+          "sentence": "Aunque _____ tarde, iré contigo.",
+          "answer": "sea",
+          "hint": "💡 Fait incertain = subjonctif.",
+          "explanation": "✅ \"Aunque sea tarde\" exprime l'incertitude."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Quand futur",
+          "question": "Te escribiré cuando ___ a casa.",
+          "choices": [
+            { "text": "llego", "correct": false },
+            { "text": "llegue", "correct": true },
+            { "text": "llegué", "correct": false },
+            { "text": "llegaría", "correct": false }
+          ],
+          "explanation": "✅ \"Cuando\" + futur incertain → subjonctif."
+        },
+        {
+          "type": "fill-blank",
+          "tag": "Souhait irréalisable",
+          "question": "Ojalá _____ más cerca.",
+          "sentence": "Ojalá _____ más cerca.",
+          "answer": "vivieras",
+          "hint": "💡 Souhait peu réaliste = imparfait du subjonctif.",
+          "explanation": "✅ \"Vivieras\" exprime un souhait hypothétique."
+        },
+        {
+          "type": "speaking",
+          "tag": "Pratique orale",
+          "phrase": "Si pudiera elegir, trabajaría desde la playa.",
+          "translation": "Si je pouvais choisir, je travaillerais depuis la plage.",
+          "hint": "💡 Accentuez \"pudiera\" et \"trabajaría\"."
+        },
+        {
+          "type": "multiple-choice",
+          "tag": "Structure avancée",
+          "question": "Busco a alguien que me ___ con este proyecto.",
+          "choices": [
+            { "text": "ayuda", "correct": false },
+            { "text": "ayude", "correct": true },
+            { "text": "ayudó", "correct": false },
+            { "text": "ayudar", "correct": false }
+          ],
+          "explanation": "✅ Antécédent non défini / recherché → subjonctif."
+        }
+      ]
+    }
+  }
+}
