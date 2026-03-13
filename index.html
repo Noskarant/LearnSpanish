@@ -204,13 +204,17 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .convo-cards{padding:0 28px;display:flex;flex-direction:column;gap:12px}
 .convo-card{background:linear-gradient(135deg,rgba(255,107,53,.1),rgba(46,196,182,.04));border:1.5px solid rgba(255,107,53,.22);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:13px}
 .convo-card.teal{background:linear-gradient(135deg,rgba(46,196,182,.09),transparent);border-color:rgba(46,196,182,.22)}
+.convo-card.purple{background:linear-gradient(135deg,rgba(167,139,250,.1),transparent);border-color:rgba(167,139,250,.22)}
 .convo-scenario{font-size:12px;font-family:'DM Mono',monospace;letter-spacing:.1em;color:var(--accent);text-transform:uppercase}
 .convo-card.teal .convo-scenario{color:var(--teal)}
+.convo-card.purple .convo-scenario{color:var(--lilac)}
 .convo-desc{font-size:15px;line-height:1.5}
 .convo-phrases{display:flex;flex-direction:column;gap:7px}
 .convo-phrase{font-size:13px;font-family:'DM Mono',monospace;color:var(--teal);padding:9px 13px;background:rgba(46,196,182,.07);border-radius:var(--r2);border:1px solid rgba(46,196,182,.13)}
+.convo-card.purple .convo-phrase{color:var(--lilac);background:rgba(167,139,250,.07);border-color:rgba(167,139,250,.13)}
 .btn-start{background:var(--accent);color:#fff;border:none;border-radius:50px;padding:14px;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
 .btn-start.teal{background:var(--teal);color:var(--bg)}
+.btn-start.purple{background:var(--lilac);color:var(--bg)}
 .btn-start:active{transform:scale(.97)}
 .chat-area{padding:16px 28px;display:flex;flex-direction:column;gap:11px;margin-top:8px}
 .bubble{max-width:80%;padding:13px 16px;border-radius:18px;font-size:14px;line-height:1.4}
@@ -244,7 +248,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="loading-msg" id="loading-msg">Connecting…</div>
 </div>
 
-<!-- HOME -->
 <div id="screen-home" class="screen active">
   <p class="home-eyebrow">Español Vivo</p>
   <div>
@@ -272,7 +275,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="screen-dashboard" class="screen">
   <div class="top-bar">
     <div>
@@ -298,17 +300,17 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     <div class="lesson-list">
       <div class="lesson-card" onclick="startLesson('preterite-vs-imperfect')">
         <div class="lesson-icon li-orange">🕐</div>
-        <div style="flex:1"><div class="lesson-name">Preterite vs Imperfect</div><div class="lesson-meta">Grammar · 8 min · 6 exercises</div></div>
+        <div style="flex:1"><div class="lesson-name">Preterite vs Imperfect</div><div class="lesson-meta">Grammar · 8 min · 8 exercises</div></div>
         <div class="lesson-tag tag-new">NEW</div>
       </div>
-      <div class="lesson-card" onclick="startLesson('ser-vs-estar')">
-        <div class="lesson-icon li-blue">🔤</div>
-        <div style="flex:1"><div class="lesson-name">Ser vs Estar</div><div class="lesson-meta">Grammar · 6 min · 5 exercises</div></div>
+      <div class="lesson-card" onclick="startLesson('subjunctive-intro')">
+        <div class="lesson-icon li-blue">🎭</div>
+        <div style="flex:1"><div class="lesson-name">Subjunctive Intro</div><div class="lesson-meta">Grammar · 6 min · 5 exercises</div></div>
         <div class="lesson-tag tag-new">NEW</div>
       </div>
       <div class="lesson-card" onclick="navTo('vocab')">
         <div class="lesson-icon li-purple">📚</div>
-        <div style="flex:1"><div class="lesson-name">Vocabulary review</div><div class="lesson-meta">Spaced repetition · 5 min · 8 cards</div></div>
+        <div style="flex:1"><div class="lesson-name">Vocabulary review</div><div class="lesson-meta">Spaced repetition · 5 min</div></div>
         <div class="lesson-tag tag-review">REVIEW</div>
       </div>
       <div class="lesson-card" onclick="navTo('speak')">
@@ -326,7 +328,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 </div>
 
-<!-- LESSON -->
 <div id="screen-lesson" class="screen">
   <div class="lesson-header">
     <button class="back-btn" onclick="goBackFromLesson()">←</button>
@@ -341,7 +342,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 </div>
 
-<!-- VOCAB -->
 <div id="screen-vocab" class="screen">
   <div class="top-bar">
     <h2 class="top-bar-title">Vocabulary</h2>
@@ -374,7 +374,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 </div>
 
-<!-- GRAMMAR -->
 <div id="screen-grammar" class="screen">
   <div class="top-bar">
     <h2 class="top-bar-title">Grammar</h2>
@@ -383,7 +382,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="grammar-list" id="grammar-list"></div>
 </div>
 
-<!-- SPEAKING -->
 <div id="screen-speak" class="screen">
   <div class="top-bar">
     <h2 class="top-bar-title">Speaking</h2>
@@ -401,7 +399,6 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   </div>
 </div>
 
-<!-- BOTTOM NAV -->
 <nav class="bottom-nav" id="bottom-nav" style="display:none">
   <button class="nav-item active" id="nav-dashboard" onclick="navTo('dashboard')"><span class="nav-icon">🏠</span><span class="nav-label">HOME</span></button>
   <button class="nav-item" id="nav-vocab"    onclick="navTo('vocab')">   <span class="nav-icon">📚</span><span class="nav-label">WORDS</span></button>
@@ -423,106 +420,90 @@ const LESSONS = {
     title:'Preterite vs Imperfect',
     skills:{ reading:8, writing:6 },
     exercises:[
-      { type:'multiple-choice', tag:'Choose the correct tense',
-        question:'Which sentence correctly uses the <span class="es">imperfecto</span>?',
-        hint:'💡 The imperfect describes ongoing, habitual, or background past actions.',
-        choices:[
-          {text:'Ayer fui al supermercado.',correct:false},
-          {text:'Cuando era niño, jugaba al fútbol todos los días.',correct:true},
-          {text:'El año pasado viví en Madrid.',correct:false},
-          {text:'Esta mañana comí un croissant.',correct:false}
-        ],
-        explanation:'✅ "Jugaba" (imperfect) = habitual childhood action. The others are preterite — single completed events.'
-      },
-      { type:'fill-blank', tag:'Fill in the blank',
-        question:'Complete with the correct past tense:',
-        sentence:'Mientras yo _____ (dormir, imperfecto), sonó el teléfono.',
-        answer:'dormía',
-        hint:'💡 Ongoing background action interrupted by a single event.',
-        explanation:'✅ "Dormía" (imperfect) = I was sleeping (ongoing). "Sonó" (preterite) = the phone rang (single interruption).'
-      },
-      { type:'multiple-choice', tag:'Translation challenge',
-        question:'How do you say: <span class="es">"She used to live in Barcelona."</span>',
-        hint:'💡 "Used to" always signals the imperfect — habitual past.',
-        choices:[
-          {text:'Ella vivió en Barcelona.',correct:false},
-          {text:'Ella vive en Barcelona.',correct:false},
-          {text:'Ella vivía en Barcelona.',correct:true},
-          {text:'Ella vivirá en Barcelona.',correct:false}
-        ],
-        explanation:'✅ "Vivía" = imperfect of vivir. "Used to / would (habitually)" → imperfecto every time.'
-      },
-      { type:'fill-blank', tag:'Fill in the blank',
-        question:'Use the preterite (nosotros):',
-        sentence:'Ayer _____ (ir) al museo con la clase.',
-        answer:'fuimos',
-        hint:'💡 "Ayer" = specific completed event = preterite. "Ir" is irregular — same form as "ser"!',
-        explanation:'✅ "Fuimos" — preterite of ir (we went). Ir and ser are identical in preterite forms.'
-      },
-      { type:'multiple-choice', tag:'Error detection',
-        question:'Spot the mistake: <span class="es">"Ayer, yo comía pizza y después vi una película."</span>',
-        hint:'💡 "Ayer" with a single completed action needs which tense?',
-        choices:[
-          {text:'No error — both verbs are correct.',correct:false},
-          {text:'"comía" should be "comí"',correct:true},
-          {text:'"vi" should be "veía"',correct:false},
-          {text:'Both verbs are wrong.',correct:false}
-        ],
-        explanation:'✅ "Comía" is wrong. "Ayer" + single completed action = preterite "comí". "Vi" is already correct preterite.'
-      },
-      { type:'speaking', tag:'Speaking practice',
-        phrase:'Cuando era pequeño, vivía en el campo y jugaba fuera todos los días.',
-        translation:'When I was young, I lived in the countryside and played outside every day.',
-        hint:'💡 Both verbs are imperfect — habitual childhood state + routine action.'
-      }
+      { type:'multiple-choice', tag:'Choose the correct tense', question:'Which sentence correctly uses the <span class="es">imperfecto</span>?', hint:'💡 The imperfect describes ongoing, habitual, or background past actions.', choices:[{text:'Ayer fui al supermercado.',correct:false},{text:'Cuando era niño, jugaba al fútbol todos los días.',correct:true},{text:'El año pasado viví en Madrid.',correct:false},{text:'Esta mañana comí un croissant.',correct:false}], explanation:'✅ "Jugaba" (imperfect) = habitual childhood action. The others are preterite — single completed events.' },
+      { type:'fill-blank', tag:'Fill in the blank', question:'Complete with the correct past tense:', sentence:'Mientras yo _____ (dormir, imperfecto), sonó el teléfono.', answer:'dormía', hint:'💡 Ongoing background action interrupted by a single event.', explanation:'✅ "Dormía" (imperfect) = I was sleeping (ongoing). "Sonó" (preterite) = the phone rang (single interruption).' },
+      { type:'multiple-choice', tag:'Translation challenge', question:'How do you say: <span class="es">"She used to live in Barcelona."</span>', hint:'💡 "Used to" always signals the imperfect — habitual past.', choices:[{text:'Ella vivió en Barcelona.',correct:false},{text:'Ella vive en Barcelona.',correct:false},{text:'Ella vivía en Barcelona.',correct:true},{text:'Ella vivirá en Barcelona.',correct:false}], explanation:'✅ "Vivía" = imperfect of vivir. "Used to / would (habitually)" → imperfecto every time.' },
+      { type:'fill-blank', tag:'Fill in the blank', question:'Use the preterite (nosotros):', sentence:'Ayer _____ (ir) al museo con la clase.', answer:'fuimos', hint:'💡 "Ayer" = specific completed event = preterite. "Ir" is irregular — same form as "ser"!', explanation:'✅ "Fuimos" — preterite of ir (we went). Ir and ser are identical in preterite forms.' },
+      { type:'multiple-choice', tag:'Error detection', question:'Spot the mistake: <span class="es">"Ayer, yo comía pizza y después vi una película."</span>', hint:'💡 "Ayer" with a single completed action needs which tense?', choices:[{text:'No error — both verbs are correct.',correct:false},{text:'"comía" should be "comí"',correct:true},{text:'"vi" should be "veía"',correct:false},{text:'Both verbs are wrong.',correct:false}], explanation:'✅ "Comía" is wrong. "Ayer" + single completed action = preterite "comí". "Vi" is already correct preterite.' },
+      { type:'multiple-choice', tag:'Background setting', question:'Which tense sets the scene or describes the weather in the past?', hint:'💡 Setting the scene is an ongoing description, not a completed event.', choices:[{text:'Preterite',correct:false},{text:'Imperfect',correct:true},{text:'Present',correct:false},{text:'Future',correct:false}], explanation:'✅ The imperfect sets the background (e.g., "Hacía sol" - It was sunny).' },
+      { type:'fill-blank', tag:'Fill in the blank', question:'Conjugate in the imperfect:', sentence:'Nosotros siempre _____ (comer) paella los domingos.', answer:'comíamos', hint:'💡 "Siempre" indicates a habit. Use the imperfect for -er verbs (-íamos).', explanation:'✅ "Comíamos" is the correct nosotros form in the imperfect for an -er verb.' },
+      { type:'speaking', tag:'Speaking practice', phrase:'Cuando era pequeño, vivía en el campo y jugaba fuera todos los días.', translation:'When I was young, I lived in the countryside and played outside every day.', hint:'💡 Both verbs are imperfect — habitual childhood state + routine action.' }
     ]
   },
-
   'ser-vs-estar': {
     title:'Ser vs Estar',
     skills:{ reading:7, writing:5 },
     exercises:[
-      { type:'multiple-choice', tag:'Ser or Estar?',
-        question:'Which sentence uses <span class="es">ser</span> correctly?',
-        hint:'💡 Ser = permanent identity, origin, profession, material, time.',
-        choices:[
-          {text:'Ella está médica.',correct:false},
-          {text:'Ella es médica.',correct:true},
-          {text:'Ella es cansada hoy.',correct:false},
-          {text:'La sopa es caliente ahora.',correct:false}
-        ],
-        explanation:'✅ Professions use "ser" — it\'s part of identity. "Es médica" = she is a doctor (who she is, not how she feels).'
-      },
-      { type:'fill-blank', tag:'Fill in the blank',
-        question:'Choose ser or estar:',
-        sentence:'La sopa _____ muy caliente ahora mismo.',
-        answer:'está',
-        hint:'💡 Temperature right now = temporary condition = estar.',
-        explanation:'✅ "Está caliente" = the soup is hot right now (temporary state). "Es caliente" would imply it\'s always hot by nature.'
-      },
-      { type:'multiple-choice', tag:'Classic trap',
-        question:'What is the difference between these two?<br><br><span class="es">"Juan es aburrido"</span> vs <span class="es">"Juan está aburrido"</span>',
-        hint:'💡 The same adjective changes meaning completely with ser vs estar.',
-        choices:[
-          {text:'No difference — they mean the same.',correct:false},
-          {text:'Es = he is a boring person. Está = he is bored right now.',correct:true},
-          {text:'Es = he is bored. Está = he is boring.',correct:false},
-          {text:'Only "está" is correct in Spanish.',correct:false}
-        ],
-        explanation:'✅ This is the classic ser/estar trap. "Es aburrido" = boring (personality). "Está aburrido" = feels bored (right now).'
-      },
-      { type:'fill-blank', tag:'Fill in the blank',
-        question:'Complete correctly:',
-        sentence:'La reunión _____ en la sala de conferencias.',
-        answer:'está',
-        hint:'💡 Location of things uses estar. Exception: events use ser ("La reunión es a las 3").',
-        explanation:'✅ "Está" — location uses estar. But scheduled events use ser: "La fiesta es en mi casa."'
-      },
-      { type:'speaking', tag:'Speaking practice',
-        phrase:'¿De dónde eres? Soy de Francia, pero ahora estoy en España.',
-        translation:'Where are you from? I\'m from France, but right now I\'m in Spain.',
-        hint:'💡 Origin = ser. Current location = estar. Both in one sentence!'
-      }
+      { type:'multiple-choice', tag:'Ser or Estar?', question:'Which sentence uses <span class="es">ser</span> correctly?', hint:'💡 Ser = permanent identity, origin, profession, material, time.', choices:[{text:'Ella está médica.',correct:false},{text:'Ella es médica.',correct:true},{text:'Ella es cansada hoy.',correct:false},{text:'La sopa es caliente ahora.',correct:false}], explanation:'✅ Professions use "ser" — it\'s part of identity.' },
+      { type:'fill-blank', tag:'Fill in the blank', question:'Choose ser or estar:', sentence:'La sopa _____ muy caliente ahora mismo.', answer:'está', hint:'💡 Temperature right now = temporary condition = estar.', explanation:'✅ "Está caliente" = temporary state.' },
+      { type:'multiple-choice', tag:'Classic trap', question:'Difference: <span class="es">"Juan es aburrido"</span> vs <span class="es">"Juan está aburrido"</span>', hint:'💡 The same adjective changes meaning.', choices:[{text:'No difference',correct:false},{text:'Es = boring person. Está = bored right now.',correct:true},{text:'Es = bored. Está = boring.',correct:false},{text:'Only "está" is correct.',correct:false}], explanation:'✅ "Es aburrido" = boring (personality). "Está aburrido" = feels bored (right now).' },
+      { type:'fill-blank', tag:'Fill in the blank', question:'Complete correctly:', sentence:'La reunión _____ en la sala de conferencias.', answer:'es', hint:'💡 Location of things uses estar, but events use ser.', explanation:'✅ "Es" — scheduled events use ser: "La reunión es en la sala."' },
+      { type:'multiple-choice', tag:'Condition vs Trait', question:'How do you say "The apple is green (unripe)" vs "The apple is green (color)"?', hint:'💡 States of readiness use Estar. Inherent colors use Ser.', choices:[{text:'Estar for both',correct:false},{text:'Ser for both',correct:false},{text:'Está verde (unripe) / Es verde (color)',correct:true},{text:'Es verde (unripe) / Está verde (color)',correct:false}], explanation:'✅ "Está verde" (unripe) vs "Es verde" (color).' },
+      { type:'fill-blank', tag:'Fill in the blank', question:'Choose ser or estar (yo form):', sentence:'Yo _____ de México.', answer:'soy', hint:'💡 Origin is a permanent trait.', explanation:'✅ "Soy" is used for origin.' },
+      { type:'speaking', tag:'Speaking practice', phrase:'¿De dónde eres? Soy de Francia, pero ahora estoy en España.', translation:'Where are you from? I\'m from France, but right now I\'m in Spain.', hint:'💡 Origin = ser. Current location = estar.' }
+    ]
+  },
+  'object-pronouns': {
+    title:'Object Pronouns',
+    skills:{ reading:6, writing:8, listening:4 },
+    exercises:[
+      { type:'multiple-choice', tag:'Direct Object Placement', question:'Where does the direct object pronoun go with a conjugated verb?', hint:'💡 Think about standard word order in Spanish.', choices:[{text:'After the verb',correct:false},{text:'Before the conjugated verb',correct:true},{text:'At the end',correct:false},{text:'It doesn\'t matter',correct:false}], explanation:'✅ Object pronouns go directly BEFORE a conjugated verb.' },
+      { type:'fill-blank', tag:'Replace the object', question:'Replace "el libro":', sentence:'Yo leo el libro. -> Yo _____ leo.', answer:'lo', hint:'💡 "Libro" is masculine singular.', explanation:'✅ "Lo" replaces masculine singular.' },
+      { type:'multiple-choice', tag:'Double Pronouns', question:'Which is correct for "He gives it (the book) to me"?', hint:'💡 Indirect comes before Direct (ID).', choices:[{text:'Él lo me da.',correct:false},{text:'Él da me lo.',correct:false},{text:'Él me lo da.',correct:true},{text:'Él me da lo.',correct:false}], explanation:'✅ The indirect object (me) precedes the direct object (lo).' },
+      { type:'fill-blank', tag:'The "Se" Rule', question:'Fix this sentence: "Yo le lo doy." Change "le":', sentence:'Yo _____ lo doy.', answer:'se', hint:'💡 You cannot have "le lo".', explanation:'✅ "Le" becomes "se" before lo/la/los/las.' },
+      { type:'speaking', tag:'Speaking practice', phrase:'¿El coche? Se lo vendí a mi hermano ayer.', translation:'The car? I sold it to my brother yesterday.', hint:'💡 "Se" (to him) + "lo" (it) + vendí.' }
+    ]
+  },
+  'por-vs-para': {
+    title:'Por vs Para',
+    skills:{ reading:7, writing:7 },
+    exercises:[
+      { type:'multiple-choice', tag:'Destination vs Route', question:'Which word is used for a final destination?', hint:'💡 Think of arrows: one is the path, one is the target.', choices:[{text:'Por',correct:false},{text:'Para',correct:true}], explanation:'✅ "Para" implies a goal or destination.' },
+      { type:'fill-blank', tag:'Fill in the blank', question:'Use por or para:', sentence:'Este regalo es _____ ti.', answer:'para', hint:'💡 The recipient of an object is a destination/goal.', explanation:'✅ "Para" is used for recipients.' },
+      { type:'multiple-choice', tag:'Duration of Time', question:'How do you say "I studied for three hours"?', hint:'💡 A length of time or duration.', choices:[{text:'Estudié para tres horas.',correct:false},{text:'Estudié por tres horas.',correct:true}], explanation:'✅ "Por" is used to express duration.' },
+      { type:'fill-blank', tag:'Fill in the blank', question:'Use por or para:', sentence:'Caminamos _____ el parque.', answer:'por', hint:'💡 Movement through or along an area.', explanation:'✅ "Por" is used for movement through a place.' },
+      { type:'speaking', tag:'Speaking practice', phrase:'Estudio español para viajar por Sudamérica.', translation:'I study Spanish in order to travel through South America.', hint:'💡 "Para" (goal) + "Por" (through a space).' }
+    ]
+  },
+  'subjunctive-intro': {
+    title:'Subjunctive',
+    skills:{ reading:9, writing:8 },
+    exercises:[
+      { type:'multiple-choice', tag:'Mood Trigger', question:'Which of these sentences triggers the subjunctive?', hint:'💡 Subjunctive requires doubt, desire, emotion, or impersonal expressions.', choices:[{text:'Creo que él es inteligente.',correct:false},{text:'Es cierto que viene hoy.',correct:false},{text:'Deseo que vengas a mi fiesta.',correct:true},{text:'Sé que tienes razón.',correct:false}], explanation:'✅ "Deseo que" expresses a desire, which triggers the subjunctive.' },
+      { type:'fill-blank', tag:'Conjugate', question:'Es importante que tú _____ (estudiar).', sentence:'Es importante que tú _____ mucho.', answer:'estudies', hint:'💡 Swap the ending: AR verbs take ER/IR endings in subjunctive.', explanation:'✅ "Estudies" (subjunctive for tú).' },
+      { type:'multiple-choice', tag:'Emotion', question:'"I am happy that you are here." -> "Me alegro de que _____ aquí."', hint:'💡 Estar is irregular in the subjunctive.', choices:[{text:'estás',correct:false},{text:'estes',correct:false},{text:'estés',correct:true},{text:'estas',correct:false}], explanation:'✅ "Estés" is the subjunctive of estar.' },
+      { type:'fill-blank', tag:'Irregular Verb', question:'Quiero que tú _____ (ir) al médico.', sentence:'Quiero que tú _____ al médico.', answer:'vayas', hint:'💡 Ir is completely irregular in the subjunctive.', explanation:'✅ "Vayas" is the subjunctive form of ir.' },
+      { type:'speaking', tag:'Speaking practice', phrase:'Espero que tengas un buen fin de semana.', translation:'I hope you have a good weekend.', hint:'💡 "Espero que" (hope) triggers subjunctive "tengas".' }
+    ]
+  },
+  'relative-clauses': {
+    title:'Relative Clauses',
+    skills:{ reading:8, writing:5 },
+    exercises:[
+      { type:'multiple-choice', tag:'Que vs Quien', question:'"El hombre _____ vive allí es mi tío."', hint:'💡 Use "que" for people and things when not following a preposition.', choices:[{text:'quien',correct:false},{text:'que',correct:true},{text:'cual',correct:false},{text:'lo que',correct:false}], explanation:'✅ "Que" is the standard relative pronoun for subjects.' },
+      { type:'fill-blank', tag:'Fill in the blank', question:'La mujer con _____ hablé es la jefa.', sentence:'La mujer con _____ hablé es la jefa.', answer:'quien', hint:'💡 After a preposition (con), use "quien" for people.', explanation:'✅ "Quien" is required after prepositions for people.' },
+      { type:'multiple-choice', tag:'Lo que', question:'How do you say "I don\'t understand what you are saying"?', hint:'💡 "What" as a concept or idea requires a specific relative pronoun.', choices:[{text:'No entiendo que dices.',correct:false},{text:'No entiendo el que dices.',correct:false},{text:'No entiendo lo que dices.',correct:true},{text:'No entiendo quien dices.',correct:false}], explanation:'✅ "Lo que" means "that which" or the abstract "what".' },
+      { type:'speaking', tag:'Speaking practice', phrase:'El coche que compré ayer es muy rápido.', translation:'The car that I bought yesterday is very fast.', hint:'💡 Simple relative clause using "que".' }
+    ]
+  },
+  'passive-voice': {
+    title:'Passive Voice',
+    skills:{ reading:7, writing:7 },
+    exercises:[
+      { type:'multiple-choice', tag:'Ser + Participio', question:'El libro _____ escrito por Cervantes.', hint:'💡 The passive voice uses Ser + past participle.', choices:[{text:'fue',correct:true},{text:'estuvo',correct:false},{text:'era',correct:false},{text:'estaba',correct:false}], explanation:'✅ "Fue escrito" (was written) uses the preterite of Ser.' },
+      { type:'fill-blank', tag:'Agreement', question:'Las casas fueron _____ (construir) en 1990.', sentence:'Las casas fueron _____ en 1990.', answer:'construidas', hint:'💡 The participle acts like an adjective and must agree with "Las casas".', explanation:'✅ "Construidas" agrees in gender and number.' },
+      { type:'multiple-choice', tag:'Se Pasiva', question:'Which is the more natural way to say "Spanish is spoken here"?', hint:'💡 In everyday Spanish, the "se pasiva" is preferred over ser + participio.', choices:[{text:'El español es hablado aquí.',correct:false},{text:'Se habla español aquí.',correct:true},{text:'Español se habla.',correct:false},{text:'Uno habla español aquí.',correct:false}], explanation:'✅ "Se habla" is the standard passive "se" construction.' },
+      { type:'speaking', tag:'Speaking practice', phrase:'Se venden muchos libros en esta tienda.', translation:'Many books are sold in this store.', hint:'💡 "Se venden" (plural) matches "libros".' }
+    ]
+  },
+  'subjunctive-advanced': {
+    title:'Subjunctive Advanced',
+    skills:{ reading:9, writing:8 },
+    exercises:[
+      { type:'multiple-choice', tag:'Si Clauses', question:'Si yo _____ (tener) dinero, viajaría por el mundo.', hint:'💡 Contrary-to-fact statements require the imperfect subjunctive.', choices:[{text:'tengo',correct:false},{text:'tendría',correct:false},{text:'tuviera',correct:true},{text:'tuve',correct:false}], explanation:'✅ "Tuviera" (imperfect subjunctive) is used for hypothetical "if" clauses.' },
+      { type:'fill-blank', tag:'Cuando + Subjunctive', question:'Te llamaré cuando _____ (llegar) a casa.', sentence:'Te llamaré cuando _____ a casa.', answer:'llegue', hint:'💡 "Cuando" + future action requires the subjunctive.', explanation:'✅ "Llegue" indicates a future, uncertain event.' },
+      { type:'multiple-choice', tag:'Aunque', question:'"Aunque _____ (llover) mañana, iremos al parque." (We don\'t know if it will rain)', hint:'💡 If the fact is unconfirmed/future, use subjunctive.', choices:[{text:'llueve',correct:false},{text:'lloverá',correct:false},{text:'llueva',correct:true},{text:'llovió',correct:false}], explanation:'✅ "Llueva" is used because it\'s a hypothetical/unconfirmed future event.' },
+      { type:'speaking', tag:'Speaking practice', phrase:'Si fuera rico, compraría una isla.', translation:'If I were rich, I would buy an island.', hint:'💡 "Si fuera" = imperfect subjunctive.' }
     ]
   }
 };
@@ -537,6 +518,18 @@ const WORDS = [
   {es:'por eso',     en:'that\'s why / therefore',   cat:'🔗 Connectors', phonetic:'/poɾ ˈe.so/',        example:'"Estaba cansado, por eso me quedé." — I was tired, that\'s why I stayed.',nextReview:'In 5 days'},
   {es:'ya que',      en:'since / given that',         cat:'🔗 Connectors', phonetic:'/ˈʝa ke/',           example:'"Ya que estás aquí, ayúdame." — Since you\'re here, help me.',nextReview:'Today'},
   {es:'a pesar de',  en:'despite / in spite of',     cat:'🔗 Connectors', phonetic:'/a pe.ˈsaɾ ðe/',    example:'"A pesar del frío, salimos." — Despite the cold, we went out.',nextReview:'Tomorrow'},
+  {es:'desarrollar', en:'to develop',                 cat:'👔 Work/Tech',   phonetic:'/de.sa.ro.ˈʝaɾ/',   example:'"Vamos a desarrollar una app." — We are going to develop an app.',nextReview:'Tomorrow'},
+  {es:'darse cuenta',en:'to realize',                 cat:'🧠 Mental',      phonetic:'/ˈdaɾ.se ˈkwen.ta/',example:'"Me di cuenta de mi error." — I realized my mistake.',nextReview:'In 4 days'},
+  {es:'soler',       en:'to usually do',              cat:'💙 Core verbs',  phonetic:'/so.ˈleɾ/',         example:'"Suelo beber café temprano." — I usually drink coffee early.',nextReview:'Today'},
+  {es:'actualmente', en:'currently / nowadays',       cat:'⏱️ Time',        phonetic:'/ak.twal.ˈmen.te/', example:'"Actualmente vivo en España." — I currently live in Spain.',nextReview:'Tomorrow'},
+  {es:'éxito',       en:'success',                    cat:'⭐ Concepts',    phonetic:'/ˈek.si.to/',       example:'"El proyecto fue un éxito." — The project was a success.',nextReview:'In 3 days'},
+  {es:'ambiente',    en:'environment / atmosphere',   cat:'🌍 World',       phonetic:'/am.ˈbjen.te/',     example:'"Hay buen ambiente aquí." — There is a good atmosphere here.',nextReview:'In 2 days'},
+  {es:'aconsejar',   en:'to advise',                  cat:'🗣️ Speaking',    phonetic:'/a.kon.se.ˈxaɾ/',   example:'"Te aconsejo que estudies." — I advise you to study.',nextReview:'Tomorrow'},
+  {es:'lograr',      en:'to achieve / to manage to',  cat:'⭐ Concepts',    phonetic:'/lo.ˈɣɾaɾ/',        example:'"Logré terminar el trabajo." — I managed to finish the work.',nextReview:'In 2 days'},
+  {es:'aprovechar',  en:'to take advantage of',       cat:'🔧 Expressions', phonetic:'/a.pɾo.be.ˈtʃaɾ/',  example:'"Hay que aprovechar el buen tiempo." — We must take advantage of the good weather.',nextReview:'Tomorrow'},
+  {es:'demasiado',   en:'too much / too many',        cat:'📏 Amounts',     phonetic:'/de.ma.ˈsja.ðo/',   example:'"He comido demasiado." — I have eaten too much.',nextReview:'In 5 days'},
+  {es:'en lugar de', en:'instead of',                 cat:'🔗 Connectors',  phonetic:'/en lu.ˈɣaɾ ðe/',   example:'"Bebo té en lugar de café." — I drink tea instead of coffee.',nextReview:'Today'},
+  {es:'adivinar',    en:'to guess',                   cat:'🧠 Mental',      phonetic:'/a.ði.bi.ˈnaɾ/',    example:'"Adivina quién vino." — Guess who came.',nextReview:'In 4 days'}
 ];
 
 /* ── GRAMMAR TOPICS ── */
@@ -544,8 +537,8 @@ const GRAMMAR_TOPICS = [
   {key:'ser-vs-estar',           icon:'🔤',title:'Ser vs Estar',           level:'A1',cefr:'a1',desc:'The two "to be" verbs — identity vs temporary state, and meaning-changing adjectives.'},
   {key:'preterite-vs-imperfect', icon:'⏪',title:'Preterite vs Imperfect', level:'A2',cefr:'a2',desc:'When to use each past tense: completed events vs ongoing/habitual actions.'},
   {key:'object-pronouns',        icon:'🔀',title:'Object Pronouns',        level:'B1',cefr:'b1',desc:'Me, te, le, lo, la, nos, les — placement rules, order, and clitic combinations.'},
-  {key:'subjunctive-intro',      icon:'🎭',title:'Subjunctive',            level:'B1',cefr:'b1',desc:'Doubt, desire, emotion, impersonal expressions — the most feared tense, made logical.'},
   {key:'por-vs-para',            icon:'↔️',title:'Por vs Para',            level:'B1',cefr:'b1',desc:'The 8 uses of each. Master the most common confusion point for intermediate learners.'},
+  {key:'subjunctive-intro',      icon:'🎭',title:'Subjunctive',            level:'B1',cefr:'b1',desc:'Doubt, desire, emotion, impersonal expressions — the most feared tense, made logical.'},
   {key:'relative-clauses',       icon:'🔗',title:'Relative Clauses',       level:'B2',cefr:'b2',desc:'que, quien, el que, lo que, cuyo — building complex, natural sentences.'},
   {key:'passive-voice',          icon:'🎨',title:'Passive Voice',           level:'B2',cefr:'b2',desc:'ser + participio and se pasiva — when to use each and common patterns.'},
   {key:'subjunctive-advanced',   icon:'🌀',title:'Subjunctive Advanced',   level:'C1',cefr:'c1',desc:'Time clauses, concession, hypothetical si-clauses, and subtle mood choices.'},
@@ -565,6 +558,18 @@ const SCENARIOS = [
    phrases:['Tengo una reserva a nombre de…','¿A qué hora es el desayuno?','¿Tiene habitaciones libres?'],
    drillPhrase:'¿Puede despertarme a las siete?',drillTrans:'Can you wake me up at seven?',
    aiOpen:'¡Buenas tardes! Bienvenido al hotel. ¿Tiene usted reserva?',aiOpenTr:'Good afternoon! Welcome to the hotel. Do you have a reservation?'},
+  {icon:'✈️',label:'At the airport',style:'teal',desc:'Navigate check-in, boarding gates, and lost luggage.',
+   phrases:['¿Dónde está la puerta de embarque?','Aquí tiene mi pasaporte.','Mi vuelo está retrasado.'],
+   drillPhrase:'¿A qué hora sale el vuelo para Madrid?',drillTrans:'What time does the flight for Madrid leave?',
+   aiOpen:'Bienvenido al mostrador. Su pasaporte, por favor.',aiOpenTr:'Welcome to the desk. Your passport, please.'},
+  {icon:'🍽️',label:'At the restaurant',style:'purple',desc:'Order a full meal, ask about ingredients, and request the bill.',
+   phrases:['De primero quiero...','Soy alérgico a los mariscos.','Estaba todo muy rico.'],
+   drillPhrase:'¿Tienen alguna opción vegetariana?',drillTrans:'Do you have any vegetarian options?',
+   aiOpen:'¡Buenas noches! ¿Tienen reserva o mesa para cuántos?',aiOpenTr:'Good evening! Do you have a reservation or table for how many?'},
+  {icon:'💼',label:'Job Interview',style:'',desc:'Practice formal Spanish, discuss your skills, and answer interview questions.',
+   phrases:['Tengo experiencia en...','Soy una persona muy responsable.','Me interesa mucho este puesto.'],
+   drillPhrase:'¿Cuáles serían mis responsabilidades principales?',drillTrans:'What would be my main responsibilities?',
+   aiOpen:'Hola, tome asiento. Hábleme de su experiencia profesional.',aiOpenTr:'Hello, take a seat. Tell me about your professional experience.'}
 ];
 
 /* ── LESSON ENGINE ── */
@@ -912,6 +917,7 @@ function updateXP() {
 function renderSkillGrid() {
   const grid = document.getElementById('skill-grid');
   if (!grid) return;
+  grid.innerHTML = '';
   [{key:'reading',icon:'👁️',name:'Reading',color:'var(--teal)'},{key:'listening',icon:'👂',name:'Listening',color:'var(--lilac)'},{key:'speaking',icon:'💬',name:'Speaking',color:'var(--accent)'},{key:'writing',icon:'✍️',name:'Writing',color:'var(--gold)'}]
   .forEach(s => {
     const pct = state.skills[s.key]||0;
