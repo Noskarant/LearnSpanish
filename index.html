@@ -415,98 +415,33 @@ const state = {
 };
 
 /* ── LESSON CONTENT ── */
-const LESSONS = {
-  'preterite-vs-imperfect': {
-    title:'Passé simple vs Imparfait',
-    skills:{ reading:8, writing:6 },
-    exercises:[
-      { type:'multiple-choice', tag:'Choisissez le bon temps', question:'Quelle phrase utilise correctement l\'<span class="es">imperfecto</span> ?', hint:'💡 L\'imparfait décrit des actions passées continues ou habituelles.', choices:[{text:'Ayer fui al supermercado.',correct:false},{text:'Cuando era niño, jugaba al fútbol todos los días.',correct:true},{text:'El año pasado viví en Madrid.',correct:false},{text:'Esta mañana comí un croissant.',correct:false}], explanation:'✅ "Jugaba" (imparfait) = action habituelle dans l\'enfance.' },
-      { type:'fill-blank', tag:'Remplir le vide', question:'Complétez avec le bon temps du passé :', sentence:'Mientras yo _____ (dormir, imperfecto), sonó el teléfono.', answer:'dormía', hint:'💡 Une action continue interrompue par un événement.', explanation:'✅ "Dormía" (imparfait) = je dormais (continu). "Sonó" (passé simple) = a sonné (interruption).' },
-      { type:'multiple-choice', tag:'Défi de traduction', question:'Comment dit-on : <span class="es">"Elle habitait à Barcelone."</span>', hint:'💡 Une habitude passée utilise toujours l\'imparfait.', choices:[{text:'Ella vivió en Barcelona.',correct:false},{text:'Ella vive en Barcelona.',correct:false},{text:'Ella vivía en Barcelona.',correct:true},{text:'Ella vivirá en Barcelona.',correct:false}], explanation:'✅ "Vivía" = imparfait de vivir. L\'habitude dans le passé demande l\'imparfait.' },
-      { type:'fill-blank', tag:'Remplir le vide', question:'Utilisez le passé simple (nosotros) :', sentence:'Ayer _____ (ir) al museo con la clase.', answer:'fuimos', hint:'💡 "Ayer" (hier) = événement ponctuel. "Ir" est irrégulier et identique à "ser" !', explanation:'✅ "Fuimos" — passé simple de ir (nous sommes allés).' },
-      { type:'multiple-choice', tag:'Trouvez l\'erreur', question:'Trouvez l\'erreur : <span class="es">"Ayer, yo comía pizza y después vi una película."</span>', hint:'💡 "Ayer" avec une action ponctuelle nécessite quel temps ?', choices:[{text:'Aucune erreur.',correct:false},{text:'"comía" devrait être "comí"',correct:true},{text:'"vi" devrait être "veía"',correct:false},{text:'Les deux verbes sont faux.',correct:false}], explanation:'✅ "Comía" est faux. "Ayer" + action ponctuelle = passé simple "comí".' },
-      { type:'multiple-choice', tag:'Plan de fond', question:'Quel temps décrit le décor ou la météo dans le passé ?', hint:'💡 Planter le décor est une description continue, pas ponctuelle.', choices:[{text:'Passé simple',correct:false},{text:'Imparfait',correct:true},{text:'Présent',correct:false},{text:'Futur',correct:false}], explanation:'✅ L\'imparfait sert de toile de fond (ex: "Hacía sol" - Il faisait beau).' },
-      { type:'fill-blank', tag:'Remplir le vide', question:'Conjuguez à l\'imparfait :', sentence:'Nosotros siempre _____ (comer) paella los domingos.', answer:'comíamos', hint:'💡 "Siempre" (toujours) indique une habitude.', explanation:'✅ "Comíamos" est la forme nosotros à l\'imparfait pour un verbe en -er.' },
-      { type:'speaking', tag:'Pratique orale', phrase:'Cuando era pequeño, vivía en el campo y jugaba fuera todos los días.', translation:'Quand j\'étais petit, j\'habitais à la campagne et je jouais dehors tous les jours.', hint:'💡 Les verbes sont à l\'imparfait — état de l\'enfance + action de routine.' }
-    ]
-  },
-  'ser-vs-estar': {
-    title:'Ser vs Estar',
-    skills:{ reading:7, writing:5 },
-    exercises:[
-      { type:'multiple-choice', tag:'Ser ou Estar ?', question:'Quelle phrase utilise correctement <span class="es">ser</span> ?', hint:'💡 Ser = identité permanente, origine, profession.', choices:[{text:'Ella está médica.',correct:false},{text:'Ella es médica.',correct:true},{text:'Ella es cansada hoy.',correct:false},{text:'La sopa es caliente ahora.',correct:false}], explanation:'✅ Les professions utilisent "ser" — cela fait partie de l\'identité.' },
-      { type:'fill-blank', tag:'Remplir le vide', question:'Choisissez ser ou estar :', sentence:'La sopa _____ muy caliente ahora mismo.', answer:'está', hint:'💡 La température à ce moment précis = condition temporaire.', explanation:'✅ "Está caliente" = état temporaire.' },
-      { type:'multiple-choice', tag:'Le piège classique', question:'Différence : <span class="es">"Juan es aburrido"</span> vs <span class="es">"Juan está aburrido"</span>', hint:'💡 Le même adjectif change de sens.', choices:[{text:'Aucune différence',correct:false},{text:'Es = ennuyeux (personne). Está = s\'ennuie (maintenant).',correct:true},{text:'Es = s\'ennuie. Está = ennuyeux.',correct:false},{text:'Seul "está" est correct.',correct:false}], explanation:'✅ "Es aburrido" = ennuyeux. "Está aburrido" = il s\'ennuie.' },
-      { type:'fill-blank', tag:'Remplir le vide', question:'Complétez :', sentence:'La reunión _____ en la sala de conferencias.', answer:'es', hint:'💡 Pour les lieux, on utilise estar, mais pour les événements, on utilise ser.', explanation:'✅ "Es" — un événement prévu utilise ser.' },
-      { type:'multiple-choice', tag:'Condition vs Trait', question:'Comment dit-on "La pomme est verte (pas mûre)" vs "La pomme est verte (couleur)" ?', hint:'💡 L\'état de maturation utilise Estar. La couleur utilise Ser.', choices:[{text:'Estar pour les deux',correct:false},{text:'Ser pour les deux',correct:false},{text:'Está verde (pas mûre) / Es verde (couleur)',correct:true},{text:'Es verde (pas mûre) / Está verde (couleur)',correct:false}], explanation:'✅ "Está verde" (temporaire) vs "Es verde" (caractéristique).' },
-      { type:'fill-blank', tag:'Remplir le vide', question:'Choisissez ser ou estar (forme yo) :', sentence:'Yo _____ de México.', answer:'soy', hint:'💡 L\'origine est permanente.', explanation:'✅ "Soy" s\'utilise pour l\'origine.' },
-      { type:'speaking', tag:'Pratique orale', phrase:'¿De dónde eres? Soy de Francia, pero ahora estoy en España.', translation:'D\'où viens-tu ? Je viens de France, mais maintenant je suis en Espagne.', hint:'💡 Origine = ser. Position actuelle = estar.' }
-    ]
-  },
-  'object-pronouns': {
-    title:'Pronoms Objets',
-    skills:{ reading:6, writing:8, listening:4 },
-    exercises:[
-      { type:'multiple-choice', tag:'Placement', question:'Où se place le pronom COD avec un verbe conjugué ?', hint:'💡 Pensez à l\'ordre des mots standard.', choices:[{text:'Après le verbe',correct:false},{text:'Avant le verbe conjugué',correct:true},{text:'À la fin',correct:false},{text:'Peu importe',correct:false}], explanation:'✅ Les pronoms objets se placent AVANT le verbe conjugué.' },
-      { type:'fill-blank', tag:'Remplacez l\'objet', question:'Remplacez "el libro" :', sentence:'Yo leo el libro. -> Yo _____ leo.', answer:'lo', hint:'💡 "Libro" est masculin singulier.', explanation:'✅ "Lo" remplace le masculin singulier.' },
-      { type:'multiple-choice', tag:'Doubles pronoms', question:'Que choisissez-vous pour "Il me le donne" ?', hint:'💡 L\'indirect vient avant le direct (ID).', choices:[{text:'Él lo me da.',correct:false},{text:'Él da me lo.',correct:false},{text:'Él me lo da.',correct:true},{text:'Él me da lo.',correct:false}], explanation:'✅ L\'objet indirect (me) précède l\'objet direct (lo).' },
-      { type:'fill-blank', tag:'La règle du "Se"', question:'Corrigez : "Yo le lo doy." Changez "le" :', sentence:'Yo _____ lo doy.', answer:'se', hint:'💡 On ne peut pas dire "le lo".', explanation:'✅ "Le" devient "se" devant lo/la/los/las.' },
-      { type:'speaking', tag:'Pratique orale', phrase:'¿El coche? Se lo vendí a mi hermano ayer.', translation:'La voiture ? Je la lui ai vendue hier.', hint:'💡 "Se" (à lui) + "lo" (la voiture) + vendí.' }
-    ]
-  },
-  'por-vs-para': {
-    title:'Por vs Para',
-    skills:{ reading:7, writing:7 },
-    exercises:[
-      { type:'multiple-choice', tag:'Destination vs Parcours', question:'Quel mot utilise-t-on pour la destination finale ?', hint:'💡 Pensez aux flèches : l\'une est le chemin, l\'autre la cible.', choices:[{text:'Por',correct:false},{text:'Para',correct:true}], explanation:'✅ "Para" implique un but ou une destination.' },
-      { type:'fill-blank', tag:'Remplir le vide', question:'Utilisez por ou para :', sentence:'Este regalo es _____ ti.', answer:'para', hint:'💡 Le destinataire est un but.', explanation:'✅ "Para" s\'utilise pour les destinataires.' },
-      { type:'multiple-choice', tag:'Durée', question:'Comment dit-on "J\'ai étudié pendant trois heures" ?', hint:'💡 Une durée dans le temps.', choices:[{text:'Estudié para tres horas.',correct:false},{text:'Estudié por tres horas.',correct:true}], explanation:'✅ "Por" sert à exprimer la durée.' },
-      { type:'fill-blank', tag:'Remplir le vide', question:'Utilisez por ou para :', sentence:'Caminamos _____ el parque.', answer:'por', hint:'💡 Le mouvement à travers une zone.', explanation:'✅ "Por" sert pour le déplacement au travers d\'un lieu.' },
-      { type:'speaking', tag:'Pratique orale', phrase:'Estudio español para viajar por Sudamérica.', translation:'J\'étudie l\'espagnol pour voyager à travers l\'Amérique du Sud.', hint:'💡 "Para" (but) + "Por" (à travers).' }
-    ]
-  },
-  'subjunctive-intro': {
-    title:'Subjonctif',
-    skills:{ reading:9, writing:8 },
-    exercises:[
-      { type:'multiple-choice', tag:'Déclencheur', question:'Laquelle de ces phrases déclenche le subjonctif ?', hint:'💡 Le subjonctif exige le doute, le désir ou l\'émotion.', choices:[{text:'Creo que él es inteligente.',correct:false},{text:'Es cierto que viene hoy.',correct:false},{text:'Deseo que vengas a mi fiesta.',correct:true},{text:'Sé que tienes razón.',correct:false}], explanation:'✅ "Deseo que" exprime un désir.' },
-      { type:'fill-blank', tag:'Conjuguez', question:'Es importante que tú _____ (estudiar).', sentence:'Es importante que tú _____ mucho.', answer:'estudies', hint:'💡 Inversez la terminaison (AR -> ES).', explanation:'✅ "Estudies" (subjonctif pour tú).' },
-      { type:'multiple-choice', tag:'Émotion', question:'"Je suis content que tu sois là." -> "Me alegro de que _____ aquí."', hint:'💡 Estar est irrégulier au subjonctif.', choices:[{text:'estás',correct:false},{text:'estes',correct:false},{text:'estés',correct:true},{text:'estas',correct:false}], explanation:'✅ "Estés" est le subjonctif de estar.' },
-      { type:'fill-blank', tag:'Verbe irrégulier', question:'Quiero que tú _____ (ir) al médico.', sentence:'Quiero que tú _____ al médico.', answer:'vayas', hint:'💡 Ir est totalement irrégulier.', explanation:'✅ "Vayas" est la forme subjonctif d\'ir.' },
-      { type:'speaking', tag:'Pratique orale', phrase:'Espero que tengas un buen fin de semana.', translation:'J\'espère que tu passeras un bon week-end.', hint:'💡 "Espero que" (espérer) déclenche le subjonctif.' }
-    ]
-  },
-  'relative-clauses': {
-    title:'Propositions Relatives',
-    skills:{ reading:8, writing:5 },
-    exercises:[
-      { type:'multiple-choice', tag:'Que vs Quien', question:'"El hombre _____ vive allí es mi tío."', hint:'💡 Utilisez "que" pour les personnes sans préposition.', choices:[{text:'quien',correct:false},{text:'que',correct:true},{text:'cual',correct:false},{text:'lo que',correct:false}], explanation:'✅ "Que" est le pronom standard pour les sujets.' },
-      { type:'fill-blank', tag:'Remplir le vide', question:'La mujer con _____ hablé es la jefa.', sentence:'La mujer con _____ hablé es la jefa.', answer:'quien', hint:'💡 Après une préposition (con), utilisez "quien" pour les personnes.', explanation:'✅ "Quien" est requis après une préposition.' },
-      { type:'multiple-choice', tag:'Lo que', question:'Comment dire "Je ne comprends pas ce que tu dis" ?', hint:'💡 L\'idée abstraite de "ce que".', choices:[{text:'No entiendo que dices.',correct:false},{text:'No entiendo el que dices.',correct:false},{text:'No entiendo lo que dices.',correct:true},{text:'No entiendo quien dices.',correct:false}], explanation:'✅ "Lo que" signifie "ce que".' },
-      { type:'speaking', tag:'Pratique orale', phrase:'El coche que compré ayer es muy rápido.', translation:'La voiture que j\'ai achetée hier est très rapide.', hint:'💡 Proposition relative simple avec "que".' }
-    ]
-  },
-  'passive-voice': {
-    title:'Voix Passive',
-    skills:{ reading:7, writing:7 },
-    exercises:[
-      { type:'multiple-choice', tag:'Ser + Participe', question:'El libro _____ escrito por Cervantes.', hint:'💡 La voix passive utilise Ser.', choices:[{text:'fue',correct:true},{text:'estuvo',correct:false},{text:'era',correct:false},{text:'estaba',correct:false}], explanation:'✅ "Fue escrito" (a été écrit) utilise le passé simple de Ser.' },
-      { type:'fill-blank', tag:'Accord', question:'Las casas fueron _____ (construir) en 1990.', sentence:'Las casas fueron _____ en 1990.', answer:'construidas', hint:'💡 Le participe s\'accorde avec "Las casas".', explanation:'✅ "Construidas" s\'accorde en genre et en nombre.' },
-      { type:'multiple-choice', tag:'Se Pasiva', question:'Quelle est la façon la plus naturelle de dire "L\'espagnol est parlé ici" ?', hint:'💡 En espagnol courant, le "se" passif est préféré.', choices:[{text:'El español es hablado aquí.',correct:false},{text:'Se habla español aquí.',correct:true},{text:'Español se habla.',correct:false},{text:'Uno habla español aquí.',correct:false}], explanation:'✅ "Se habla" est la construction passive standard.' },
-      { type:'speaking', tag:'Pratique orale', phrase:'Se venden muchos libros en esta tienda.', translation:'Beaucoup de livres se vendent dans ce magasin.', hint:'💡 "Se venden" s\'accorde avec "libros".' }
-    ]
-  },
-  'subjunctive-advanced': {
-    title:'Subjonctif Avancé',
-    skills:{ reading:9, writing:8 },
-    exercises:[
-      { type:'multiple-choice', tag:'Si (Condition)', question:'Si yo _____ (tener) dinero, viajaría por el mundo.', hint:'💡 Hypothèse avec Si.', choices:[{text:'tengo',correct:false},{text:'tendría',correct:false},{text:'tuviera',correct:true},{text:'tuve',correct:false}], explanation:'✅ "Tuviera" (imparfait du subjonctif) s\'utilise pour les hypothèses.' },
-      { type:'fill-blank', tag:'Cuando + Subjonctif', question:'Te llamaré cuando _____ (llegar) a casa.', sentence:'Te llamaré cuando _____ a casa.', answer:'llegue', hint:'💡 Action future incertaine.', explanation:'✅ "Llegue" indique un événement futur.' },
-      { type:'multiple-choice', tag:'Aunque', question:'"Aunque _____ (llover) mañana, iremos al parque." (Incertain)', hint:'💡 Fait non confirmé = subjonctif.', choices:[{text:'llueve',correct:false},{text:'lloverá',correct:false},{text:'llueva',correct:true},{text:'llovió',correct:false}], explanation:'✅ "Llueva" car c\'est incertain.' },
-      { type:'speaking', tag:'Pratique orale', phrase:'Si fuera rico, compraría una isla.', translation:'Si j\'étais riche, j\'achèterais une île.', hint:'💡 "Si fuera" = imparfait du subjonctif.' }
-    ]
-  }
-};
+let LESSONS = {};
+let lessonsReady = false;
+let lessonsLoadPromise = null;
+
+async function loadLessonsData() {
+  if (lessonsReady) return LESSONS;
+  if (lessonsLoadPromise) return lessonsLoadPromise;
+
+  lessonsLoadPromise = fetch('data/exercises.json', { cache: 'no-store' })
+    .then(r => {
+      if (!r.ok) throw new Error('Impossible de charger les exercices (' + r.status + ')');
+      return r.json();
+    })
+    .then(data => {
+      LESSONS = data.lessons || {};
+      lessonsReady = true;
+      return LESSONS;
+    })
+    .catch(err => {
+      console.warn('Erreur chargement exercices:', err);
+      LESSONS = {};
+      lessonsReady = true;
+      return LESSONS;
+    });
+
+  return lessonsLoadPromise;
+}
 
 /* ── VOCABULARY ── */
 const WORDS = [
@@ -578,7 +513,8 @@ let currentExIdx     = 0;
 let answerLocked     = false;
 let previousScreen   = 'dashboard';
 
-function startLesson(key) {
+async function startLesson(key) {
+  await loadLessonsData();
   if (!LESSONS[key]) { alert('Leçon bientôt disponible !'); return; }
   currentLessonKey = key;
   currentExIdx     = 0;
@@ -797,6 +733,13 @@ function renderWordList() {
 
 /* ── GRAMMAR ── */
 function initGrammar() {
+  if (!lessonsReady) {
+    document.getElementById('grammar-list').innerHTML = '<div class="grammar-card">Chargement des leçons…</div>';
+    loadLessonsData().then(() => {
+      if (document.getElementById('screen-grammar')?.classList.contains('active')) initGrammar();
+    });
+    return;
+  }
   document.getElementById('grammar-list').innerHTML = GRAMMAR_TOPICS.map(t => {
     const pct = state.grammarProgress[t.key] || 0;
     const hasLesson = !!LESSONS[t.key];
@@ -953,6 +896,8 @@ async function loadProgress() {
 window.onFirebaseReady = async function() {
   document.getElementById('loading-msg').textContent = 'Chargement de votre progression…';
   await loadProgress();
+  document.getElementById('loading-msg').textContent = 'Chargement des exercices…';
+  await loadLessonsData();
   const ls = document.getElementById('loading-screen');
   ls.classList.add('hidden');
   setTimeout(() => ls.remove(), 600);
