@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
@@ -245,32 +245,32 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div id="loading-screen">
   <div class="loading-logo">Español Vivo</div>
   <div class="loading-spinner"></div>
-  <div class="loading-msg" id="loading-msg">Connecting…</div>
+  <div class="loading-msg" id="loading-msg">Connexion…</div>
 </div>
 
 <div id="screen-home" class="screen active">
   <p class="home-eyebrow">Español Vivo</p>
   <div>
-    <h1 class="home-title">Learn Spanish<br><em>for real.</em></h1>
-    <p class="home-sub">Memory science, CEFR progression, real speaking practice — not just streaks.</p>
+    <h1 class="home-title">Apprenez l'espagnol<br><em>pour de vrai.</em></h1>
+    <p class="home-sub">Mémorisation scientifique, progression CECRL, pratique orale réelle.</p>
   </div>
   <div>
-    <p class="level-label">Your current level</p>
+    <p class="level-label">Votre niveau actuel</p>
     <div class="level-grid">
-      <button class="level-btn sel" onclick="selectLevel(this,'A1')"><div class="lv">A1</div>Beginner</button>
-      <button class="level-btn"     onclick="selectLevel(this,'A2')"><div class="lv">A2</div>Elementary</button>
-      <button class="level-btn"     onclick="selectLevel(this,'B1')"><div class="lv">B1</div>Intermediate</button>
-      <button class="level-btn"     onclick="selectLevel(this,'B2')"><div class="lv">B2</div>Upper-Inter.</button>
-      <button class="level-btn"     onclick="selectLevel(this,'C1')"><div class="lv">C1</div>Advanced</button>
-      <button class="level-btn"     onclick="selectLevel(this,'C2')"><div class="lv">C2</div>Mastery</button>
+      <button class="level-btn sel" onclick="selectLevel(this,'A1')"><div class="lv">A1</div>Débutant</button>
+      <button class="level-btn"     onclick="selectLevel(this,'A2')"><div class="lv">A2</div>Élémentaire</button>
+      <button class="level-btn"     onclick="selectLevel(this,'B1')"><div class="lv">B1</div>Intermédiaire</button>
+      <button class="level-btn"     onclick="selectLevel(this,'B2')"><div class="lv">B2</div>Inter. Supérieur</button>
+      <button class="level-btn"     onclick="selectLevel(this,'C1')"><div class="lv">C1</div>Avancé</button>
+      <button class="level-btn"     onclick="selectLevel(this,'C2')"><div class="lv">C2</div>Maîtrise</button>
     </div>
   </div>
   <div>
-    <button class="btn-primary" onclick="startApp()">Start learning →</button>
+    <button class="btn-primary" onclick="startApp()">Commencer à apprendre →</button>
     <div class="home-stats" style="margin-top:18px">
-      <div><div class="stat-num">3,200+</div><div class="stat-lbl">Words</div></div>
-      <div><div class="stat-num">CEFR</div><div class="stat-lbl">Aligned</div></div>
-      <div><div class="stat-num">AI</div><div class="stat-lbl">Conversations</div></div>
+      <div><div class="stat-num">3,200+</div><div class="stat-lbl">Mots</div></div>
+      <div><div class="stat-num">CECRL</div><div class="stat-lbl">Aligné</div></div>
+      <div><div class="stat-num">IA</div><div class="stat-lbl">Conversations</div></div>
     </div>
   </div>
 </div>
@@ -278,52 +278,52 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <div id="screen-dashboard" class="screen">
   <div class="top-bar">
     <div>
-      <p style="font-size:12px;color:var(--muted)" id="dash-greeting">Good morning</p>
-      <h2 class="top-bar-title">Dashboard</h2>
+      <p style="font-size:12px;color:var(--muted)" id="dash-greeting">Bonjour</p>
+      <h2 class="top-bar-title">Tableau de bord</h2>
     </div>
     <div class="avatar">🧑</div>
   </div>
   <div class="streak-banner fade-up">
     <div class="streak-fire">🔥</div>
-    <div><div class="streak-days" id="streak-count">0</div><div class="streak-label">day streak</div></div>
+    <div><div class="streak-days" id="streak-count">0</div><div class="streak-label">jours de suite</div></div>
     <div style="margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px">
       <div class="xp-badge" id="xp-display">0 XP</div>
-      <div class="level-badge" id="level-display">Level A1</div>
+      <div class="level-badge" id="level-display">Niveau A1</div>
     </div>
   </div>
   <div class="section fade-up">
-    <div class="section-header"><h3 class="section-title">Your skills</h3></div>
+    <div class="section-header"><h3 class="section-title">Vos compétences</h3></div>
     <div class="skill-grid" id="skill-grid"></div>
   </div>
   <div class="section fade-up">
-    <div class="section-header"><h3 class="section-title">Today's plan</h3></div>
+    <div class="section-header"><h3 class="section-title">Plan du jour</h3></div>
     <div class="lesson-list">
       <div class="lesson-card" onclick="startLesson('preterite-vs-imperfect')">
         <div class="lesson-icon li-orange">🕐</div>
-        <div style="flex:1"><div class="lesson-name">Preterite vs Imperfect</div><div class="lesson-meta">Grammar · 8 min · 8 exercises</div></div>
-        <div class="lesson-tag tag-new">NEW</div>
+        <div style="flex:1"><div class="lesson-name">Passé simple vs Imparfait</div><div class="lesson-meta">Grammaire · 8 min · 8 exercices</div></div>
+        <div class="lesson-tag tag-new">NOUVEAU</div>
       </div>
       <div class="lesson-card" onclick="startLesson('subjunctive-intro')">
         <div class="lesson-icon li-blue">🎭</div>
-        <div style="flex:1"><div class="lesson-name">Subjunctive Intro</div><div class="lesson-meta">Grammar · 6 min · 5 exercises</div></div>
-        <div class="lesson-tag tag-new">NEW</div>
+        <div style="flex:1"><div class="lesson-name">Intro au subjonctif</div><div class="lesson-meta">Grammaire · 6 min · 5 exercices</div></div>
+        <div class="lesson-tag tag-new">NOUVEAU</div>
       </div>
       <div class="lesson-card" onclick="navTo('vocab')">
         <div class="lesson-icon li-purple">📚</div>
-        <div style="flex:1"><div class="lesson-name">Vocabulary review</div><div class="lesson-meta">Spaced repetition · 5 min</div></div>
-        <div class="lesson-tag tag-review">REVIEW</div>
+        <div style="flex:1"><div class="lesson-name">Révision vocabulaire</div><div class="lesson-meta">Répétition espacée · 5 min</div></div>
+        <div class="lesson-tag tag-review">RÉVISION</div>
       </div>
       <div class="lesson-card" onclick="navTo('speak')">
         <div class="lesson-icon li-gold">🎤</div>
-        <div style="flex:1"><div class="lesson-name">Conversation practice</div><div class="lesson-meta">Speaking · 10 min · AI roleplay</div></div>
-        <div class="lesson-tag tag-new">NEW</div>
+        <div style="flex:1"><div class="lesson-name">Pratique orale</div><div class="lesson-meta">Parler · 10 min · Jeu de rôle IA</div></div>
+        <div class="lesson-tag tag-new">NOUVEAU</div>
       </div>
     </div>
   </div>
   <div class="section fade-up">
     <div style="background:rgba(232,197,71,.07);border:1px solid rgba(232,197,71,.2);border-radius:var(--r);padding:16px;display:flex;gap:12px;align-items:flex-start">
       <span style="font-size:24px;flex-shrink:0">💡</span>
-      <div><div style="font-weight:600;font-size:13px;margin-bottom:3px">Memory tip</div><div style="font-size:12px;color:var(--muted);line-height:1.4">Start with grammar today — your vocabulary review window opens in 2 hours for best retention.</div></div>
+      <div><div style="font-weight:600;font-size:13px;margin-bottom:3px">Astuce mémoire</div><div style="font-size:12px;color:var(--muted);line-height:1.4">Commencez par la grammaire — votre session de vocabulaire s'ouvre dans 2 heures.</div></div>
     </div>
   </div>
 </div>
@@ -338,23 +338,23 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
   <div class="feedback-panel" id="feedback-panel">
     <div class="fb-title" id="fb-title"></div>
     <div class="fb-body"  id="fb-body"></div>
-    <button class="btn-continue" id="btn-continue" onclick="nextExercise()">Continue →</button>
+    <button class="btn-continue" id="btn-continue" onclick="nextExercise()">Continuer →</button>
   </div>
 </div>
 
 <div id="screen-vocab" class="screen">
   <div class="top-bar">
-    <h2 class="top-bar-title">Vocabulary</h2>
+    <h2 class="top-bar-title">Vocabulaire</h2>
     <div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)" id="vocab-count"></div>
   </div>
-  <p style="padding:0 28px 10px;font-size:12px;color:var(--muted)">Tap card to reveal · Rate your recall</p>
+  <p style="padding:0 28px 10px;font-size:12px;color:var(--muted)">Appuyez pour révéler · Évaluez votre mémoire</p>
   <div class="flashcard-wrap">
     <div class="flashcard" id="flashcard" onclick="flipCard()">
       <div class="card-face card-front">
         <div class="card-cat"      id="card-cat"></div>
         <div class="card-word"     id="card-word"></div>
         <div class="card-phonetic" id="card-phonetic"></div>
-        <div class="card-hint">Tap to reveal →</div>
+        <div class="card-hint">Appuyez pour révéler →</div>
       </div>
       <div class="card-face card-back">
         <div class="card-translation" id="card-trans"></div>
@@ -364,19 +364,19 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
     </div>
   </div>
   <div class="card-actions" id="card-actions" style="display:none">
-    <button class="card-action-btn btn-hard"    onclick="rateCard('hard')">😓 Hard</button>
-    <button class="card-action-btn btn-ok-card" onclick="rateCard('ok')">🤔 OK</button>
-    <button class="card-action-btn btn-easy"    onclick="rateCard('easy')">😊 Easy</button>
+    <button class="card-action-btn btn-hard"    onclick="rateCard('hard')">😓 Difficile</button>
+    <button class="card-action-btn btn-ok-card" onclick="rateCard('ok')">🤔 Moyen</button>
+    <button class="card-action-btn btn-easy"    onclick="rateCard('easy')">😊 Facile</button>
   </div>
   <div class="section" style="margin-top:20px">
-    <div class="section-header"><h3 class="section-title">All words</h3></div>
+    <div class="section-header"><h3 class="section-title">Tous les mots</h3></div>
     <div class="word-list" id="word-list"></div>
   </div>
 </div>
 
 <div id="screen-grammar" class="screen">
   <div class="top-bar">
-    <h2 class="top-bar-title">Grammar</h2>
+    <h2 class="top-bar-title">Grammaire</h2>
     <div style="background:rgba(46,196,182,.12);color:var(--teal);font-size:11px;font-family:'DM Mono',monospace;padding:5px 11px;border-radius:20px">A1 → C1</div>
   </div>
   <div class="grammar-list" id="grammar-list"></div>
@@ -384,8 +384,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 
 <div id="screen-speak" class="screen">
   <div class="top-bar">
-    <h2 class="top-bar-title">Speaking</h2>
-    <div style="background:rgba(255,107,53,.12);color:var(--accent);font-size:11px;font-family:'DM Mono',monospace;padding:5px 11px;border-radius:20px">AI powered</div>
+    <h2 class="top-bar-title">Parler</h2>
+    <div style="background:rgba(255,107,53,.12);color:var(--accent);font-size:11px;font-family:'DM Mono',monospace;padding:5px 11px;border-radius:20px">Propulsé par l'IA</div>
   </div>
   <div class="convo-cards" id="convo-cards"></div>
   <div class="chat-area" id="chat-area" style="display:none"></div>
@@ -394,16 +394,16 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
       <div class="speak-phrase" id="drill-phrase"></div>
       <div class="speak-trans"  id="drill-trans"></div>
       <button class="mic-btn" id="mic-btn" onclick="toggleMic()">🎤</button>
-      <div class="speak-tip">Tap the mic and speak clearly.</div>
+      <div class="speak-tip">Appuyez sur le micro et parlez clairement.</div>
     </div>
   </div>
 </div>
 
 <nav class="bottom-nav" id="bottom-nav" style="display:none">
-  <button class="nav-item active" id="nav-dashboard" onclick="navTo('dashboard')"><span class="nav-icon">🏠</span><span class="nav-label">HOME</span></button>
-  <button class="nav-item" id="nav-vocab"    onclick="navTo('vocab')">   <span class="nav-icon">📚</span><span class="nav-label">WORDS</span></button>
-  <button class="nav-item" id="nav-grammar"  onclick="navTo('grammar')"> <span class="nav-icon">🧠</span><span class="nav-label">GRAMMAR</span></button>
-  <button class="nav-item" id="nav-speak"    onclick="navTo('speak')">   <span class="nav-icon">🎤</span><span class="nav-label">SPEAK</span></button>
+  <button class="nav-item active" id="nav-dashboard" onclick="navTo('dashboard')"><span class="nav-icon">🏠</span><span class="nav-label">ACCUEIL</span></button>
+  <button class="nav-item" id="nav-vocab"    onclick="navTo('vocab')">   <span class="nav-icon">📚</span><span class="nav-label">MOTS</span></button>
+  <button class="nav-item" id="nav-grammar"  onclick="navTo('grammar')"> <span class="nav-icon">🧠</span><span class="nav-label">GRAMMAIRE</span></button>
+  <button class="nav-item" id="nav-speak"    onclick="navTo('speak')">   <span class="nav-icon">🎤</span><span class="nav-label">PARLER</span></button>
 </nav>
 
 <script>
@@ -417,159 +417,159 @@ const state = {
 /* ── LESSON CONTENT ── */
 const LESSONS = {
   'preterite-vs-imperfect': {
-    title:'Preterite vs Imperfect',
+    title:'Passé simple vs Imparfait',
     skills:{ reading:8, writing:6 },
     exercises:[
-      { type:'multiple-choice', tag:'Choose the correct tense', question:'Which sentence correctly uses the <span class="es">imperfecto</span>?', hint:'💡 The imperfect describes ongoing, habitual, or background past actions.', choices:[{text:'Ayer fui al supermercado.',correct:false},{text:'Cuando era niño, jugaba al fútbol todos los días.',correct:true},{text:'El año pasado viví en Madrid.',correct:false},{text:'Esta mañana comí un croissant.',correct:false}], explanation:'✅ "Jugaba" (imperfect) = habitual childhood action. The others are preterite — single completed events.' },
-      { type:'fill-blank', tag:'Fill in the blank', question:'Complete with the correct past tense:', sentence:'Mientras yo _____ (dormir, imperfecto), sonó el teléfono.', answer:'dormía', hint:'💡 Ongoing background action interrupted by a single event.', explanation:'✅ "Dormía" (imperfect) = I was sleeping (ongoing). "Sonó" (preterite) = the phone rang (single interruption).' },
-      { type:'multiple-choice', tag:'Translation challenge', question:'How do you say: <span class="es">"She used to live in Barcelona."</span>', hint:'💡 "Used to" always signals the imperfect — habitual past.', choices:[{text:'Ella vivió en Barcelona.',correct:false},{text:'Ella vive en Barcelona.',correct:false},{text:'Ella vivía en Barcelona.',correct:true},{text:'Ella vivirá en Barcelona.',correct:false}], explanation:'✅ "Vivía" = imperfect of vivir. "Used to / would (habitually)" → imperfecto every time.' },
-      { type:'fill-blank', tag:'Fill in the blank', question:'Use the preterite (nosotros):', sentence:'Ayer _____ (ir) al museo con la clase.', answer:'fuimos', hint:'💡 "Ayer" = specific completed event = preterite. "Ir" is irregular — same form as "ser"!', explanation:'✅ "Fuimos" — preterite of ir (we went). Ir and ser are identical in preterite forms.' },
-      { type:'multiple-choice', tag:'Error detection', question:'Spot the mistake: <span class="es">"Ayer, yo comía pizza y después vi una película."</span>', hint:'💡 "Ayer" with a single completed action needs which tense?', choices:[{text:'No error — both verbs are correct.',correct:false},{text:'"comía" should be "comí"',correct:true},{text:'"vi" should be "veía"',correct:false},{text:'Both verbs are wrong.',correct:false}], explanation:'✅ "Comía" is wrong. "Ayer" + single completed action = preterite "comí". "Vi" is already correct preterite.' },
-      { type:'multiple-choice', tag:'Background setting', question:'Which tense sets the scene or describes the weather in the past?', hint:'💡 Setting the scene is an ongoing description, not a completed event.', choices:[{text:'Preterite',correct:false},{text:'Imperfect',correct:true},{text:'Present',correct:false},{text:'Future',correct:false}], explanation:'✅ The imperfect sets the background (e.g., "Hacía sol" - It was sunny).' },
-      { type:'fill-blank', tag:'Fill in the blank', question:'Conjugate in the imperfect:', sentence:'Nosotros siempre _____ (comer) paella los domingos.', answer:'comíamos', hint:'💡 "Siempre" indicates a habit. Use the imperfect for -er verbs (-íamos).', explanation:'✅ "Comíamos" is the correct nosotros form in the imperfect for an -er verb.' },
-      { type:'speaking', tag:'Speaking practice', phrase:'Cuando era pequeño, vivía en el campo y jugaba fuera todos los días.', translation:'When I was young, I lived in the countryside and played outside every day.', hint:'💡 Both verbs are imperfect — habitual childhood state + routine action.' }
+      { type:'multiple-choice', tag:'Choisissez le bon temps', question:'Quelle phrase utilise correctement l\'<span class="es">imperfecto</span> ?', hint:'💡 L\'imparfait décrit des actions passées continues ou habituelles.', choices:[{text:'Ayer fui al supermercado.',correct:false},{text:'Cuando era niño, jugaba al fútbol todos los días.',correct:true},{text:'El año pasado viví en Madrid.',correct:false},{text:'Esta mañana comí un croissant.',correct:false}], explanation:'✅ "Jugaba" (imparfait) = action habituelle dans l\'enfance.' },
+      { type:'fill-blank', tag:'Remplir le vide', question:'Complétez avec le bon temps du passé :', sentence:'Mientras yo _____ (dormir, imperfecto), sonó el teléfono.', answer:'dormía', hint:'💡 Une action continue interrompue par un événement.', explanation:'✅ "Dormía" (imparfait) = je dormais (continu). "Sonó" (passé simple) = a sonné (interruption).' },
+      { type:'multiple-choice', tag:'Défi de traduction', question:'Comment dit-on : <span class="es">"Elle habitait à Barcelone."</span>', hint:'💡 Une habitude passée utilise toujours l\'imparfait.', choices:[{text:'Ella vivió en Barcelona.',correct:false},{text:'Ella vive en Barcelona.',correct:false},{text:'Ella vivía en Barcelona.',correct:true},{text:'Ella vivirá en Barcelona.',correct:false}], explanation:'✅ "Vivía" = imparfait de vivir. L\'habitude dans le passé demande l\'imparfait.' },
+      { type:'fill-blank', tag:'Remplir le vide', question:'Utilisez le passé simple (nosotros) :', sentence:'Ayer _____ (ir) al museo con la clase.', answer:'fuimos', hint:'💡 "Ayer" (hier) = événement ponctuel. "Ir" est irrégulier et identique à "ser" !', explanation:'✅ "Fuimos" — passé simple de ir (nous sommes allés).' },
+      { type:'multiple-choice', tag:'Trouvez l\'erreur', question:'Trouvez l\'erreur : <span class="es">"Ayer, yo comía pizza y después vi una película."</span>', hint:'💡 "Ayer" avec une action ponctuelle nécessite quel temps ?', choices:[{text:'Aucune erreur.',correct:false},{text:'"comía" devrait être "comí"',correct:true},{text:'"vi" devrait être "veía"',correct:false},{text:'Les deux verbes sont faux.',correct:false}], explanation:'✅ "Comía" est faux. "Ayer" + action ponctuelle = passé simple "comí".' },
+      { type:'multiple-choice', tag:'Plan de fond', question:'Quel temps décrit le décor ou la météo dans le passé ?', hint:'💡 Planter le décor est une description continue, pas ponctuelle.', choices:[{text:'Passé simple',correct:false},{text:'Imparfait',correct:true},{text:'Présent',correct:false},{text:'Futur',correct:false}], explanation:'✅ L\'imparfait sert de toile de fond (ex: "Hacía sol" - Il faisait beau).' },
+      { type:'fill-blank', tag:'Remplir le vide', question:'Conjuguez à l\'imparfait :', sentence:'Nosotros siempre _____ (comer) paella los domingos.', answer:'comíamos', hint:'💡 "Siempre" (toujours) indique une habitude.', explanation:'✅ "Comíamos" est la forme nosotros à l\'imparfait pour un verbe en -er.' },
+      { type:'speaking', tag:'Pratique orale', phrase:'Cuando era pequeño, vivía en el campo y jugaba fuera todos los días.', translation:'Quand j\'étais petit, j\'habitais à la campagne et je jouais dehors tous les jours.', hint:'💡 Les verbes sont à l\'imparfait — état de l\'enfance + action de routine.' }
     ]
   },
   'ser-vs-estar': {
     title:'Ser vs Estar',
     skills:{ reading:7, writing:5 },
     exercises:[
-      { type:'multiple-choice', tag:'Ser or Estar?', question:'Which sentence uses <span class="es">ser</span> correctly?', hint:'💡 Ser = permanent identity, origin, profession, material, time.', choices:[{text:'Ella está médica.',correct:false},{text:'Ella es médica.',correct:true},{text:'Ella es cansada hoy.',correct:false},{text:'La sopa es caliente ahora.',correct:false}], explanation:'✅ Professions use "ser" — it\'s part of identity.' },
-      { type:'fill-blank', tag:'Fill in the blank', question:'Choose ser or estar:', sentence:'La sopa _____ muy caliente ahora mismo.', answer:'está', hint:'💡 Temperature right now = temporary condition = estar.', explanation:'✅ "Está caliente" = temporary state.' },
-      { type:'multiple-choice', tag:'Classic trap', question:'Difference: <span class="es">"Juan es aburrido"</span> vs <span class="es">"Juan está aburrido"</span>', hint:'💡 The same adjective changes meaning.', choices:[{text:'No difference',correct:false},{text:'Es = boring person. Está = bored right now.',correct:true},{text:'Es = bored. Está = boring.',correct:false},{text:'Only "está" is correct.',correct:false}], explanation:'✅ "Es aburrido" = boring (personality). "Está aburrido" = feels bored (right now).' },
-      { type:'fill-blank', tag:'Fill in the blank', question:'Complete correctly:', sentence:'La reunión _____ en la sala de conferencias.', answer:'es', hint:'💡 Location of things uses estar, but events use ser.', explanation:'✅ "Es" — scheduled events use ser: "La reunión es en la sala."' },
-      { type:'multiple-choice', tag:'Condition vs Trait', question:'How do you say "The apple is green (unripe)" vs "The apple is green (color)"?', hint:'💡 States of readiness use Estar. Inherent colors use Ser.', choices:[{text:'Estar for both',correct:false},{text:'Ser for both',correct:false},{text:'Está verde (unripe) / Es verde (color)',correct:true},{text:'Es verde (unripe) / Está verde (color)',correct:false}], explanation:'✅ "Está verde" (unripe) vs "Es verde" (color).' },
-      { type:'fill-blank', tag:'Fill in the blank', question:'Choose ser or estar (yo form):', sentence:'Yo _____ de México.', answer:'soy', hint:'💡 Origin is a permanent trait.', explanation:'✅ "Soy" is used for origin.' },
-      { type:'speaking', tag:'Speaking practice', phrase:'¿De dónde eres? Soy de Francia, pero ahora estoy en España.', translation:'Where are you from? I\'m from France, but right now I\'m in Spain.', hint:'💡 Origin = ser. Current location = estar.' }
+      { type:'multiple-choice', tag:'Ser ou Estar ?', question:'Quelle phrase utilise correctement <span class="es">ser</span> ?', hint:'💡 Ser = identité permanente, origine, profession.', choices:[{text:'Ella está médica.',correct:false},{text:'Ella es médica.',correct:true},{text:'Ella es cansada hoy.',correct:false},{text:'La sopa es caliente ahora.',correct:false}], explanation:'✅ Les professions utilisent "ser" — cela fait partie de l\'identité.' },
+      { type:'fill-blank', tag:'Remplir le vide', question:'Choisissez ser ou estar :', sentence:'La sopa _____ muy caliente ahora mismo.', answer:'está', hint:'💡 La température à ce moment précis = condition temporaire.', explanation:'✅ "Está caliente" = état temporaire.' },
+      { type:'multiple-choice', tag:'Le piège classique', question:'Différence : <span class="es">"Juan es aburrido"</span> vs <span class="es">"Juan está aburrido"</span>', hint:'💡 Le même adjectif change de sens.', choices:[{text:'Aucune différence',correct:false},{text:'Es = ennuyeux (personne). Está = s\'ennuie (maintenant).',correct:true},{text:'Es = s\'ennuie. Está = ennuyeux.',correct:false},{text:'Seul "está" est correct.',correct:false}], explanation:'✅ "Es aburrido" = ennuyeux. "Está aburrido" = il s\'ennuie.' },
+      { type:'fill-blank', tag:'Remplir le vide', question:'Complétez :', sentence:'La reunión _____ en la sala de conferencias.', answer:'es', hint:'💡 Pour les lieux, on utilise estar, mais pour les événements, on utilise ser.', explanation:'✅ "Es" — un événement prévu utilise ser.' },
+      { type:'multiple-choice', tag:'Condition vs Trait', question:'Comment dit-on "La pomme est verte (pas mûre)" vs "La pomme est verte (couleur)" ?', hint:'💡 L\'état de maturation utilise Estar. La couleur utilise Ser.', choices:[{text:'Estar pour les deux',correct:false},{text:'Ser pour les deux',correct:false},{text:'Está verde (pas mûre) / Es verde (couleur)',correct:true},{text:'Es verde (pas mûre) / Está verde (couleur)',correct:false}], explanation:'✅ "Está verde" (temporaire) vs "Es verde" (caractéristique).' },
+      { type:'fill-blank', tag:'Remplir le vide', question:'Choisissez ser ou estar (forme yo) :', sentence:'Yo _____ de México.', answer:'soy', hint:'💡 L\'origine est permanente.', explanation:'✅ "Soy" s\'utilise pour l\'origine.' },
+      { type:'speaking', tag:'Pratique orale', phrase:'¿De dónde eres? Soy de Francia, pero ahora estoy en España.', translation:'D\'où viens-tu ? Je viens de France, mais maintenant je suis en Espagne.', hint:'💡 Origine = ser. Position actuelle = estar.' }
     ]
   },
   'object-pronouns': {
-    title:'Object Pronouns',
+    title:'Pronoms Objets',
     skills:{ reading:6, writing:8, listening:4 },
     exercises:[
-      { type:'multiple-choice', tag:'Direct Object Placement', question:'Where does the direct object pronoun go with a conjugated verb?', hint:'💡 Think about standard word order in Spanish.', choices:[{text:'After the verb',correct:false},{text:'Before the conjugated verb',correct:true},{text:'At the end',correct:false},{text:'It doesn\'t matter',correct:false}], explanation:'✅ Object pronouns go directly BEFORE a conjugated verb.' },
-      { type:'fill-blank', tag:'Replace the object', question:'Replace "el libro":', sentence:'Yo leo el libro. -> Yo _____ leo.', answer:'lo', hint:'💡 "Libro" is masculine singular.', explanation:'✅ "Lo" replaces masculine singular.' },
-      { type:'multiple-choice', tag:'Double Pronouns', question:'Which is correct for "He gives it (the book) to me"?', hint:'💡 Indirect comes before Direct (ID).', choices:[{text:'Él lo me da.',correct:false},{text:'Él da me lo.',correct:false},{text:'Él me lo da.',correct:true},{text:'Él me da lo.',correct:false}], explanation:'✅ The indirect object (me) precedes the direct object (lo).' },
-      { type:'fill-blank', tag:'The "Se" Rule', question:'Fix this sentence: "Yo le lo doy." Change "le":', sentence:'Yo _____ lo doy.', answer:'se', hint:'💡 You cannot have "le lo".', explanation:'✅ "Le" becomes "se" before lo/la/los/las.' },
-      { type:'speaking', tag:'Speaking practice', phrase:'¿El coche? Se lo vendí a mi hermano ayer.', translation:'The car? I sold it to my brother yesterday.', hint:'💡 "Se" (to him) + "lo" (it) + vendí.' }
+      { type:'multiple-choice', tag:'Placement', question:'Où se place le pronom COD avec un verbe conjugué ?', hint:'💡 Pensez à l\'ordre des mots standard.', choices:[{text:'Après le verbe',correct:false},{text:'Avant le verbe conjugué',correct:true},{text:'À la fin',correct:false},{text:'Peu importe',correct:false}], explanation:'✅ Les pronoms objets se placent AVANT le verbe conjugué.' },
+      { type:'fill-blank', tag:'Remplacez l\'objet', question:'Remplacez "el libro" :', sentence:'Yo leo el libro. -> Yo _____ leo.', answer:'lo', hint:'💡 "Libro" est masculin singulier.', explanation:'✅ "Lo" remplace le masculin singulier.' },
+      { type:'multiple-choice', tag:'Doubles pronoms', question:'Que choisissez-vous pour "Il me le donne" ?', hint:'💡 L\'indirect vient avant le direct (ID).', choices:[{text:'Él lo me da.',correct:false},{text:'Él da me lo.',correct:false},{text:'Él me lo da.',correct:true},{text:'Él me da lo.',correct:false}], explanation:'✅ L\'objet indirect (me) précède l\'objet direct (lo).' },
+      { type:'fill-blank', tag:'La règle du "Se"', question:'Corrigez : "Yo le lo doy." Changez "le" :', sentence:'Yo _____ lo doy.', answer:'se', hint:'💡 On ne peut pas dire "le lo".', explanation:'✅ "Le" devient "se" devant lo/la/los/las.' },
+      { type:'speaking', tag:'Pratique orale', phrase:'¿El coche? Se lo vendí a mi hermano ayer.', translation:'La voiture ? Je la lui ai vendue hier.', hint:'💡 "Se" (à lui) + "lo" (la voiture) + vendí.' }
     ]
   },
   'por-vs-para': {
     title:'Por vs Para',
     skills:{ reading:7, writing:7 },
     exercises:[
-      { type:'multiple-choice', tag:'Destination vs Route', question:'Which word is used for a final destination?', hint:'💡 Think of arrows: one is the path, one is the target.', choices:[{text:'Por',correct:false},{text:'Para',correct:true}], explanation:'✅ "Para" implies a goal or destination.' },
-      { type:'fill-blank', tag:'Fill in the blank', question:'Use por or para:', sentence:'Este regalo es _____ ti.', answer:'para', hint:'💡 The recipient of an object is a destination/goal.', explanation:'✅ "Para" is used for recipients.' },
-      { type:'multiple-choice', tag:'Duration of Time', question:'How do you say "I studied for three hours"?', hint:'💡 A length of time or duration.', choices:[{text:'Estudié para tres horas.',correct:false},{text:'Estudié por tres horas.',correct:true}], explanation:'✅ "Por" is used to express duration.' },
-      { type:'fill-blank', tag:'Fill in the blank', question:'Use por or para:', sentence:'Caminamos _____ el parque.', answer:'por', hint:'💡 Movement through or along an area.', explanation:'✅ "Por" is used for movement through a place.' },
-      { type:'speaking', tag:'Speaking practice', phrase:'Estudio español para viajar por Sudamérica.', translation:'I study Spanish in order to travel through South America.', hint:'💡 "Para" (goal) + "Por" (through a space).' }
+      { type:'multiple-choice', tag:'Destination vs Parcours', question:'Quel mot utilise-t-on pour la destination finale ?', hint:'💡 Pensez aux flèches : l\'une est le chemin, l\'autre la cible.', choices:[{text:'Por',correct:false},{text:'Para',correct:true}], explanation:'✅ "Para" implique un but ou une destination.' },
+      { type:'fill-blank', tag:'Remplir le vide', question:'Utilisez por ou para :', sentence:'Este regalo es _____ ti.', answer:'para', hint:'💡 Le destinataire est un but.', explanation:'✅ "Para" s\'utilise pour les destinataires.' },
+      { type:'multiple-choice', tag:'Durée', question:'Comment dit-on "J\'ai étudié pendant trois heures" ?', hint:'💡 Une durée dans le temps.', choices:[{text:'Estudié para tres horas.',correct:false},{text:'Estudié por tres horas.',correct:true}], explanation:'✅ "Por" sert à exprimer la durée.' },
+      { type:'fill-blank', tag:'Remplir le vide', question:'Utilisez por ou para :', sentence:'Caminamos _____ el parque.', answer:'por', hint:'💡 Le mouvement à travers une zone.', explanation:'✅ "Por" sert pour le déplacement au travers d\'un lieu.' },
+      { type:'speaking', tag:'Pratique orale', phrase:'Estudio español para viajar por Sudamérica.', translation:'J\'étudie l\'espagnol pour voyager à travers l\'Amérique du Sud.', hint:'💡 "Para" (but) + "Por" (à travers).' }
     ]
   },
   'subjunctive-intro': {
-    title:'Subjunctive',
+    title:'Subjonctif',
     skills:{ reading:9, writing:8 },
     exercises:[
-      { type:'multiple-choice', tag:'Mood Trigger', question:'Which of these sentences triggers the subjunctive?', hint:'💡 Subjunctive requires doubt, desire, emotion, or impersonal expressions.', choices:[{text:'Creo que él es inteligente.',correct:false},{text:'Es cierto que viene hoy.',correct:false},{text:'Deseo que vengas a mi fiesta.',correct:true},{text:'Sé que tienes razón.',correct:false}], explanation:'✅ "Deseo que" expresses a desire, which triggers the subjunctive.' },
-      { type:'fill-blank', tag:'Conjugate', question:'Es importante que tú _____ (estudiar).', sentence:'Es importante que tú _____ mucho.', answer:'estudies', hint:'💡 Swap the ending: AR verbs take ER/IR endings in subjunctive.', explanation:'✅ "Estudies" (subjunctive for tú).' },
-      { type:'multiple-choice', tag:'Emotion', question:'"I am happy that you are here." -> "Me alegro de que _____ aquí."', hint:'💡 Estar is irregular in the subjunctive.', choices:[{text:'estás',correct:false},{text:'estes',correct:false},{text:'estés',correct:true},{text:'estas',correct:false}], explanation:'✅ "Estés" is the subjunctive of estar.' },
-      { type:'fill-blank', tag:'Irregular Verb', question:'Quiero que tú _____ (ir) al médico.', sentence:'Quiero que tú _____ al médico.', answer:'vayas', hint:'💡 Ir is completely irregular in the subjunctive.', explanation:'✅ "Vayas" is the subjunctive form of ir.' },
-      { type:'speaking', tag:'Speaking practice', phrase:'Espero que tengas un buen fin de semana.', translation:'I hope you have a good weekend.', hint:'💡 "Espero que" (hope) triggers subjunctive "tengas".' }
+      { type:'multiple-choice', tag:'Déclencheur', question:'Laquelle de ces phrases déclenche le subjonctif ?', hint:'💡 Le subjonctif exige le doute, le désir ou l\'émotion.', choices:[{text:'Creo que él es inteligente.',correct:false},{text:'Es cierto que viene hoy.',correct:false},{text:'Deseo que vengas a mi fiesta.',correct:true},{text:'Sé que tienes razón.',correct:false}], explanation:'✅ "Deseo que" exprime un désir.' },
+      { type:'fill-blank', tag:'Conjuguez', question:'Es importante que tú _____ (estudiar).', sentence:'Es importante que tú _____ mucho.', answer:'estudies', hint:'💡 Inversez la terminaison (AR -> ES).', explanation:'✅ "Estudies" (subjonctif pour tú).' },
+      { type:'multiple-choice', tag:'Émotion', question:'"Je suis content que tu sois là." -> "Me alegro de que _____ aquí."', hint:'💡 Estar est irrégulier au subjonctif.', choices:[{text:'estás',correct:false},{text:'estes',correct:false},{text:'estés',correct:true},{text:'estas',correct:false}], explanation:'✅ "Estés" est le subjonctif de estar.' },
+      { type:'fill-blank', tag:'Verbe irrégulier', question:'Quiero que tú _____ (ir) al médico.', sentence:'Quiero que tú _____ al médico.', answer:'vayas', hint:'💡 Ir est totalement irrégulier.', explanation:'✅ "Vayas" est la forme subjonctif d\'ir.' },
+      { type:'speaking', tag:'Pratique orale', phrase:'Espero que tengas un buen fin de semana.', translation:'J\'espère que tu passeras un bon week-end.', hint:'💡 "Espero que" (espérer) déclenche le subjonctif.' }
     ]
   },
   'relative-clauses': {
-    title:'Relative Clauses',
+    title:'Propositions Relatives',
     skills:{ reading:8, writing:5 },
     exercises:[
-      { type:'multiple-choice', tag:'Que vs Quien', question:'"El hombre _____ vive allí es mi tío."', hint:'💡 Use "que" for people and things when not following a preposition.', choices:[{text:'quien',correct:false},{text:'que',correct:true},{text:'cual',correct:false},{text:'lo que',correct:false}], explanation:'✅ "Que" is the standard relative pronoun for subjects.' },
-      { type:'fill-blank', tag:'Fill in the blank', question:'La mujer con _____ hablé es la jefa.', sentence:'La mujer con _____ hablé es la jefa.', answer:'quien', hint:'💡 After a preposition (con), use "quien" for people.', explanation:'✅ "Quien" is required after prepositions for people.' },
-      { type:'multiple-choice', tag:'Lo que', question:'How do you say "I don\'t understand what you are saying"?', hint:'💡 "What" as a concept or idea requires a specific relative pronoun.', choices:[{text:'No entiendo que dices.',correct:false},{text:'No entiendo el que dices.',correct:false},{text:'No entiendo lo que dices.',correct:true},{text:'No entiendo quien dices.',correct:false}], explanation:'✅ "Lo que" means "that which" or the abstract "what".' },
-      { type:'speaking', tag:'Speaking practice', phrase:'El coche que compré ayer es muy rápido.', translation:'The car that I bought yesterday is very fast.', hint:'💡 Simple relative clause using "que".' }
+      { type:'multiple-choice', tag:'Que vs Quien', question:'"El hombre _____ vive allí es mi tío."', hint:'💡 Utilisez "que" pour les personnes sans préposition.', choices:[{text:'quien',correct:false},{text:'que',correct:true},{text:'cual',correct:false},{text:'lo que',correct:false}], explanation:'✅ "Que" est le pronom standard pour les sujets.' },
+      { type:'fill-blank', tag:'Remplir le vide', question:'La mujer con _____ hablé es la jefa.', sentence:'La mujer con _____ hablé es la jefa.', answer:'quien', hint:'💡 Après une préposition (con), utilisez "quien" pour les personnes.', explanation:'✅ "Quien" est requis après une préposition.' },
+      { type:'multiple-choice', tag:'Lo que', question:'Comment dire "Je ne comprends pas ce que tu dis" ?', hint:'💡 L\'idée abstraite de "ce que".', choices:[{text:'No entiendo que dices.',correct:false},{text:'No entiendo el que dices.',correct:false},{text:'No entiendo lo que dices.',correct:true},{text:'No entiendo quien dices.',correct:false}], explanation:'✅ "Lo que" signifie "ce que".' },
+      { type:'speaking', tag:'Pratique orale', phrase:'El coche que compré ayer es muy rápido.', translation:'La voiture que j\'ai achetée hier est très rapide.', hint:'💡 Proposition relative simple avec "que".' }
     ]
   },
   'passive-voice': {
-    title:'Passive Voice',
+    title:'Voix Passive',
     skills:{ reading:7, writing:7 },
     exercises:[
-      { type:'multiple-choice', tag:'Ser + Participio', question:'El libro _____ escrito por Cervantes.', hint:'💡 The passive voice uses Ser + past participle.', choices:[{text:'fue',correct:true},{text:'estuvo',correct:false},{text:'era',correct:false},{text:'estaba',correct:false}], explanation:'✅ "Fue escrito" (was written) uses the preterite of Ser.' },
-      { type:'fill-blank', tag:'Agreement', question:'Las casas fueron _____ (construir) en 1990.', sentence:'Las casas fueron _____ en 1990.', answer:'construidas', hint:'💡 The participle acts like an adjective and must agree with "Las casas".', explanation:'✅ "Construidas" agrees in gender and number.' },
-      { type:'multiple-choice', tag:'Se Pasiva', question:'Which is the more natural way to say "Spanish is spoken here"?', hint:'💡 In everyday Spanish, the "se pasiva" is preferred over ser + participio.', choices:[{text:'El español es hablado aquí.',correct:false},{text:'Se habla español aquí.',correct:true},{text:'Español se habla.',correct:false},{text:'Uno habla español aquí.',correct:false}], explanation:'✅ "Se habla" is the standard passive "se" construction.' },
-      { type:'speaking', tag:'Speaking practice', phrase:'Se venden muchos libros en esta tienda.', translation:'Many books are sold in this store.', hint:'💡 "Se venden" (plural) matches "libros".' }
+      { type:'multiple-choice', tag:'Ser + Participe', question:'El libro _____ escrito por Cervantes.', hint:'💡 La voix passive utilise Ser.', choices:[{text:'fue',correct:true},{text:'estuvo',correct:false},{text:'era',correct:false},{text:'estaba',correct:false}], explanation:'✅ "Fue escrito" (a été écrit) utilise le passé simple de Ser.' },
+      { type:'fill-blank', tag:'Accord', question:'Las casas fueron _____ (construir) en 1990.', sentence:'Las casas fueron _____ en 1990.', answer:'construidas', hint:'💡 Le participe s\'accorde avec "Las casas".', explanation:'✅ "Construidas" s\'accorde en genre et en nombre.' },
+      { type:'multiple-choice', tag:'Se Pasiva', question:'Quelle est la façon la plus naturelle de dire "L\'espagnol est parlé ici" ?', hint:'💡 En espagnol courant, le "se" passif est préféré.', choices:[{text:'El español es hablado aquí.',correct:false},{text:'Se habla español aquí.',correct:true},{text:'Español se habla.',correct:false},{text:'Uno habla español aquí.',correct:false}], explanation:'✅ "Se habla" est la construction passive standard.' },
+      { type:'speaking', tag:'Pratique orale', phrase:'Se venden muchos libros en esta tienda.', translation:'Beaucoup de livres se vendent dans ce magasin.', hint:'💡 "Se venden" s\'accorde avec "libros".' }
     ]
   },
   'subjunctive-advanced': {
-    title:'Subjunctive Advanced',
+    title:'Subjonctif Avancé',
     skills:{ reading:9, writing:8 },
     exercises:[
-      { type:'multiple-choice', tag:'Si Clauses', question:'Si yo _____ (tener) dinero, viajaría por el mundo.', hint:'💡 Contrary-to-fact statements require the imperfect subjunctive.', choices:[{text:'tengo',correct:false},{text:'tendría',correct:false},{text:'tuviera',correct:true},{text:'tuve',correct:false}], explanation:'✅ "Tuviera" (imperfect subjunctive) is used for hypothetical "if" clauses.' },
-      { type:'fill-blank', tag:'Cuando + Subjunctive', question:'Te llamaré cuando _____ (llegar) a casa.', sentence:'Te llamaré cuando _____ a casa.', answer:'llegue', hint:'💡 "Cuando" + future action requires the subjunctive.', explanation:'✅ "Llegue" indicates a future, uncertain event.' },
-      { type:'multiple-choice', tag:'Aunque', question:'"Aunque _____ (llover) mañana, iremos al parque." (We don\'t know if it will rain)', hint:'💡 If the fact is unconfirmed/future, use subjunctive.', choices:[{text:'llueve',correct:false},{text:'lloverá',correct:false},{text:'llueva',correct:true},{text:'llovió',correct:false}], explanation:'✅ "Llueva" is used because it\'s a hypothetical/unconfirmed future event.' },
-      { type:'speaking', tag:'Speaking practice', phrase:'Si fuera rico, compraría una isla.', translation:'If I were rich, I would buy an island.', hint:'💡 "Si fuera" = imperfect subjunctive.' }
+      { type:'multiple-choice', tag:'Si (Condition)', question:'Si yo _____ (tener) dinero, viajaría por el mundo.', hint:'💡 Hypothèse avec Si.', choices:[{text:'tengo',correct:false},{text:'tendría',correct:false},{text:'tuviera',correct:true},{text:'tuve',correct:false}], explanation:'✅ "Tuviera" (imparfait du subjonctif) s\'utilise pour les hypothèses.' },
+      { type:'fill-blank', tag:'Cuando + Subjonctif', question:'Te llamaré cuando _____ (llegar) a casa.', sentence:'Te llamaré cuando _____ a casa.', answer:'llegue', hint:'💡 Action future incertaine.', explanation:'✅ "Llegue" indique un événement futur.' },
+      { type:'multiple-choice', tag:'Aunque', question:'"Aunque _____ (llover) mañana, iremos al parque." (Incertain)', hint:'💡 Fait non confirmé = subjonctif.', choices:[{text:'llueve',correct:false},{text:'lloverá',correct:false},{text:'llueva',correct:true},{text:'llovió',correct:false}], explanation:'✅ "Llueva" car c\'est incertain.' },
+      { type:'speaking', tag:'Pratique orale', phrase:'Si fuera rico, compraría una isla.', translation:'Si j\'étais riche, j\'achèterais une île.', hint:'💡 "Si fuera" = imparfait du subjonctif.' }
     ]
   }
 };
 
 /* ── VOCABULARY ── */
 const WORDS = [
-  {es:'aunque',      en:'although / even though',    cat:'🔗 Connectors', phonetic:'/ˈawn.ke/',         example:'"Aunque llueva, saldré." — Even if it rains, I\'ll go out.',nextReview:'Tomorrow'},
-  {es:'querer',      en:'to want / to love',          cat:'💙 Core verbs',  phonetic:'/ke.ˈɾeɾ/',         example:'"Te quiero mucho." — I love you a lot.',nextReview:'In 3 days'},
-  {es:'acabo de',    en:'I just did something',       cat:'⏱️ Time',        phonetic:'/ˈa.ka.βo ðe/',    example:'"Acabo de llegar." — I just arrived.',nextReview:'Tomorrow'},
-  {es:'sin embargo', en:'however / nevertheless',     cat:'🔗 Connectors', phonetic:'/siŋ em.ˈbaɾ.ɣo/', example:'"Es difícil; sin embargo, lo haré." — It\'s hard; however, I\'ll do it.',nextReview:'Today'},
-  {es:'se puede',    en:'one can / it\'s possible',  cat:'🔧 Expressions',phonetic:'/se ˈpwe.ðe/',       example:'"¿Se puede entrar?" — Can one come in?',nextReview:'In 2 days'},
-  {es:'por eso',     en:'that\'s why / therefore',   cat:'🔗 Connectors', phonetic:'/poɾ ˈe.so/',        example:'"Estaba cansado, por eso me quedé." — I was tired, that\'s why I stayed.',nextReview:'In 5 days'},
-  {es:'ya que',      en:'since / given that',         cat:'🔗 Connectors', phonetic:'/ˈʝa ke/',           example:'"Ya que estás aquí, ayúdame." — Since you\'re here, help me.',nextReview:'Today'},
-  {es:'a pesar de',  en:'despite / in spite of',     cat:'🔗 Connectors', phonetic:'/a pe.ˈsaɾ ðe/',    example:'"A pesar del frío, salimos." — Despite the cold, we went out.',nextReview:'Tomorrow'},
-  {es:'desarrollar', en:'to develop',                 cat:'👔 Work/Tech',   phonetic:'/de.sa.ro.ˈʝaɾ/',   example:'"Vamos a desarrollar una app." — We are going to develop an app.',nextReview:'Tomorrow'},
-  {es:'darse cuenta',en:'to realize',                 cat:'🧠 Mental',      phonetic:'/ˈdaɾ.se ˈkwen.ta/',example:'"Me di cuenta de mi error." — I realized my mistake.',nextReview:'In 4 days'},
-  {es:'soler',       en:'to usually do',              cat:'💙 Core verbs',  phonetic:'/so.ˈleɾ/',         example:'"Suelo beber café temprano." — I usually drink coffee early.',nextReview:'Today'},
-  {es:'actualmente', en:'currently / nowadays',       cat:'⏱️ Time',        phonetic:'/ak.twal.ˈmen.te/', example:'"Actualmente vivo en España." — I currently live in Spain.',nextReview:'Tomorrow'},
-  {es:'éxito',       en:'success',                    cat:'⭐ Concepts',    phonetic:'/ˈek.si.to/',       example:'"El proyecto fue un éxito." — The project was a success.',nextReview:'In 3 days'},
-  {es:'ambiente',    en:'environment / atmosphere',   cat:'🌍 World',       phonetic:'/am.ˈbjen.te/',     example:'"Hay buen ambiente aquí." — There is a good atmosphere here.',nextReview:'In 2 days'},
-  {es:'aconsejar',   en:'to advise',                  cat:'🗣️ Speaking',    phonetic:'/a.kon.se.ˈxaɾ/',   example:'"Te aconsejo que estudies." — I advise you to study.',nextReview:'Tomorrow'},
-  {es:'lograr',      en:'to achieve / to manage to',  cat:'⭐ Concepts',    phonetic:'/lo.ˈɣɾaɾ/',        example:'"Logré terminar el trabajo." — I managed to finish the work.',nextReview:'In 2 days'},
-  {es:'aprovechar',  en:'to take advantage of',       cat:'🔧 Expressions', phonetic:'/a.pɾo.be.ˈtʃaɾ/',  example:'"Hay que aprovechar el buen tiempo." — We must take advantage of the good weather.',nextReview:'Tomorrow'},
-  {es:'demasiado',   en:'too much / too many',        cat:'📏 Amounts',     phonetic:'/de.ma.ˈsja.ðo/',   example:'"He comido demasiado." — I have eaten too much.',nextReview:'In 5 days'},
-  {es:'en lugar de', en:'instead of',                 cat:'🔗 Connectors',  phonetic:'/en lu.ˈɣaɾ ðe/',   example:'"Bebo té en lugar de café." — I drink tea instead of coffee.',nextReview:'Today'},
-  {es:'adivinar',    en:'to guess',                   cat:'🧠 Mental',      phonetic:'/a.ði.bi.ˈnaɾ/',    example:'"Adivina quién vino." — Guess who came.',nextReview:'In 4 days'}
+  {es:'aunque',      en:'bien que / même si',         cat:'🔗 Connecteurs', phonetic:'/ˈawn.ke/',         example:'"Aunque llueva, saldré." — Même s\'il pleut, je sortirai.',nextReview:'Demain'},
+  {es:'querer',      en:'vouloir / aimer',            cat:'💙 Verbes de base',phonetic:'/ke.ˈɾeɾ/',         example:'"Te quiero mucho." — Je t\'aime beaucoup.',nextReview:'Dans 3 jours'},
+  {es:'acabo de',    en:'je viens de (faire qqch)',   cat:'⏱️ Temps',       phonetic:'/ˈa.ka.βo ðe/',    example:'"Acabo de llegar." — Je viens d\'arriver.',nextReview:'Demain'},
+  {es:'sin embargo', en:'cependant / néanmoins',      cat:'🔗 Connecteurs', phonetic:'/siŋ em.ˈbaɾ.ɣo/', example:'"Es difícil; sin embargo, lo haré." — C\'est difficile; cependant, je le ferai.',nextReview:'Aujourd\'hui'},
+  {es:'se puede',    en:'on peut / c\'est possible',  cat:'🔧 Expressions', phonetic:'/se ˈpwe.ðe/',       example:'"¿Se puede entrar?" — Peut-on entrer ?',nextReview:'Dans 2 jours'},
+  {es:'por eso',     en:'c\'est pourquoi',            cat:'🔗 Connecteurs', phonetic:'/poɾ ˈe.so/',        example:'"Estaba cansado, por eso me quedé." — J\'étais fatigué, c\'est pourquoi je suis resté.',nextReview:'Dans 5 jours'},
+  {es:'ya que',      en:'puisque / étant donné que',  cat:'🔗 Connecteurs', phonetic:'/ˈʝa ke/',           example:'"Ya que estás aquí, ayúdame." — Puisque tu es là, aide-moi.',nextReview:'Aujourd\'hui'},
+  {es:'a pesar de',  en:'malgré',                     cat:'🔗 Connecteurs', phonetic:'/a pe.ˈsaɾ ðe/',    example:'"A pesar del frío, salimos." — Malgré le froid, nous sommes sortis.',nextReview:'Demain'},
+  {es:'desarrollar', en:'développer',                 cat:'👔 Travail',     phonetic:'/de.sa.ro.ˈʝaɾ/',   example:'"Vamos a desarrollar una app." — Nous allons développer une application.',nextReview:'Demain'},
+  {es:'darse cuenta',en:'se rendre compte',           cat:'🧠 Mental',      phonetic:'/ˈdaɾ.se ˈkwen.ta/',example:'"Me di cuenta de mi error." — Je me suis rendu compte de mon erreur.',nextReview:'Dans 4 jours'},
+  {es:'soler',       en:'avoir l\'habitude de',       cat:'💙 Verbes de base',phonetic:'/so.ˈleɾ/',         example:'"Suelo beber café temprano." — J\'ai l\'habitude de boire du café tôt.',nextReview:'Aujourd\'hui'},
+  {es:'actualmente', en:'actuellement / de nos jours',cat:'⏱️ Temps',       phonetic:'/ak.twal.ˈmen.te/', example:'"Actualmente vivo en España." — Actuellement je vis en Espagne.',nextReview:'Demain'},
+  {es:'éxito',       en:'succès / réussite',          cat:'⭐ Concepts',    phonetic:'/ˈek.si.to/',       example:'"El proyecto fue un éxito." — Le projet a été un succès.',nextReview:'Dans 3 jours'},
+  {es:'ambiente',    en:'ambiance / environnement',   cat:'🌍 Monde',       phonetic:'/am.ˈbjen.te/',     example:'"Hay buen ambiente aquí." — Il y a une bonne ambiance ici.',nextReview:'Dans 2 jours'},
+  {es:'aconsejar',   en:'conseiller',                 cat:'🗣️ Parler',      phonetic:'/a.kon.se.ˈxaɾ/',   example:'"Te aconsejo que estudies." — Je te conseille d\'étudier.',nextReview:'Demain'},
+  {es:'lograr',      en:'atteindre / réussir à',      cat:'⭐ Concepts',    phonetic:'/lo.ˈɣɾaɾ/',        example:'"Logré terminar el trabajo." — J\'ai réussi à terminer le travail.',nextReview:'Dans 2 jours'},
+  {es:'aprovechar',  en:'profiter de',                cat:'🔧 Expressions', phonetic:'/a.pɾo.be.ˈtʃaɾ/',  example:'"Hay que aprovechar el buen tiempo." — Il faut profiter du beau temps.',nextReview:'Demain'},
+  {es:'demasiado',   en:'trop',                       cat:'📏 Quantité',    phonetic:'/de.ma.ˈsja.ðo/',   example:'"He comido demasiado." — J\'ai trop mangé.',nextReview:'Dans 5 jours'},
+  {es:'en lugar de', en:'au lieu de',                 cat:'🔗 Connecteurs', phonetic:'/en lu.ˈɣaɾ ðe/',   example:'"Bebo té en lugar de café." — Je bois du thé au lieu du café.',nextReview:'Aujourd\'hui'},
+  {es:'adivinar',    en:'deviner',                    cat:'🧠 Mental',      phonetic:'/a.ði.bi.ˈnaɾ/',    example:'"Adivina quién vino." — Devine qui est venu.',nextReview:'Dans 4 jours'}
 ];
 
 /* ── GRAMMAR TOPICS ── */
 const GRAMMAR_TOPICS = [
-  {key:'ser-vs-estar',           icon:'🔤',title:'Ser vs Estar',           level:'A1',cefr:'a1',desc:'The two "to be" verbs — identity vs temporary state, and meaning-changing adjectives.'},
-  {key:'preterite-vs-imperfect', icon:'⏪',title:'Preterite vs Imperfect', level:'A2',cefr:'a2',desc:'When to use each past tense: completed events vs ongoing/habitual actions.'},
-  {key:'object-pronouns',        icon:'🔀',title:'Object Pronouns',        level:'B1',cefr:'b1',desc:'Me, te, le, lo, la, nos, les — placement rules, order, and clitic combinations.'},
-  {key:'por-vs-para',            icon:'↔️',title:'Por vs Para',            level:'B1',cefr:'b1',desc:'The 8 uses of each. Master the most common confusion point for intermediate learners.'},
-  {key:'subjunctive-intro',      icon:'🎭',title:'Subjunctive',            level:'B1',cefr:'b1',desc:'Doubt, desire, emotion, impersonal expressions — the most feared tense, made logical.'},
-  {key:'relative-clauses',       icon:'🔗',title:'Relative Clauses',       level:'B2',cefr:'b2',desc:'que, quien, el que, lo que, cuyo — building complex, natural sentences.'},
-  {key:'passive-voice',          icon:'🎨',title:'Passive Voice',           level:'B2',cefr:'b2',desc:'ser + participio and se pasiva — when to use each and common patterns.'},
-  {key:'subjunctive-advanced',   icon:'🌀',title:'Subjunctive Advanced',   level:'C1',cefr:'c1',desc:'Time clauses, concession, hypothetical si-clauses, and subtle mood choices.'},
+  {key:'ser-vs-estar',           icon:'🔤',title:'Ser vs Estar',           level:'A1',cefr:'a1',desc:'Les deux verbes "être" — identité vs état temporaire.'},
+  {key:'preterite-vs-imperfect', icon:'⏪',title:'Passé simple vs Imparfait',level:'A2',cefr:'a2',desc:'Quand utiliser chaque temps du passé.'},
+  {key:'object-pronouns',        icon:'🔀',title:'Pronoms Objets',        level:'B1',cefr:'b1',desc:'Règles de placement et combinaisons.'},
+  {key:'por-vs-para',            icon:'↔️',title:'Por vs Para',            level:'B1',cefr:'b1',desc:'Les usages de chaque préposition.'},
+  {key:'subjunctive-intro',      icon:'🎭',title:'Subjonctif',            level:'B1',cefr:'b1',desc:'Doute, désir et émotion.'},
+  {key:'relative-clauses',       icon:'🔗',title:'Propositions Relatives',level:'B2',cefr:'b2',desc:'que, quien, el que, lo que, cuyo.'},
+  {key:'passive-voice',          icon:'🎨',title:'Voix Passive',           level:'B2',cefr:'b2',desc:'ser + participe et le passif avec se.'},
+  {key:'subjunctive-advanced',   icon:'🌀',title:'Subjonctif Avancé',      level:'C1',cefr:'c1',desc:'Temps, concession et hypothèses avec si.'},
 ];
 
 /* ── SPEAKING SCENARIOS ── */
 const SCENARIOS = [
-  {icon:'🏪',label:'At the market',style:'',desc:'Practice buying food, asking prices, and negotiating with a vendor.',
+  {icon:'🏪',label:'Au marché',style:'',desc:'Entraînez-vous à acheter, demander les prix et négocier.',
    phrases:['¿Cuánto cuesta esto?','¿Tiene algo más barato?','Me lo llevo, gracias.'],
-   drillPhrase:'¿A qué hora abre el mercado?',drillTrans:'What time does the market open?',
-   aiOpen:'¡Hola! Bienvenido al mercado. ¿En qué le puedo ayudar?',aiOpenTr:'Hello! Welcome to the market. How can I help you?'},
-  {icon:'☕',label:'At the café',style:'teal',desc:'Order drinks, ask for the menu, and make small talk in Spanish.',
+   drillPhrase:'¿A qué hora abre el mercado?',drillTrans:'À quelle heure le marché ouvre-t-il ?',
+   aiOpen:'¡Hola! Bienvenido al mercado. ¿En qué le puedo ayudar?',aiOpenTr:'Bonjour ! Bienvenue au marché. Comment puis-je vous aider ?'},
+  {icon:'☕',label:'Au café',style:'teal',desc:'Commandez des boissons et discutez en espagnol.',
    phrases:['Un café con leche, por favor.','¿Qué recomienda usted?','La cuenta, por favor.'],
-   drillPhrase:'¿Me puede traer la carta, por favor?',drillTrans:'Could you bring me the menu, please?',
-   aiOpen:'¡Buenos días! ¿Qué le pongo?',aiOpenTr:'Good morning! What can I get you?'},
-  {icon:'🏨',label:'At the hotel',style:'',desc:'Check in, ask about amenities, and handle common hotel situations.',
+   drillPhrase:'¿Me puede traer la carta, por favor?',drillTrans:'Pouvez-vous m\'apporter la carte, s\'il vous plaît ?',
+   aiOpen:'¡Buenos días! ¿Qué le pongo?',aiOpenTr:'Bonjour ! Que vous sers-je ?'},
+  {icon:'🏨',label:'À l\'hôtel',style:'',desc:'Faites le check-in et posez des questions sur l\'hôtel.',
    phrases:['Tengo una reserva a nombre de…','¿A qué hora es el desayuno?','¿Tiene habitaciones libres?'],
-   drillPhrase:'¿Puede despertarme a las siete?',drillTrans:'Can you wake me up at seven?',
-   aiOpen:'¡Buenas tardes! Bienvenido al hotel. ¿Tiene usted reserva?',aiOpenTr:'Good afternoon! Welcome to the hotel. Do you have a reservation?'},
-  {icon:'✈️',label:'At the airport',style:'teal',desc:'Navigate check-in, boarding gates, and lost luggage.',
+   drillPhrase:'¿Puede despertarme a las siete?',drillTrans:'Pouvez-vous me réveiller à sept heures ?',
+   aiOpen:'¡Buenas tardes! Bienvenido al hotel. ¿Tiene usted reserva?',aiOpenTr:'Bonjour ! Bienvenue à l\'hôtel. Avez-vous une réservation ?'},
+  {icon:'✈️',label:'À l\'aéroport',style:'teal',desc:'Naviguez l\'enregistrement et l\'embarquement.',
    phrases:['¿Dónde está la puerta de embarque?','Aquí tiene mi pasaporte.','Mi vuelo está retrasado.'],
-   drillPhrase:'¿A qué hora sale el vuelo para Madrid?',drillTrans:'What time does the flight for Madrid leave?',
-   aiOpen:'Bienvenido al mostrador. Su pasaporte, por favor.',aiOpenTr:'Welcome to the desk. Your passport, please.'},
-  {icon:'🍽️',label:'At the restaurant',style:'purple',desc:'Order a full meal, ask about ingredients, and request the bill.',
+   drillPhrase:'¿A qué hora sale el vuelo para Madrid?',drillTrans:'À quelle heure part le vol pour Madrid ?',
+   aiOpen:'Bienvenido al mostrador. Su pasaporte, por favor.',aiOpenTr:'Bienvenue au comptoir. Votre passeport, s\'il vous plaît.'},
+  {icon:'🍽️',label:'Au restaurant',style:'purple',desc:'Commandez un repas et demandez l\'addition.',
    phrases:['De primero quiero...','Soy alérgico a los mariscos.','Estaba todo muy rico.'],
-   drillPhrase:'¿Tienen alguna opción vegetariana?',drillTrans:'Do you have any vegetarian options?',
-   aiOpen:'¡Buenas noches! ¿Tienen reserva o mesa para cuántos?',aiOpenTr:'Good evening! Do you have a reservation or table for how many?'},
-  {icon:'💼',label:'Job Interview',style:'',desc:'Practice formal Spanish, discuss your skills, and answer interview questions.',
+   drillPhrase:'¿Tienen alguna opción vegetariana?',drillTrans:'Avez-vous une option végétarienne ?',
+   aiOpen:'¡Buenas noches! ¿Tienen reserva o mesa para cuántos?',aiOpenTr:'Bonsoir ! Avez-vous une réservation ou une table pour combien ?'},
+  {icon:'💼',label:'Entretien',style:'',desc:'Entraînez-vous pour un entretien professionnel.',
    phrases:['Tengo experiencia en...','Soy una persona muy responsable.','Me interesa mucho este puesto.'],
-   drillPhrase:'¿Cuáles serían mis responsabilidades principales?',drillTrans:'What would be my main responsibilities?',
-   aiOpen:'Hola, tome asiento. Hábleme de su experiencia profesional.',aiOpenTr:'Hello, take a seat. Tell me about your professional experience.'}
+   drillPhrase:'¿Cuáles serían mis responsabilidades principales?',drillTrans:'Quelles seraient mes principales responsabilités ?',
+   aiOpen:'Hola, tome asiento. Hábleme de su experiencia profesional.',aiOpenTr:'Bonjour, asseyez-vous. Parlez-moi de votre expérience.'}
 ];
 
 /* ── LESSON ENGINE ── */
@@ -579,7 +579,7 @@ let answerLocked     = false;
 let previousScreen   = 'dashboard';
 
 function startLesson(key) {
-  if (!LESSONS[key]) { alert('Lesson coming soon!'); return; }
+  if (!LESSONS[key]) { alert('Leçon bientôt disponible !'); return; }
   currentLessonKey = key;
   currentExIdx     = 0;
   answerLocked     = false;
@@ -601,7 +601,7 @@ function renderExercise() {
 
   if (ex.type === 'speaking') {
     html += `
-      <div class="ex-question fade-up" style="animation-delay:.04s">Pronounce this sentence:</div>
+      <div class="ex-question fade-up" style="animation-delay:.04s">Prononcez cette phrase :</div>
       <div class="speak-area fade-up" style="animation-delay:.08s">
         <div class="speak-phrase">${ex.phrase}</div>
         <div class="speak-trans">${ex.translation}</div>
@@ -614,10 +614,10 @@ function renderExercise() {
       ${ex.hint?`<div class="ex-hint fade-up" style="animation-delay:.07s">${ex.hint}</div>`:''}
       <div class="fade-up" style="animation-delay:.1s">
         <div class="blank-sentence">${ex.sentence.replace('_____','<span style="color:var(--accent)">_____</span>')}</div>
-        <input class="blank-input" id="blank-input" placeholder="Type your answer…"
+        <input class="blank-input" id="blank-input" placeholder="Tapez votre réponse…"
           onkeydown="if(event.key==='Enter')checkBlank()"
           autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-        <button class="btn-check" onclick="checkBlank()">Check answer →</button>
+        <button class="btn-check" onclick="checkBlank()">Vérifier →</button>
       </div>`;
   } else {
     html += `
@@ -683,22 +683,22 @@ function showFeedback(ok) {
   const fbBody  = document.getElementById('fb-body');
   const btnCont = document.getElementById('btn-continue');
   if (ok) {
-    fbTitle.textContent = '✓ ¡Correcto!'; fbTitle.style.color = 'var(--ok)';
-    fbBody.textContent  = ex.explanation || 'Great job!';
+    fbTitle.textContent = '✓ Correct !'; fbTitle.style.color = 'var(--ok)';
+    fbBody.textContent  = ex.explanation || 'Excellent travail !';
     panel.className     = 'feedback-panel show fp-ok';
     btnCont.className   = 'btn-continue';
   } else {
-    fbTitle.textContent = '✗ Not quite'; fbTitle.style.color = 'var(--err)';
-    fbBody.textContent  = ex.explanation || 'Review this and try again.';
+    fbTitle.textContent = '✗ Presque'; fbTitle.style.color = 'var(--err)';
+    fbBody.textContent  = ex.explanation || 'Révisez et réessayez.';
     panel.className     = 'feedback-panel show fp-err';
     btnCont.className   = 'btn-continue err';
   }
 }
 
 function showFeedbackSpeaking() {
-  document.getElementById('fb-title').textContent = '🎤 Good effort!';
+  document.getElementById('fb-title').textContent = '🎤 Bel effort !';
   document.getElementById('fb-title').style.color = 'var(--teal)';
-  document.getElementById('fb-body').textContent  = 'Native speakers would understand you. Keep practicing stress and rhythm!';
+  document.getElementById('fb-body').textContent  = 'Les natifs vous comprendraient. Continuez à pratiquer !';
   document.getElementById('feedback-panel').className = 'feedback-panel show fp-ok';
   document.getElementById('btn-continue').className   = 'btn-continue';
 }
@@ -725,13 +725,13 @@ function lessonComplete() {
   document.getElementById('exercise-area').innerHTML = `
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;padding:40px 0" class="fade-up">
       <div style="font-size:68px;animation:pop .5s ease">🎉</div>
-      <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700">Lesson<br><em style="color:var(--accent)">complete!</em></div>
+      <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700">Leçon<br><em style="color:var(--accent)">terminée !</em></div>
       <div style="display:flex;gap:28px">
-        <div><div style="font-size:26px;font-weight:700;color:var(--gold)">${lesson.exercises.length}</div><div style="font-size:11px;color:var(--muted)">Exercises</div></div>
-        <div><div style="font-size:26px;font-weight:700;color:var(--ok)">+${60+lesson.exercises.length*10}</div><div style="font-size:11px;color:var(--muted)">XP earned</div></div>
-        <div><div style="font-size:26px;font-weight:700;color:var(--accent)">🔥${state.streak}</div><div style="font-size:11px;color:var(--muted)">Day streak</div></div>
+        <div><div style="font-size:26px;font-weight:700;color:var(--gold)">${lesson.exercises.length}</div><div style="font-size:11px;color:var(--muted)">Exercices</div></div>
+        <div><div style="font-size:26px;font-weight:700;color:var(--ok)">+${60+lesson.exercises.length*10}</div><div style="font-size:11px;color:var(--muted)">XP gagnés</div></div>
+        <div><div style="font-size:26px;font-weight:700;color:var(--accent)">🔥${state.streak}</div><div style="font-size:11px;color:var(--muted)">Série (jours)</div></div>
       </div>
-      <button class="btn-primary" style="max-width:280px" onclick="navTo('dashboard')">Back to dashboard →</button>
+      <button class="btn-primary" style="max-width:280px" onclick="navTo('dashboard')">Retour à l'accueil →</button>
     </div>`;
   spawnConfetti();
 }
@@ -750,7 +750,7 @@ let cardFlipped    = false;
 function initVocab() {
   currentWordIdx = 0; cardFlipped = false;
   renderWordCard(); renderWordList();
-  document.getElementById('vocab-count').textContent = WORDS.length + ' words';
+  document.getElementById('vocab-count').textContent = WORDS.length + ' mots';
 }
 
 function renderWordCard() {
@@ -760,7 +760,7 @@ function renderWordCard() {
   document.getElementById('card-phonetic').textContent     = w.phonetic;
   document.getElementById('card-trans').textContent        = w.en;
   document.getElementById('card-example').innerHTML        = `<em>${w.example}</em>`;
-  document.getElementById('card-next-review').textContent  = 'Next review: ' + w.nextReview;
+  document.getElementById('card-next-review').textContent  = 'Prochaine révision : ' + w.nextReview;
   document.getElementById('flashcard').classList.remove('flipped');
   document.getElementById('card-actions').style.display   = 'none';
   cardFlipped = false;
@@ -805,13 +805,13 @@ function initGrammar() {
       <div class="gc-desc">${t.desc}</div>
       <div class="gc-prog-row">
         <div class="gc-bar-bg"><div class="gc-bar-fill" style="width:${pct}%"></div></div>
-        <div class="gc-pct">${pct>0?pct+'%':'Not started'}</div>
+        <div class="gc-pct">${pct>0?pct+'%':'Non commencé'}</div>
       </div>
     </div>`;
   }).join('');
 }
 
-function comingSoon() { alert('This lesson is coming soon! Complete the available lessons first.'); }
+function comingSoon() { alert('Cette leçon arrive bientôt !'); }
 
 /* ── SPEAKING ── */
 let activeDrill = null;
@@ -825,7 +825,7 @@ function initSpeak() {
       <div class="convo-scenario">${s.icon} ${s.label}</div>
       <div class="convo-desc">${s.desc}</div>
       <div class="convo-phrases">${s.phrases.map(p=>`<div class="convo-phrase">${p}</div>`).join('')}</div>
-      <button class="btn-start ${s.style}" onclick="startScenario(${i})">Start AI conversation →</button>
+      <button class="btn-start ${s.style}" onclick="startScenario(${i})">Démarrer IA →</button>
     </div>`).join('');
 }
 
@@ -854,7 +854,7 @@ function toggleMic() {
       const chat = document.getElementById('chat-area');
       chat.innerHTML += `<div class="bubble user">${activeDrill.drillPhrase}<div class="tr">${activeDrill.drillTrans}</div></div>`;
       setTimeout(() => {
-        chat.innerHTML += `<div class="bubble ai">¡Muy bien! Su pronunciación es clara. ¿Tiene alguna otra pregunta?<div class="tr">Very good! Your pronunciation is clear. Do you have any other questions?</div></div>`;
+        chat.innerHTML += `<div class="bubble ai">¡Muy bien! Su pronunciación es clara. ¿Tiene alguna otra pregunta?<div class="tr">Très bien ! Votre prononciation est claire. Avez-vous une autre question ?</div></div>`;
         chat.scrollTop = chat.scrollHeight;
       }, 900);
     }, 2500);
@@ -902,7 +902,7 @@ function updateUI() {
   updateXP(); renderSkillGrid();
   const h = new Date().getHours();
   const el = document.getElementById('dash-greeting');
-  if (el) el.textContent = h<12?'Good morning':h<18?'Good afternoon':'Good evening';
+  if (el) el.textContent = h<18 ? 'Bonjour' : 'Bonsoir';
 }
 
 function updateXP() {
@@ -911,17 +911,17 @@ function updateXP() {
   const ldEl = document.getElementById('level-display');
   if (xpEl) xpEl.textContent = state.xp.toLocaleString()+' XP';
   if (scEl) scEl.textContent = state.streak;
-  if (ldEl) ldEl.textContent = 'Level '+state.level;
+  if (ldEl) ldEl.textContent = 'Niveau '+state.level;
 }
 
 function renderSkillGrid() {
   const grid = document.getElementById('skill-grid');
   if (!grid) return;
   grid.innerHTML = '';
-  [{key:'reading',icon:'👁️',name:'Reading',color:'var(--teal)'},{key:'listening',icon:'👂',name:'Listening',color:'var(--lilac)'},{key:'speaking',icon:'💬',name:'Speaking',color:'var(--accent)'},{key:'writing',icon:'✍️',name:'Writing',color:'var(--gold)'}]
+  [{key:'reading',icon:'👁️',name:'Lecture',color:'var(--teal)'},{key:'listening',icon:'👂',name:'Écoute',color:'var(--lilac)'},{key:'speaking',icon:'💬',name:'Parole',color:'var(--accent)'},{key:'writing',icon:'✍️',name:'Écriture',color:'var(--gold)'}]
   .forEach(s => {
     const pct = state.skills[s.key]||0;
-    grid.innerHTML += `<div class="skill-card"><div class="skill-icon">${s.icon}</div><div class="skill-name">${s.name}</div><div class="skill-pct">${pct>0?pct+'%':'Not started'}</div><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${s.color}"></div></div></div>`;
+    grid.innerHTML += `<div class="skill-card"><div class="skill-icon">${s.icon}</div><div class="skill-name">${s.name}</div><div class="skill-pct">${pct>0?pct+'%':'Non commencé'}</div><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${s.color}"></div></div></div>`;
   });
 }
 
@@ -934,7 +934,7 @@ async function saveProgress() {
     const data = {};
     SAVE_FIELDS.forEach(k => { data[k] = JSON.parse(JSON.stringify(state[k])); });
     await window._setDoc(window._doc(window._db,'users',window._uid), data, {merge:true});
-  } catch(e) { console.warn('Save failed:',e); }
+  } catch(e) { console.warn('Erreur sauvegarde:',e); }
 }
 
 async function loadProgress() {
@@ -947,11 +947,11 @@ async function loadProgress() {
       const last = data.lastActiveDate||'';
       if (last && last!==today() && last!==yesterday()) { state.streak=0; saveProgress(); }
     }
-  } catch(e) { console.warn('Load failed:',e); }
+  } catch(e) { console.warn('Erreur chargement:',e); }
 }
 
 window.onFirebaseReady = async function() {
-  document.getElementById('loading-msg').textContent = 'Loading your progress…';
+  document.getElementById('loading-msg').textContent = 'Chargement de votre progression…';
   await loadProgress();
   const ls = document.getElementById('loading-screen');
   ls.classList.add('hidden');
