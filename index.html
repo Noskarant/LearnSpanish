@@ -7,10 +7,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
 <script type="module">
-import { initializeApp }                                          from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
-import { getAuth, GoogleAuthProvider, signInWithPopup,
-         signInAnonymously, onAuthStateChanged, signOut }        from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
-import { getFirestore, doc, getDoc, setDoc }                     from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+import { initializeApp }                                               from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+import { getAuth, GoogleAuthProvider, signInWithRedirect,
+         getRedirectResult, signInAnonymously,
+         onAuthStateChanged, signOut }                                 from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc }                          from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey:            "AIzaSyDLgTdcix2dJ7uh6b_USyYenCuZkpRPqZY",
@@ -26,28 +27,45 @@ const auth     = getAuth(app);
 const db       = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-/* expose to global scope */
 window._db          = db;
 window._doc         = doc;
 window._getDoc      = getDoc;
 window._setDoc      = setDoc;
 window._auth        = auth;
 window._signOut     = () => signOut(auth);
-window._googleLogin = async () => {
-  try {
-    await signInWithPopup(auth, provider);
-  } catch(e) {
-    console.error('Google login failed:', e);
-    window.showAuthError();
-  }
+
+/* Use redirect instead of popup — works reliably on GitHub Pages & mobile */
+window._googleLogin = () => {
+  /* Show a loading indicator while redirecting */
+  const btn = document.querySelector('.btn-google');
+  if (btn) { btn.textContent = 'Redirection…'; btn.disabled = true; }
+  signInWithRedirect(auth, provider);
 };
 window._guestLogin = () => signInAnonymously(auth);
 
-/* Firebase persists sessions automatically — onAuthStateChanged fires on every load */
+/* ── STEP 1: Handle the redirect result when the page reloads after Google auth ── */
+let redirectHandled = false;
+getRedirectResult(auth)
+  .then(result => {
+    redirectHandled = true;
+    if (result && result.user) {
+      /* User came back from Google redirect — onAuthStateChanged will fire next */
+      console.log('✅ Redirect login success:', result.user.displayName);
+    }
+  })
+  .catch(err => {
+    redirectHandled = true;
+    console.error('Redirect result error:', err);
+    /* Show error only if we're on the login screen */
+    if (document.getElementById('login-screen')?.classList.contains('active')) {
+      window.showAuthError && window.showAuthError();
+    }
+  });
+
+/* ── STEP 2: onAuthStateChanged fires after redirect result is processed ── */
 onAuthStateChanged(auth, async user => {
   if (!user) {
-    /* No session → show login screen */
-    window.showLoginScreen();
+    window.showLoginScreen && window.showLoginScreen();
     return;
   }
   window._uid      = user.uid;
