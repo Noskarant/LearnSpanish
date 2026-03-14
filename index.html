@@ -1021,12 +1021,18 @@ function startApp() {
    AUTH UI
 ══════════════════════════════════════════ */
 window.showLoginScreen = function() {
-  document.getElementById('loading-screen').classList.add('hidden');
-  setTimeout(() => {
-    const ls = document.getElementById('loading-screen');
-    if (ls) ls.remove();
-  }, 600);
+  /* Hide loading spinner if still present */
+  const ls = document.getElementById('loading-screen');
+  if (ls) {
+    ls.classList.add('hidden');
+    setTimeout(() => { if (ls.parentNode) ls.remove(); }, 600);
+  }
+  /* Show login screen */
   document.getElementById('login-screen').classList.add('active');
+  /* Make sure app screens and nav are hidden */
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-home').classList.add('active');
+  document.getElementById('bottom-nav').style.display = 'none';
 };
 
 window.showAuthError = function() {
@@ -1061,8 +1067,26 @@ function closeProfile() {
 
 async function doLogout() {
   closeProfile();
-  await window._signOut();
-  /* onAuthStateChanged will fire and show login screen */
+  try {
+    await window._signOut();
+  } catch(e) {
+    console.error('Logout error:', e);
+  }
+  /* Reset local state */
+  Object.assign(state, {
+    level:'A1', xp:0, streak:0, lessonsCompleted:0,
+    lastStreakDate:'',
+    skills:{ reading:0, listening:0, speaking:0, writing:0 },
+    wordStrengths:{}, grammarProgress:{}
+  });
+  window._uid      = null;
+  window._userName = null;
+  window._userPic  = null;
+  /* Go back to login screen immediately without waiting for onAuthStateChanged */
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-home').classList.add('active');
+  document.getElementById('bottom-nav').style.display = 'none';
+  document.getElementById('login-screen').classList.add('active');
 }
 
 function updateAvatar() {
