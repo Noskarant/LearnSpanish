@@ -6,7 +6,6 @@
 <title>Español Vivo</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<!-- Firebase SDK via compat (UMD) — works without bundler, no module issues on GitHub Pages -->
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -14,18 +13,18 @@
 <script>
 // ── FIREBASE INIT ──────────────────────────────────────────────
 const firebaseConfig = {
-  apiKey:            "AIzaSyDLgTdcix2dJ7uh6b_USyYenCuZkpRPqZY",
-  authDomain:        "espanol-vivo.firebaseapp.com",
-  projectId:         "espanol-vivo",
-  storageBucket:     "espanol-vivo.firebasestorage.app",
-  messagingSenderId: "204908054024",
-  appId:             "1:204908054024:web:68d8244cf2d087be6f73bd"
+  apiKey:            "AIzaSyDLgTdcix2dJ7uh6b_USyYenCuZkpRPqZY",
+  authDomain:        "espanol-vivo.firebaseapp.com",
+  projectId:         "espanol-vivo",
+  storageBucket:     "espanol-vivo.firebasestorage.app",
+  messagingSenderId: "204908054024",
+  appId:             "1:204908054024:web:68d8244cf2d087be6f73bd"
 };
 
 firebase.initializeApp(firebaseConfig);
 
-const auth     = firebase.auth();
-const db       = firebase.firestore();
+const auth     = firebase.auth();
+const db       = firebase.firestore();
 const provider = new firebase.auth.GoogleAuthProvider();
 provider.setCustomParameters({ prompt: 'select_account' });
 
@@ -36,65 +35,65 @@ auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).catch(console.error);
 const GOOGLE_BTN_HTML = `<svg class="google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg> Continuer avec Google`;
 
 window.googleLogin = async function() {
-  const btn   = document.getElementById('btn-google');
-  const errEl = document.getElementById('login-error');
-  errEl.style.display = 'none';
-  btn.disabled = true;
-  btn.textContent = 'Connexion…';
-  try {
-    await auth.signInWithPopup(provider);
-    // onAuthStateChanged fires → appBoot() → hides login screen automatically
-    // Do NOT re-enable btn here — the login screen will be hidden by appBoot
-  } catch(e) {
-    // Only reset button on actual error (not on success)
-    btn.disabled = false;
-    btn.innerHTML = GOOGLE_BTN_HTML;
-    const msg = e.code === 'auth/popup-blocked'
-      ? 'Popup bloqué — autorisez les popups pour ce site dans votre navigateur.'
-      : e.code === 'auth/popup-closed-by-user' || e.code === 'auth/cancelled-popup-request'
-      ? 'Fenêtre fermée. Réessayez.'
-      : 'Erreur (' + e.code + ') : ' + e.message;
-    errEl.textContent = msg;
-    errEl.style.display = 'block';
-    console.error('Google login error:', e.code, e.message);
-  }
+  const btn   = document.getElementById('btn-google');
+  const errEl = document.getElementById('login-error');
+  errEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = 'Connexion…';
+  try {
+    await auth.signInWithPopup(provider);
+    // onAuthStateChanged fires → appBoot() → hides login screen automatically
+    // Do NOT re-enable btn here — the login screen will be hidden by appBoot
+  } catch(e) {
+    // Only reset button on actual error (not on success)
+    btn.disabled = false;
+    btn.innerHTML = GOOGLE_BTN_HTML;
+    const msg = e.code === 'auth/popup-blocked'
+      ? 'Popup bloqué — autorisez les popups pour ce site dans votre navigateur.'
+      : e.code === 'auth/popup-closed-by-user' || e.code === 'auth/cancelled-popup-request'
+      ? 'Fenêtre fermée. Réessayez.'
+      : 'Erreur (' + e.code + ') : ' + e.message;
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+    console.error('Google login error:', e.code, e.message);
+  }
 };
 
 window.guestLogin = function() {
-  auth.signInAnonymously().catch(e => {
-    document.getElementById('login-error').textContent = 'Erreur connexion invité : ' + e.message;
-    document.getElementById('login-error').style.display = 'block';
-  });
+  auth.signInAnonymously().catch(e => {
+    document.getElementById('login-error').textContent = 'Erreur connexion invité : ' + e.message;
+    document.getElementById('login-error').style.display = 'block';
+  });
 };
 
 window.doLogout = async function() {
-  closeProfile();
-  // Reset state immediately
-  Object.assign(state, {
-    level:'A1', xp:0, streak:0, lessonsCompleted:0, lastStreakDate:'',
-    skills:{ reading:0, listening:0, speaking:0, writing:0 },
-    wordStrengths:{}, grammarProgress:{}
-  });
-  window._uid = null; window._userName = null; window._userPic = null;
-  // Show login immediately
-  showLoginUI();
-  // Sign out from Firebase in background
-  try { await auth.signOut(); } catch(e) { console.error(e); }
+  closeProfile();
+  // Reset state immediately
+  Object.assign(state, {
+    level:'A1', xp:0, streak:0, lessonsCompleted:0, lastStreakDate:'',
+    skills:{ reading:0, listening:0, speaking:0, writing:0 },
+    wordStrengths:{}, grammarProgress:{}
+  });
+  window._uid = null; window._userName = null; window._userPic = null;
+  // Show login immediately
+  showLoginUI();
+  // Sign out from Firebase in background
+  try { await auth.signOut(); } catch(e) { console.error(e); }
 };
 
 // ── AUTH STATE LISTENER ────────────────────────────────────────
 // Fires on every page load if user has an active session → no re-login needed
 auth.onAuthStateChanged(async user => {
-  if (!user) {
-    _booting = false;   // reset guard on logout
-    showLoginUI();
-    return;
-  }
-  window._uid      = user.uid;
-  window._userName = user.displayName || 'Apprenant';
-  window._userPic  = user.photoURL    || null;
-  window._db       = db;
-  await appBoot();
+  if (!user) {
+    _booting = false;   // reset guard on logout
+    showLoginUI();
+    return;
+  }
+  window._uid      = user.uid;
+  window._userName = user.displayName || 'Apprenant';
+  window._userPic  = user.photoURL    || null;
+  window._db       = db;
+  await appBoot();
 });
 </script>
 
@@ -347,573 +346,579 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 </head>
 <body>
 
-<!-- LOADING -->
 <div id="loading-screen">
-  <div class="loading-logo">Español Vivo</div>
-  <div class="loading-spinner"></div>
-  <div class="loading-msg" id="loading-msg">Connexion…</div>
+  <div class="loading-logo">Español Vivo</div>
+  <div class="loading-spinner"></div>
+  <div class="loading-msg" id="loading-msg">Connexion…</div>
 </div>
 
-<!-- LOGIN -->
 <div id="login-screen">
-  <div class="login-logo">Español Vivo</div>
-  <p class="login-tagline">Apprenez l'espagnol pour de vrai. Progression sauvegardée sur tous vos appareils.</p>
-  <div class="login-card">
-    <div class="login-title">Connexion</div>
-    <button class="btn-google" id="btn-google" onclick="googleLogin()">
-      <svg class="google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-      Continuer avec Google
-    </button>
-    <div class="login-divider">ou</div>
-    <button class="btn-guest" onclick="guestLogin()">Continuer sans compte</button>
-    <div class="login-error" id="login-error"></div>
-    <p class="login-note">Avec Google, votre progression est synchronisée sur tous vos appareils.</p>
-  </div>
+  <div class="login-logo">Español Vivo</div>
+  <p class="login-tagline">Apprenez l'espagnol pour de vrai. Progression sauvegardée sur tous vos appareils.</p>
+  <div class="login-card">
+    <div class="login-title">Connexion</div>
+    <button class="btn-google" id="btn-google" onclick="googleLogin()">
+      <svg class="google-icon" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      Continuer avec Google
+    </button>
+    <div class="login-divider">ou</div>
+    <button class="btn-guest" onclick="guestLogin()">Continuer sans compte</button>
+    <div class="login-error" id="login-error"></div>
+    <p class="login-note">Avec Google, votre progression est synchronisée sur tous vos appareils.</p>
+  </div>
 </div>
 
-<!-- PROFILE OVERLAY -->
 <div class="profile-overlay" id="profile-overlay" onclick="closeProfile()"></div>
 <div class="profile-menu" id="profile-menu">
-  <button class="menu-close" onclick="closeProfile()">✕</button>
-  <div class="profile-user">
-    <div class="profile-pic" id="profile-pic">🧑</div>
-    <div>
-      <div class="profile-name-el" id="profile-name-el">Apprenant</div>
-      <div class="profile-email-el" id="profile-email-el">Mode invité</div>
-    </div>
-  </div>
-  <div class="profile-stat-row">
-    <div class="profile-stat"><div class="ps-num" id="ps-streak">0</div><div class="ps-lbl">Série 🔥</div></div>
-    <div class="profile-stat"><div class="ps-num" id="ps-xp">0</div><div class="ps-lbl">XP</div></div>
-    <div class="profile-stat"><div class="ps-num" id="ps-lessons">0</div><div class="ps-lbl">Leçons</div></div>
-  </div>
-  <button class="btn-logout" onclick="doLogout()">Déconnexion</button>
+  <button class="menu-close" onclick="closeProfile()">✕</button>
+  <div class="profile-user">
+    <div class="profile-pic" id="profile-pic">🧑</div>
+    <div>
+      <div class="profile-name-el" id="profile-name-el">Apprenant</div>
+      <div class="profile-email-el" id="profile-email-el">Mode invité</div>
+    </div>
+  </div>
+  <div class="profile-stat-row">
+    <div class="profile-stat"><div class="ps-num" id="ps-streak">0</div><div class="ps-lbl">Série 🔥</div></div>
+    <div class="profile-stat"><div class="ps-num" id="ps-xp">0</div><div class="ps-lbl">XP</div></div>
+    <div class="profile-stat"><div class="ps-num" id="ps-lessons">0</div><div class="ps-lbl">Leçons</div></div>
+  </div>
+  <button class="btn-logout" onclick="doLogout()">Déconnexion</button>
 </div>
 
-<!-- HOME -->
 <div id="screen-home" class="screen active">
-  <p class="home-eyebrow">Español Vivo</p>
-  <div>
-    <h1 class="home-title">Apprenez l'espagnol<br><em>pour de vrai.</em></h1>
-    <p class="home-sub">Mémorisation scientifique, progression CECRL, pratique orale réelle.</p>
-  </div>
-  <div>
-    <p class="level-label">Votre niveau actuel</p>
-    <div class="level-grid">
-      <button class="level-btn sel" onclick="selectLevel(this,'A1')"><div class="lv">A1</div>Débutant</button>
-      <button class="level-btn"     onclick="selectLevel(this,'A2')"><div class="lv">A2</div>Élémentaire</button>
-      <button class="level-btn"     onclick="selectLevel(this,'B1')"><div class="lv">B1</div>Intermédiaire</button>
-      <button class="level-btn"     onclick="selectLevel(this,'B2')"><div class="lv">B2</div>Inter. Sup.</button>
-      <button class="level-btn"     onclick="selectLevel(this,'C1')"><div class="lv">C1</div>Avancé</button>
-      <button class="level-btn"     onclick="selectLevel(this,'C2')"><div class="lv">C2</div>Maîtrise</button>
-    </div>
-  </div>
-  <div>
-    <button class="btn-primary" onclick="startApp()">Commencer →</button>
-    <div class="home-stats" style="margin-top:18px">
-      <div><div class="stat-num" id="stat-lessons">…</div><div class="stat-lbl">Leçons</div></div>
-      <div><div class="stat-num" id="stat-words">…</div><div class="stat-lbl">Mots</div></div>
-      <div><div class="stat-num">CECRL</div><div class="stat-lbl">Aligné</div></div>
-    </div>
-  </div>
+  <p class="home-eyebrow">Español Vivo</p>
+  <div>
+    <h1 class="home-title">Apprenez l'espagnol<br><em>pour de vrai.</em></h1>
+    <p class="home-sub">Mémorisation scientifique, progression CECRL, pratique orale réelle.</p>
+  </div>
+  <div>
+    <p class="level-label">Votre niveau actuel</p>
+    <div class="level-grid">
+      <button class="level-btn sel" onclick="selectLevel(this,'A1')"><div class="lv">A1</div>Débutant</button>
+      <button class="level-btn"     onclick="selectLevel(this,'A2')"><div class="lv">A2</div>Élémentaire</button>
+      <button class="level-btn"     onclick="selectLevel(this,'B1')"><div class="lv">B1</div>Intermédiaire</button>
+      <button class="level-btn"     onclick="selectLevel(this,'B2')"><div class="lv">B2</div>Inter. Sup.</button>
+      <button class="level-btn"     onclick="selectLevel(this,'C1')"><div class="lv">C1</div>Avancé</button>
+      <button class="level-btn"     onclick="selectLevel(this,'C2')"><div class="lv">C2</div>Maîtrise</button>
+    </div>
+  </div>
+  <div>
+    <button class="btn-primary" onclick="startApp()">Commencer →</button>
+    <div class="home-stats" style="margin-top:18px">
+      <div><div class="stat-num" id="stat-lessons">…</div><div class="stat-lbl">Leçons</div></div>
+      <div><div class="stat-num" id="stat-words">…</div><div class="stat-lbl">Mots</div></div>
+      <div><div class="stat-num">CECRL</div><div class="stat-lbl">Aligné</div></div>
+    </div>
+  </div>
 </div>
 
-<!-- DASHBOARD -->
 <div id="screen-dashboard" class="screen">
-  <div class="top-bar">
-    <div>
-      <p style="font-size:12px;color:var(--muted)" id="dash-greeting">Bonjour</p>
-      <h2 class="top-bar-title">Tableau de bord</h2>
-    </div>
-    <div class="avatar" id="top-avatar" onclick="openProfile()">🧑</div>
-  </div>
-  <div class="streak-banner fade-up">
-    <div class="streak-fire">🔥</div>
-    <div><div class="streak-days" id="streak-count">0</div><div class="streak-label">jours de suite</div></div>
-    <div style="margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px">
-      <div class="xp-badge" id="xp-display">0 XP</div>
-      <div class="level-badge" id="level-display">Niveau A1</div>
-    </div>
-  </div>
-  <div class="section fade-up">
-    <div class="section-header"><h3 class="section-title">Vos compétences</h3></div>
-    <div class="skill-grid" id="skill-grid"></div>
-  </div>
-  <div class="section fade-up">
-    <div class="section-header"><h3 class="section-title">Plan du jour</h3></div>
-    <div class="lesson-list">
-      <div class="lesson-card" onclick="startLesson('preterite-vs-imperfect')"><div class="lesson-icon li-orange">🕐</div><div style="flex:1"><div class="lesson-name">Passé simple vs Imparfait</div><div class="lesson-meta">Grammaire · A2 · 12 exercices</div></div><div class="lesson-tag tag-new">NOUVEAU</div></div>
-      <div class="lesson-card" onclick="startLesson('ser-vs-estar')"><div class="lesson-icon li-blue">⚖️</div><div style="flex:1"><div class="lesson-name">Ser vs Estar</div><div class="lesson-meta">Grammaire · A1 · 10 exercices</div></div><div class="lesson-tag tag-new">NOUVEAU</div></div>
-      <div class="lesson-card" onclick="startLesson('subjunctive-intro')"><div class="lesson-icon li-purple">🎭</div><div style="flex:1"><div class="lesson-name">Intro au Subjonctif</div><div class="lesson-meta">Grammaire · B1 · 9 exercices</div></div><div class="lesson-tag tag-new">NOUVEAU</div></div>
-      <div class="lesson-card" onclick="navTo('vocab')"><div class="lesson-icon li-purple">📚</div><div style="flex:1"><div class="lesson-name">Révision vocabulaire</div><div class="lesson-meta">Répétition espacée</div></div><div class="lesson-tag tag-review">RÉVISION</div></div>
-      <div class="lesson-card" onclick="navTo('speak')"><div class="lesson-icon li-gold">🎤</div><div style="flex:1"><div class="lesson-name">Pratique orale</div><div class="lesson-meta">Conversation · IA</div></div><div class="lesson-tag tag-new">NOUVEAU</div></div>
-    </div>
-  </div>
-  <div class="section fade-up">
-    <div style="background:rgba(232,197,71,.07);border:1px solid rgba(232,197,71,.2);border-radius:var(--r);padding:16px;display:flex;gap:12px;align-items:flex-start">
-      <span style="font-size:24px;flex-shrink:0">💡</span>
-      <div><div style="font-weight:600;font-size:13px;margin-bottom:3px">Astuce mémoire</div><div style="font-size:12px;color:var(--muted);line-height:1.4">Faites une leçon par jour pour maintenir votre série. Le streak s'incrémente une seule fois par jour calendaire.</div></div>
-    </div>
-  </div>
+  <div class="top-bar">
+    <div>
+      <p style="font-size:12px;color:var(--muted)" id="dash-greeting">Bonjour</p>
+      <h2 class="top-bar-title">Tableau de bord</h2>
+    </div>
+    <div class="avatar" id="top-avatar" onclick="openProfile()">🧑</div>
+  </div>
+  <div class="streak-banner fade-up">
+    <div class="streak-fire">🔥</div>
+    <div><div class="streak-days" id="streak-count">0</div><div class="streak-label">jours de suite</div></div>
+    <div style="margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:4px">
+      <div class="xp-badge" id="xp-display">0 XP</div>
+      <div class="level-badge" id="level-display">Niveau A1</div>
+    </div>
+  </div>
+  <div class="section fade-up">
+    <div class="section-header"><h3 class="section-title">Vos compétences</h3></div>
+    <div class="skill-grid" id="skill-grid"></div>
+  </div>
+  <div class="section fade-up">
+    <div class="section-header"><h3 class="section-title">Plan du jour</h3></div>
+    <div class="lesson-list">
+      <div class="lesson-card" onclick="startLesson('preterite-vs-imperfect')"><div class="lesson-icon li-orange">🕐</div><div style="flex:1"><div class="lesson-name">Passé simple vs Imparfait</div><div class="lesson-meta">Grammaire · A2 · 12 exercices</div></div><div class="lesson-tag tag-new">NOUVEAU</div></div>
+      <div class="lesson-card" onclick="startLesson('ser-vs-estar')"><div class="lesson-icon li-blue">⚖️</div><div style="flex:1"><div class="lesson-name">Ser vs Estar</div><div class="lesson-meta">Grammaire · A1 · 10 exercices</div></div><div class="lesson-tag tag-new">NOUVEAU</div></div>
+      <div class="lesson-card" onclick="startLesson('subjunctive-intro')"><div class="lesson-icon li-purple">🎭</div><div style="flex:1"><div class="lesson-name">Intro au Subjonctif</div><div class="lesson-meta">Grammaire · B1 · 9 exercices</div></div><div class="lesson-tag tag-new">NOUVEAU</div></div>
+      <div class="lesson-card" onclick="navTo('vocab')"><div class="lesson-icon li-purple">📚</div><div style="flex:1"><div class="lesson-name">Révision vocabulaire</div><div class="lesson-meta">Répétition espacée</div></div><div class="lesson-tag tag-review">RÉVISION</div></div>
+      <div class="lesson-card" onclick="navTo('speak')"><div class="lesson-icon li-gold">🎤</div><div style="flex:1"><div class="lesson-name">Pratique orale</div><div class="lesson-meta">Conversation · IA</div></div><div class="lesson-tag tag-new">NOUVEAU</div></div>
+    </div>
+  </div>
+  <div class="section fade-up">
+    <div style="background:rgba(232,197,71,.07);border:1px solid rgba(232,197,71,.2);border-radius:var(--r);padding:16px;display:flex;gap:12px;align-items:flex-start">
+      <span style="font-size:24px;flex-shrink:0">💡</span>
+      <div><div style="font-weight:600;font-size:13px;margin-bottom:3px">Astuce mémoire</div><div style="font-size:12px;color:var(--muted);line-height:1.4">Faites une leçon par jour pour maintenir votre série. Le streak s'incrémente une seule fois par jour calendaire.</div></div>
+    </div>
+  </div>
 </div>
 
-<!-- LESSON -->
 <div id="screen-lesson" class="screen">
-  <div class="lesson-header">
-    <button class="back-btn" onclick="goBackFromLesson()">←</button>
-    <div class="prog-outer"><div class="prog-inner" id="lesson-prog" style="width:0%"></div></div>
-    <div class="prog-label" id="prog-label">0 / 0</div>
-  </div>
-  <div class="exercise-area" id="exercise-area"></div>
-  <div class="feedback-panel" id="feedback-panel">
-    <div class="fb-title" id="fb-title"></div>
-    <div class="fb-body"  id="fb-body"></div>
-    <button class="btn-continue" id="btn-continue" onclick="nextExercise()">Continuer →</button>
-  </div>
+  <div class="lesson-header">
+    <button class="back-btn" onclick="goBackFromLesson()">←</button>
+    <div class="prog-outer"><div class="prog-inner" id="lesson-prog" style="width:0%"></div></div>
+    <div class="prog-label" id="prog-label">0 / 0</div>
+  </div>
+  <div class="exercise-area" id="exercise-area"></div>
+  <div class="feedback-panel" id="feedback-panel">
+    <div class="fb-title" id="fb-title"></div>
+    <div class="fb-body"  id="fb-body"></div>
+    <button class="btn-continue" id="btn-continue" onclick="nextExercise()">Continuer →</button>
+  </div>
 </div>
 
-<!-- VOCAB -->
 <div id="screen-vocab" class="screen">
-  <div class="top-bar"><h2 class="top-bar-title">Vocabulaire</h2><div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)" id="vocab-count"></div></div>
-  <p style="padding:0 28px 10px;font-size:12px;color:var(--muted)">Appuyez pour révéler · Évaluez votre mémoire</p>
-  <div class="flashcard-wrap">
-    <div class="flashcard" id="flashcard" onclick="flipCard()">
-      <div class="card-face card-front"><div class="card-cat" id="card-cat"></div><div class="card-word" id="card-word"></div><div class="card-phonetic" id="card-phonetic"></div><div class="card-hint">Appuyez pour révéler →</div></div>
-      <div class="card-face card-back"><div class="card-translation" id="card-trans"></div><div class="card-example" id="card-example"></div><div style="font-size:11px;color:var(--muted)" id="card-next-review"></div></div>
-    </div>
-  </div>
-  <div class="card-actions" id="card-actions" style="display:none">
-    <button class="card-action-btn btn-hard" onclick="rateCard('hard')">😓 Difficile</button>
-    <button class="card-action-btn btn-ok-card" onclick="rateCard('ok')">🤔 Moyen</button>
-    <button class="card-action-btn btn-easy" onclick="rateCard('easy')">😊 Facile</button>
-  </div>
-  <div class="section" style="margin-top:20px"><div class="section-header"><h3 class="section-title">Tous les mots</h3></div><div class="word-list" id="word-list"></div></div>
+  <div class="top-bar"><h2 class="top-bar-title">Vocabulaire</h2><div style="font-family:'DM Mono',monospace;font-size:12px;color:var(--muted)" id="vocab-count"></div></div>
+  <p style="padding:0 28px 10px;font-size:12px;color:var(--muted)">Appuyez pour révéler · Évaluez votre mémoire</p>
+  <div class="flashcard-wrap">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="card-face card-front"><div class="card-cat" id="card-cat"></div><div class="card-word" id="card-word"></div><div class="card-phonetic" id="card-phonetic"></div><div class="card-hint">Appuyez pour révéler →</div></div>
+      <div class="card-face card-back"><div class="card-translation" id="card-trans"></div><div class="card-example" id="card-example"></div><div style="font-size:11px;color:var(--muted)" id="card-next-review"></div></div>
+    </div>
+  </div>
+  <div class="card-actions" id="card-actions" style="display:none">
+    <button class="card-action-btn btn-hard" onclick="rateCard('hard')">😓 Difficile</button>
+    <button class="card-action-btn btn-ok-card" onclick="rateCard('ok')">🤔 Moyen</button>
+    <button class="card-action-btn btn-easy" onclick="rateCard('easy')">😊 Facile</button>
+  </div>
+  <div class="section" style="margin-top:20px"><div class="section-header"><h3 class="section-title">Tous les mots</h3></div><div class="word-list" id="word-list"></div></div>
 </div>
 
-<!-- GRAMMAR -->
 <div id="screen-grammar" class="screen">
-  <div class="top-bar"><h2 class="top-bar-title">Grammaire</h2><div style="background:rgba(46,196,182,.12);color:var(--teal);font-size:11px;font-family:'DM Mono',monospace;padding:5px 11px;border-radius:20px">A1 → C1</div></div>
-  <div class="grammar-list" id="grammar-list"></div>
+  <div class="top-bar"><h2 class="top-bar-title">Grammaire</h2><div style="background:rgba(46,196,182,.12);color:var(--teal);font-size:11px;font-family:'DM Mono',monospace;padding:5px 11px;border-radius:20px">A1 → C1</div></div>
+  <div class="grammar-list" id="grammar-list"></div>
 </div>
 
-<!-- SPEAK -->
 <div id="screen-speak" class="screen">
-  <div class="top-bar"><h2 class="top-bar-title">Parler</h2><div style="background:rgba(255,107,53,.12);color:var(--accent);font-size:11px;font-family:'DM Mono',monospace;padding:5px 11px;border-radius:20px">IA</div></div>
-  <div class="convo-cards" id="convo-cards"></div>
-  <div class="chat-area" id="chat-area" style="display:none"></div>
-  <div id="speak-drill" style="display:none;padding:0 28px;margin-top:8px">
-    <div class="speak-area">
-      <div class="speak-phrase" id="drill-phrase"></div>
-      <div class="speak-trans"  id="drill-trans"></div>
-      <button class="mic-btn" id="mic-btn" onclick="toggleMic()">🎤</button>
-      <div class="speak-tip">Appuyez sur le micro et parlez clairement.</div>
-    </div>
-  </div>
+  <div class="top-bar"><h2 class="top-bar-title">Parler</h2><div style="background:rgba(255,107,53,.12);color:var(--accent);font-size:11px;font-family:'DM Mono',monospace;padding:5px 11px;border-radius:20px">IA</div></div>
+  <div class="convo-cards" id="convo-cards"></div>
+  <div class="chat-area" id="chat-area" style="display:none"></div>
+  <div id="speak-drill" style="display:none;padding:0 28px;margin-top:8px">
+    <div class="speak-area">
+      <div class="speak-phrase" id="drill-phrase"></div>
+      <div class="speak-trans"  id="drill-trans"></div>
+      <button class="mic-btn" id="mic-btn" onclick="toggleMic()">🎤</button>
+      <div class="speak-tip">Appuyez sur le micro et parlez clairement.</div>
+    </div>
+  </div>
 </div>
 
-<!-- BOTTOM NAV -->
 <nav class="bottom-nav" id="bottom-nav" style="display:none">
-  <button class="nav-item active" id="nav-dashboard" onclick="navTo('dashboard')"><span class="nav-icon">🏠</span><span class="nav-label">ACCUEIL</span></button>
-  <button class="nav-item" id="nav-vocab"   onclick="navTo('vocab')">  <span class="nav-icon">📚</span><span class="nav-label">MOTS</span></button>
-  <button class="nav-item" id="nav-grammar" onclick="navTo('grammar')"><span class="nav-icon">🧠</span><span class="nav-label">GRAMMAIRE</span></button>
-  <button class="nav-item" id="nav-speak"   onclick="navTo('speak')">  <span class="nav-icon">🎤</span><span class="nav-label">PARLER</span></button>
+  <button class="nav-item active" id="nav-dashboard" onclick="navTo('dashboard')"><span class="nav-icon">🏠</span><span class="nav-label">ACCUEIL</span></button>
+  <button class="nav-item" id="nav-vocab"   onclick="navTo('vocab')">  <span class="nav-icon">📚</span><span class="nav-label">MOTS</span></button>
+  <button class="nav-item" id="nav-grammar" onclick="navTo('grammar')"><span class="nav-icon">🧠</span><span class="nav-label">GRAMMAIRE</span></button>
+  <button class="nav-item" id="nav-speak"   onclick="navTo('speak')">  <span class="nav-icon">🎤</span><span class="nav-label">PARLER</span></button>
 </nav>
 
 <script>
 /* ════════════════════════════════
-   STATE
+   STATE
 ════════════════════════════════ */
 const state = {
-  level:'A1', xp:0, streak:0, lessonsCompleted:0, lastStreakDate:'',
-  skills:{reading:0,listening:0,speaking:0,writing:0},
-  wordStrengths:{}, grammarProgress:{}
+  level:'A1', xp:0, streak:0, lessonsCompleted:0, lastStreakDate:'',
+  skills:{reading:0,listening:0,speaking:0,writing:0},
+  wordStrengths:{}, grammarProgress:{}
 };
 
 /* ════════════════════════════════
-   LESSONS
+   LESSONS
 ════════════════════════════════ */
 const LESSONS = {
-  'preterite-vs-imperfect':{title:'Passé simple vs Imparfait',skills:{reading:8,writing:6},exercises:[
-    {type:'multiple-choice',tag:'Choisissez le bon temps',question:'Quelle phrase utilise correctement l\'<span class="es">imperfecto</span> ?',hint:'💡 L\'imparfait décrit des actions continues ou habituelles dans le passé.',choices:[{text:'Ayer fui al supermercado.',correct:false},{text:'Cuando era niño, jugaba al fútbol todos los días.',correct:true},{text:'El año pasado viví en Madrid.',correct:false},{text:'Esta mañana comí un croissant.',correct:false}],explanation:'✅ Jugaba (imparfait) = action habituelle. Les autres sont des événements ponctuels.'},
-    {type:'fill-blank',tag:'Action interrompue',question:'Complétez :',sentence:'Mientras yo _____ (dormir, imperfecto), sonó el teléfono.',answer:'dormía',hint:'💡 Action continue interrompue par un événement ponctuel.',explanation:'✅ Dormía (imparfait) = je dormais. Sonó (passé simple) = a sonné une fois.'},
-    {type:'multiple-choice',tag:'Traduction',question:'Comment dit-on : <span class="es">"Elle habitait à Barcelone."</span>',hint:'💡 Une habitude passée = imparfait.',choices:[{text:'Ella vivió en Barcelona.',correct:false},{text:'Ella vive en Barcelona.',correct:false},{text:'Ella vivía en Barcelona.',correct:true},{text:'Ella vivirá en Barcelona.',correct:false}],explanation:'✅ Vivía = imparfait de vivir.'},
-    {type:'fill-blank',tag:'Passé simple nosotros',question:'Utilisez le passé simple :',sentence:'Ayer _____ (ir) al museo con la clase.',answer:'fuimos',hint:'💡 Ayer = événement ponctuel. Ir est irrégulier !',explanation:'✅ Fuimos — passé simple de ir.'},
-    {type:'multiple-choice',tag:'Trouvez l\'erreur',question:'Ayer, yo comía pizza y después vi una película.',hint:'💡 Ayer + action ponctuelle = quel temps ?',choices:[{text:'Aucune erreur.',correct:false},{text:'"comía" devrait être "comí"',correct:true},{text:'"vi" devrait être "veía"',correct:false},{text:'Les deux sont faux.',correct:false}],explanation:'✅ Comía → comí. Vi est déjà correct.'},
-    {type:'fill-blank',tag:'Habitude passée',question:'Conjuguez à l\'imparfait :',sentence:'Nosotros siempre _____ (comer) paella los domingos.',answer:'comíamos',hint:'💡 Siempre + passé = imparfait.',explanation:'✅ Comíamos = imparfait de comer (nosotros).'},
-    {type:'multiple-choice',tag:'Décor vs événement',question:'Quel temps décrit la météo comme fond d\'une histoire ?',hint:'💡 Le décor = description continue.',choices:[{text:'Passé simple',correct:false},{text:'Imparfait',correct:true},{text:'Présent',correct:false},{text:'Futur',correct:false}],explanation:'✅ L\'imparfait pour le décor.'},
-    {type:'fill-blank',tag:'De repente',question:'Complétez :',sentence:'Caminaba tranquilamente cuando de repente _____ (caer) una tormenta.',answer:'cayó',hint:'💡 De repente = événement soudain.',explanation:'✅ Cayó (passé simple).'},
-    {type:'multiple-choice',tag:'Marqueurs',question:'Quel marqueur indique l\'imparfait ?',hint:'💡 Certains mots signalent automatiquement l\'imparfait.',choices:[{text:'ayer',correct:false},{text:'de repente',correct:false},{text:'siempre',correct:true},{text:'el lunes pasado',correct:false}],explanation:'✅ Siempre → imparfait.'},
-    {type:'multiple-choice',tag:'Biographie',question:'Dans une biographie, "Il est né en 1954" → ?',hint:'💡 La naissance est un événement ponctuel unique.',choices:[{text:'Nacía en 1954.',correct:false},{text:'Nació en 1954.',correct:true},{text:'Nace en 1954.',correct:false},{text:'Nacería en 1954.',correct:false}],explanation:'✅ Nació (passé simple) = événement unique.'},
-    {type:'fill-blank',tag:'Deux actions simultanées',question:'Complétez (deux actions continues) :',sentence:'Mientras ella _____ (cocinar), él _____ (poner) la mesa.',answer:'cocinaba / ponía',hint:'💡 Deux actions continues et simultanées = deux imparfaits.',explanation:'✅ Cocinaba / ponía.'},
-    {type:'speaking',tag:'Pratique orale',phrase:'Cuando era pequeño, vivía en el campo y jugaba fuera todos los días.',translation:'Quand j\'étais petit, j\'habitais à la campagne et je jouais dehors tous les jours.',hint:'💡 Deux verbes à l\'imparfait.'}
-  ]},
-  'ser-vs-estar':{title:'Ser vs Estar',skills:{reading:7,writing:5},exercises:[
-    {type:'multiple-choice',tag:'Ser ou Estar ?',question:'Laquelle est correcte pour une profession ?',hint:'💡 Ser = identité permanente, profession, origine.',choices:[{text:'Ella está médica.',correct:false},{text:'Ella es médica.',correct:true},{text:'Ella es cansada hoy.',correct:false},{text:'La sopa es caliente ahora.',correct:false}],explanation:'✅ Les professions utilisent "ser" — identité.'},
-    {type:'fill-blank',tag:'Condition temporaire',question:'Ser ou estar ?',sentence:'La sopa _____ muy caliente ahora mismo.',answer:'está',hint:'💡 Température actuelle = état temporaire.',explanation:'✅ Está caliente = chaud maintenant.'},
-    {type:'multiple-choice',tag:'Piège classique',question:'Différence : "Juan es aburrido" vs "Juan está aburrido" ?',hint:'💡 Le même adjectif change de sens.',choices:[{text:'Aucune différence.',correct:false},{text:'Es = il est ennuyeux. Está = il s\'ennuie.',correct:true},{text:'Es = il s\'ennuie. Está = ennuyeux.',correct:false},{text:'Seul está est correct.',correct:false}],explanation:'✅ Es aburrido = personnalité. Está aburrido = état momentané.'},
-    {type:'fill-blank',tag:'Localisation vs événement',question:'Complétez :',sentence:'La fiesta _____ en mi casa el viernes.',answer:'es',hint:'💡 Les événements programmés utilisent ser.',explanation:'✅ La fiesta es en mi casa — événements → ser.'},
-    {type:'multiple-choice',tag:'Verde',question:'"La pomme n\'est pas mûre" → ?',hint:'💡 L\'état de maturation est temporaire.',choices:[{text:'La manzana es verde.',correct:false},{text:'La manzana está verde.',correct:true},{text:'La manzana es verda.',correct:false},{text:'Les deux sont corrects.',correct:false}],explanation:'✅ Está verde (temporaire) vs Es verde (couleur).'},
-    {type:'fill-blank',tag:'Origine + localisation',question:'Complétez :',sentence:'Yo _____ de México pero _____ en España ahora.',answer:'soy / estoy',hint:'💡 Origine = ser. Localisation = estar.',explanation:'✅ Soy de México / estoy en España.'},
-    {type:'multiple-choice',tag:'Mort',question:'"Franco est mort" → ?',hint:'💡 La mort est un état résultant.',choices:[{text:'Franco es muerto.',correct:false},{text:'Franco está muerto.',correct:true},{text:'Franco fue muerto.',correct:false},{text:'Franco tiene muerto.',correct:false}],explanation:'✅ Está muerto — estat résultant.'},
-    {type:'fill-blank',tag:'Humeur vs caractère',question:'Choisissez :',sentence:'Hoy María _____ muy alegre — normalmente _____ más seria.',answer:'está / es',hint:'💡 Humeur du moment = estar. Caractère = ser.',explanation:'✅ Está alegre (aujourd\'hui) / es seria (habituellement).'},
-    {type:'speaking',tag:'Pratique orale',phrase:'Soy profesora, soy de Lyon, pero ahora estoy en Madrid y estoy muy contenta.',translation:'Je suis professeure, je suis de Lyon, mais maintenant je suis à Madrid et je suis très heureuse.',hint:'💡 Profession + origine (ser) + localisation + état (estar).'},
-    {type:'multiple-choice',tag:'Prix',question:'Comment demandez-vous le prix ?',hint:'💡 Les prix utilisent estar ou ser.',choices:[{text:'¿Cuánto es?',correct:false},{text:'¿Cuánto está?',correct:false},{text:'Les deux sont acceptés.',correct:true},{text:'¿Cuánto tiene?',correct:false}],explanation:'✅ ¿Cuánto es? et ¿Cuánto está? — les deux sont corrects.'}
-  ]},
-  'subjunctive-intro':{title:'Le Subjonctif',skills:{reading:7,writing:9},exercises:[
-    {type:'multiple-choice',tag:'Déclencheur',question:'Laquelle déclenche le subjonctif ?',hint:'💡 Désir, doute, émotion, expression impersonnelle.',choices:[{text:'Creo que él es inteligente.',correct:false},{text:'Es cierto que viene hoy.',correct:false},{text:'Deseo que vengas a mi fiesta.',correct:true},{text:'Sé que tienes razón.',correct:false}],explanation:'✅ Deseo que = désir → subjonctif.'},
-    {type:'fill-blank',tag:'Expression impersonnelle',question:'Complétez :',sentence:'Es importante que tú _____ (estudiar) todos los días.',answer:'estudies',hint:'💡 Expressions impersonnelles → toujours subjonctif.',explanation:'✅ Estudies — subjonctif de estudiar.'},
-    {type:'multiple-choice',tag:'Doute',question:'"Je ne pense pas qu\'il ait raison."',hint:'💡 Négation de la croyance = doute = subjonctif.',choices:[{text:'No creo que tiene razón.',correct:false},{text:'No creo que tenga razón.',correct:true},{text:'No creo que tendrá razón.',correct:false},{text:'Creo que tenga razón.',correct:false}],explanation:'✅ No creo que tenga — négation → subjonctif.'},
-    {type:'fill-blank',tag:'Émotion',question:'Complétez :',sentence:'Me alegra mucho que _____ (vosotros, venir) a la fiesta.',answer:'vengáis',hint:'💡 Émotion sur l\'action d\'autrui → subjonctif.',explanation:'✅ Vengáis — subjonctif de venir (vosotros).'},
-    {type:'fill-blank',tag:'Verbe irrégulier',question:'Complétez :',sentence:'Quiero que tú _____ (ir) al médico.',answer:'vayas',hint:'💡 Ir est totalement irrégulier au subjonctif.',explanation:'✅ Vayas — subjonctif de ir.'},
-    {type:'multiple-choice',tag:'Para que',question:'"Je l\'explique pour que tu comprennes."',hint:'💡 Para que → toujours subjonctif.',choices:[{text:'Te lo explico para que entiendes.',correct:false},{text:'Te lo explico para que entiendas.',correct:true},{text:'Te lo explico para entiendes.',correct:false},{text:'Te lo explico para que entenderás.',correct:false}],explanation:'✅ Para que entiendas — para que → toujours subjonctif.'},
-    {type:'fill-blank',tag:'Souhait',question:'Complétez :',sentence:'Espero que _____ (tú, tener) mucha suerte mañana.',answer:'tengas',hint:'💡 Esperar que → subjonctif.',explanation:'✅ Tengas — subjonctif de tener.'},
-    {type:'multiple-choice',tag:'Réel vs hypothétique',question:'Différence : "Busco a alguien que habla francés" vs "...que hable francés" ?',hint:'💡 Personne connue = indicatif. Hypothétique = subjonctif.',choices:[{text:'Aucune différence.',correct:false},{text:'Habla = personne précise. Hable = hypothétique.',correct:true},{text:'Hable = précis. Habla = hypothétique.',correct:false},{text:'Les deux sont incorrects.',correct:false}],explanation:'✅ Habla = quelqu\'un de précis. Hable = hypothétique.'},
-    {type:'speaking',tag:'Pratique orale',phrase:'Espero que tengas un buen día y que todo salga bien.',translation:'J\'espère que tu passes une bonne journée et que tout se passe bien.',hint:'💡 Espero que → deux subjonctifs : tengas, salga.'}
-  ]}
+  'preterite-vs-imperfect':{title:'Passé simple vs Imparfait',skills:{reading:8,writing:6},exercises:[
+    {type:'multiple-choice',tag:'Choisissez le bon temps',question:'Quelle phrase utilise correctement l\'<span class="es">imperfecto</span> ?',hint:'💡 L\'imparfait décrit des actions continues ou habituelles dans le passé.',choices:[{text:'Ayer fui al supermercado.',correct:false},{text:'Cuando era niño, jugaba al fútbol todos los días.',correct:true},{text:'El año pasado viví en Madrid.',correct:false},{text:'Esta mañana comí un croissant.',correct:false}],explanation:'✅ Jugaba (imparfait) = action habituelle. Les autres sont des événements ponctuels.'},
+    {type:'fill-blank',tag:'Action interrompue',question:'Complétez :',sentence:'Mientras yo _____ (dormir, imperfecto), sonó el teléfono.',answer:'dormía',hint:'💡 Action continue interrompue par un événement ponctuel.',explanation:'✅ Dormía (imparfait) = je dormais. Sonó (passé simple) = a sonné une fois.'},
+    {type:'multiple-choice',tag:'Traduction',question:'Comment dit-on : <span class="es">"Elle habitait à Barcelone."</span>',hint:'💡 Une habitude passée = imparfait.',choices:[{text:'Ella vivió en Barcelona.',correct:false},{text:'Ella vive en Barcelona.',correct:false},{text:'Ella vivía en Barcelona.',correct:true},{text:'Ella vivirá en Barcelona.',correct:false}],explanation:'✅ Vivía = imparfait de vivir.'},
+    {type:'fill-blank',tag:'Passé simple nosotros',question:'Utilisez le passé simple :',sentence:'Ayer _____ (ir) al museo con la clase.',answer:'fuimos',hint:'💡 Ayer = événement ponctuel. Ir est irrégulier !',explanation:'✅ Fuimos — passé simple de ir.'},
+    {type:'multiple-choice',tag:'Trouvez l\'erreur',question:'Ayer, yo comía pizza y después vi una película.',hint:'💡 Ayer + action ponctuelle = quel temps ?',choices:[{text:'Aucune erreur.',correct:false},{text:'"comía" devrait être "comí"',correct:true},{text:'"vi" devrait être "veía"',correct:false},{text:'Les deux sont faux.',correct:false}],explanation:'✅ Comía → comí. Vi est déjà correct.'},
+    {type:'fill-blank',tag:'Habitude passée',question:'Conjuguez à l\'imparfait :',sentence:'Nosotros siempre _____ (comer) paella los domingos.',answer:'comíamos',hint:'💡 Siempre + passé = imparfait.',explanation:'✅ Comíamos = imparfait de comer (nosotros).'},
+    {type:'multiple-choice',tag:'Décor vs événement',question:'Quel temps décrit la météo comme fond d\'une histoire ?',hint:'💡 Le décor = description continue.',choices:[{text:'Passé simple',correct:false},{text:'Imparfait',correct:true},{text:'Présent',correct:false},{text:'Futur',correct:false}],explanation:'✅ L\'imparfait pour le décor.'},
+    {type:'fill-blank',tag:'De repente',question:'Complétez :',sentence:'Caminaba tranquilamente cuando de repente _____ (caer) una tormenta.',answer:'cayó',hint:'💡 De repente = événement soudain.',explanation:'✅ Cayó (passé simple).'},
+    {type:'multiple-choice',tag:'Marqueurs',question:'Quel marqueur indique l\'imparfait ?',hint:'💡 Certains mots signalent automatiquement l\'imparfait.',choices:[{text:'ayer',correct:false},{text:'de repente',correct:false},{text:'siempre',correct:true},{text:'el lunes pasado',correct:false}],explanation:'✅ Siempre → imparfait.'},
+    {type:'multiple-choice',tag:'Biographie',question:'Dans une biographie, "Il est né en 1954" → ?',hint:'💡 La naissance est un événement ponctuel unique.',choices:[{text:'Nacía en 1954.',correct:false},{text:'Nació en 1954.',correct:true},{text:'Nace en 1954.',correct:false},{text:'Nacería en 1954.',correct:false}],explanation:'✅ Nació (passé simple) = événement unique.'},
+    {type:'fill-blank',tag:'Deux actions simultanées',question:'Complétez (deux actions continues) :',sentence:'Mientras ella _____ (cocinar), él _____ (poner) la mesa.',answer:'cocinaba / ponía',hint:'💡 Deux actions continues et simultanées = deux imparfaits.',explanation:'✅ Cocinaba / ponía.'},
+    {type:'speaking',tag:'Pratique orale',phrase:'Cuando era pequeño, vivía en el campo y jugaba fuera todos los días.',translation:'Quand j\'étais petit, j\'habitais à la campagne y je jouais dehors tous les jours.',hint:'💡 Deux verbes à l\'imparfait.'}
+  ]},
+  'ser-vs-estar':{title:'Ser vs Estar',skills:{reading:7,writing:5},exercises:[
+    {type:'multiple-choice',tag:'Ser ou Estar ?',question:'Laquelle est correcte pour une profession ?',hint:'💡 Ser = identité permanente, profession, origine.',choices:[{text:'Ella está médica.',correct:false},{text:'Ella es médica.',correct:true},{text:'Ella es cansada hoy.',correct:false},{text:'La sopa es caliente ahora.',correct:false}],explanation:'✅ Les professions utilisent "ser" — identité.'},
+    {type:'fill-blank',tag:'Condition temporaire',question:'Ser ou estar ?',sentence:'La sopa _____ muy caliente ahora mismo.',answer:'está',hint:'💡 Température actuelle = état temporaire.',explanation:'✅ Está caliente = chaud maintenant.'},
+    {type:'multiple-choice',tag:'Piège classique',question:'Différence : "Juan es aburrido" vs "Juan está aburrido" ?',hint:'💡 Le même adjectif change de sens.',choices:[{text:'Aucune différence.',correct:false},{text:'Es = il est ennuyeux. Está = il s\'ennuie.',correct:true},{text:'Es = il s\'ennuie. Está = ennuyeux.',correct:false},{text:'Seul está est correct.',correct:false}],explanation:'✅ Es aburrido = personnalité. Está aburrido = état momentané.'},
+    {type:'fill-blank',tag:'Localisation vs événement',question:'Complétez :',sentence:'La fiesta _____ en mi casa el viernes.',answer:'es',hint:'💡 Les événements programmés utilisent ser.',explanation:'✅ La fiesta es en mi casa — événements → ser.'},
+    {type:'multiple-choice',tag:'Verde',question:'"La pomme n\'est pas mûre" → ?',hint:'💡 L\'état de maturation est temporaire.',choices:[{text:'La manzana es verde.',correct:false},{text:'La manzana está verde.',correct:true},{text:'La manzana es verda.',correct:false},{text:'Les deux sont corrects.',correct:false}],explanation:'✅ Está verde (temporaire) vs Es verde (couleur).'},
+    {type:'fill-blank',tag:'Origine + localisation',question:'Complétez :',sentence:'Yo _____ de México pero _____ en España ahora.',answer:'soy / estoy',hint:'💡 Origine = ser. Localisation = estar.',explanation:'✅ Soy de México / estoy en España.'},
+    {type:'multiple-choice',tag:'Mort',question:'"Franco est mort" → ?',hint:'💡 La mort est un état résultant.',choices:[{text:'Franco es muerto.',correct:false},{text:'Franco está muerto.',correct:true},{text:'Franco fue muerto.',correct:false},{text:'Franco tiene muerto.',correct:false}],explanation:'✅ Está muerto — estat résultant.'},
+    {type:'fill-blank',tag:'Humeur vs caractère',question:'Choisissez :',sentence:'Hoy María _____ muy alegre — normalmente _____ más seria.',answer:'está / es',hint:'💡 Humeur du moment = estar. Caractère = ser.',explanation:'✅ Está alegre (aujourd\'hui) / es seria (habituellement).'},
+    {type:'speaking',tag:'Pratique orale',phrase:'Soy profesora, soy de Lyon, pero ahora estoy en Madrid y estoy muy contenta.',translation:'Je suis professeure, je suis de Lyon, mais maintenant je suis à Madrid et je suis très heureuse.',hint:'💡 Profession + origine (ser) + localisation + état (estar).'},
+    {type:'multiple-choice',tag:'Prix',question:'Comment demandez-vous le prix ?',hint:'💡 Les prix utilisent estar ou ser.',choices:[{text:'¿Cuánto es?',correct:false},{text:'¿Cuánto está?',correct:false},{text:'Les deux sont acceptés.',correct:true},{text:'¿Cuánto tiene?',correct:false}],explanation:'✅ ¿Cuánto es? et ¿Cuánto está? — les deux sont corrects.'}
+  ]},
+  'subjunctive-intro':{title:'Le Subjonctif',skills:{reading:7,writing:9},exercises:[
+    {type:'multiple-choice',tag:'Déclencheur',question:'Laquelle déclenche le subjonctif ?',hint:'💡 Désir, doute, émotion, expression impersonnelle.',choices:[{text:'Creo que él es inteligente.',correct:false},{text:'Es cierto que viene hoy.',correct:false},{text:'Deseo que vengas a mi fiesta.',correct:true},{text:'Sé que tienes razón.',correct:false}],explanation:'✅ Deseo que = désir → subjonctif.'},
+    {type:'fill-blank',tag:'Expression impersonnelle',question:'Complétez :',sentence:'Es importante que tú _____ (estudiar) todos los días.',answer:'estudies',hint:'💡 Expressions impersonnelles → toujours subjonctif.',explanation:'✅ Estudies — subjonctif de estudiar.'},
+    {type:'multiple-choice',tag:'Doute',question:'"Je ne pense pas qu\'il ait raison."',hint:'💡 Négation de la croyance = doute = subjonctif.',choices:[{text:'No creo que tiene razón.',correct:false},{text:'No creo que tenga razón.',correct:true},{text:'No creo que tendrá razón.',correct:false},{text:'Creo que tenga razón.',correct:false}],explanation:'✅ No creo que tenga — négation → subjonctif.'},
+    {type:'fill-blank',tag:'Émotion',question:'Complétez :',sentence:'Me alegra mucho que _____ (vosotros, venir) a la fiesta.',answer:'vengáis',hint:'💡 Émotion sur l\'action d\'autrui → subjonctif.',explanation:'✅ Vengáis — subjonctif de venir (vosotros).'},
+    {type:'fill-blank',tag:'Verbe irrégulier',question:'Complétez :',sentence:'Quiero que tú _____ (ir) al médico.',answer:'vayas',hint:'💡 Ir est totalement irrégulier au subjonctif.',explanation:'✅ Vayas — subjonctif de ir.'},
+    {type:'multiple-choice',tag:'Para que',question:'"Je l\'explique pour que tu comprennes."',hint:'💡 Para que → toujours subjonctif.',choices:[{text:'Te lo explico para que entiendes.',correct:false},{text:'Te lo explico para que entiendas.',correct:true},{text:'Te lo explico para entiendes.',correct:false},{text:'Te lo explico para que entenderás.',correct:false}],explanation:'✅ Para que entiendas — para que → toujours subjonctif.'},
+    {type:'fill-blank',tag:'Souhait',question:'Complétez :',sentence:'Espero que _____ (tú, tener) mucha suerte mañana.',answer:'tengas',hint:'💡 Esperar que → subjonctif.',explanation:'✅ Tengas — subjonctif de tener.'},
+    {type:'multiple-choice',tag:'Réel vs hypothétique',question:'Différence : "Busco a alguien que habla francés" vs "...que hable francés" ?',hint:'💡 Personne connue = indicatif. Hypothétique = subjonctif.',choices:[{text:'Aucune différence.',correct:false},{text:'Habla = personne précise. Hable = hypothétique.',correct:true},{text:'Hable = précis. Habla = hypothétique.',correct:false},{text:'Les deux sont incorrects.',correct:false}],explanation:'✅ Habla = quelqu\'un de précis. Hable = hypothétique.'},
+    {type:'speaking',tag:'Pratique orale',phrase:'Espero que tengas un buen día y que todo salga bien.',translation:'J\'espère que tu passes une bonne journée et que tout se passe bien.',hint:'💡 Espero que → deux subjonctifs : tengas, salga.'}
+  ]}
 };
 
 const WORDS = [
-  {es:'aunque',en:'bien que / même si',cat:'🔗 Connecteurs',phonetic:'/ˈawn.ke/',ex:'"Aunque llueva, saldré." — Même s\'il pleut, je sortirai.',nr:'Demain'},
-  {es:'sin embargo',en:'cependant / néanmoins',cat:'🔗 Connecteurs',phonetic:'/siŋ em.ˈbaɾ.ɣo/',ex:'"Sin embargo, lo haré." — Cependant, je le ferai.',nr:'Aujourd\'hui'},
-  {es:'querer',en:'vouloir / aimer',cat:'💙 Verbes',phonetic:'/ke.ˈɾeɾ/',ex:'"Te quiero mucho." — Je t\'aime.',nr:'Dans 3 jours'},
-  {es:'acabo de',en:'je viens de',cat:'⏱️ Temps',phonetic:'/ˈa.ka.βo ðe/',ex:'"Acabo de llegar." — Je viens d\'arriver.',nr:'Demain'},
-  {es:'echar de menos',en:'manquer à quelqu\'un',cat:'🔧 Expressions',phonetic:'/e.ˈtʃaɾ de ˈme.nos/',ex:'"Te echo de menos." — Tu me manques.',nr:'Aujourd\'hui'},
-  {es:'dar igual',en:'peu importer',cat:'🔧 Expressions',phonetic:'/daɾ i.ˈɣwal/',ex:'"Me da igual." — Peu m\'importe.',nr:'Dans 3 jours'},
+  {es:'aunque',en:'bien que / même si',cat:'🔗 Connecteurs',phonetic:'/ˈawn.ke/',ex:'"Aunque llueva, saldré." — Même s\'il pleut, je sortirai.',nr:'Demain'},
+  {es:'sin embargo',en:'cependant / néanmoins',cat:'🔗 Connecteurs',phonetic:'/siŋ em.ˈbaɾ.ɣo/',ex:'"Sin embargo, lo haré." — Cependant, je le ferai.',nr:'Aujourd\'hui'},
+  {es:'querer',en:'vouloir / aimer',cat:'💙 Verbes',phonetic:'/ke.ˈɾeɾ/',ex:'"Te quiero mucho." — Je t\'aime.',nr:'Dans 3 jours'},
+  {es:'acabo de',en:'je viens de',cat:'⏱️ Temps',phonetic:'/ˈa.ka.βo ðe/',ex:'"Acabo de llegar." — Je viens d\'arriver.',nr:'Demain'},
+  {es:'echar de menos',en:'manquer à quelqu\'un',cat:'🔧 Expressions',phonetic:'/e.ˈtʃaɾ de ˈme.nos/',ex:'"Te echo de menos." — Tu me manques.',nr:'Aujourd\'hui'},
+  {es:'dar igual',en:'peu importer',cat:'🔧 Expressions',phonetic:'/daɾ i.ˈɣwal/',ex:'"Me da igual." — Peu m\'importe.',nr:'Dans 3 jours'},
 ];
 
 const GRAMMAR_TOPICS = [
-  {key:'greetings-basics',icon:'👋',title:'Salutations & Bases',level:'A1',cefr:'a1',locked:false,desc:'Hola, buenos días, me llamo, por favor, gracias.'},
-  {key:'articles-gender',icon:'🔤',title:'Articles & Genre',level:'A1',cefr:'a1',locked:false,desc:'El/la/los/las, un/una — le genre des noms espagnols.'},
-  {key:'numbers-time',icon:'🔢',title:'Nombres & Temps',level:'A1',cefr:'a1',locked:false,desc:'Nombres, l\'heure, les jours, les mois, les dates.'},
-  {key:'present-tense',icon:'⚡',title:'Présent de l\'indicatif',level:'A1',cefr:'a1',locked:false,desc:'Réguliers -ar/-er/-ir, changements de radical, réflexifs.'},
-  {key:'ser-vs-estar',icon:'⚖️',title:'Ser vs Estar',level:'A1',cefr:'a1',locked:false,desc:'Les deux "être" — identité vs état temporaire.'},
-  {key:'preterite-vs-imperfect',icon:'⏪',title:'Passé simple vs Imparfait',level:'A2',cefr:'a2',locked:false,desc:'Événements ponctuels vs actions continues/habituelles.'},
-  {key:'future-conditional',icon:'🔮',title:'Futur & Conditionnel',level:'A2',cefr:'a2',locked:false,desc:'Futur simple, irréguliers, conditionnel et hypothèses.'},
-  {key:'object-pronouns',icon:'🔀',title:'Pronoms Compléments',level:'B1',cefr:'b1',locked:false,desc:'Me/te/le/lo/la/nos/les — placement et combinaisons.'},
-  {key:'subjunctive-intro',icon:'🎭',title:'Le Subjonctif',level:'B1',cefr:'b1',locked:false,desc:'Doute, désir, émotion, expressions impersonnelles.'},
-  {key:'por-vs-para',icon:'↔️',title:'Por vs Para',level:'B1',cefr:'b1',locked:false,desc:'Les 8 usages de chaque préposition.'},
-  {key:'relative-clauses',icon:'🔗',title:'Propositions Relatives',level:'B2',cefr:'b2',locked:false,desc:'que, quien, el que, lo que, cuyo.'},
-  {key:'passive-voice',icon:'🎨',title:'Voix Passive',level:'B2',cefr:'b2',locked:false,desc:'Ser + participe et se pasiva.'},
-  {key:'subjunctive-advanced',icon:'🌀',title:'Subjonctif Avancé',level:'C1',cefr:'c1',locked:false,desc:'Temps, hypothèses, concordance des temps.'},
-  {key:'direct-speech',icon:'💬',title:'Discours Rapporté',level:'C1',cefr:'c1',locked:false,desc:'Backshift, changements de pronoms et de temps.'},
-  {key:'idiomatic-expressions',icon:'🧩',title:'Expressions Idiomatiques',level:'C1',cefr:'c1',locked:false,desc:'Echar de menos, dar igual, llevar + gérondif...'},
-  {key:'register-formality',icon:'🎩',title:'Registre & Formalité',level:'C1',cefr:'c1',locked:false,desc:'Tú vs usted, mail formel, langage soutenu.'},
-  {key:'advanced-subjunctive-2',icon:'🌊',title:'Subjonctif C2',level:'C2',cefr:'c1',locked:true,desc:'Nuances avancées, structures rares, niveau natif.'},
-  {key:'historical-spanish',icon:'📜',title:'Espagnol historique',level:'C2',cefr:'c1',locked:true,desc:'Formes archaïques, étymologie, Cervantes.'},
+  {key:'greetings-basics',icon:'👋',title:'Salutations & Bases',level:'A1',cefr:'a1',locked:false,desc:'Hola, buenos días, me llamo, por favor, gracias.'},
+  {key:'articles-gender',icon:'🔤',title:'Articles & Genre',level:'A1',cefr:'a1',locked:false,desc:'El/la/los/las, un/una — le genre des noms espagnols.'},
+  {key:'numbers-time',icon:'🔢',title:'Nombres & Temps',level:'A1',cefr:'a1',locked:false,desc:'Nombres, l\'heure, les jours, les mois, les dates.'},
+  {key:'present-tense',icon:'⚡',title:'Présent de l\'indicatif',level:'A1',cefr:'a1',locked:false,desc:'Réguliers -ar/-er/-ir, changements de radical, réflexifs.'},
+  {key:'ser-vs-estar',icon:'⚖️',title:'Ser vs Estar',level:'A1',cefr:'a1',locked:false,desc:'Les deux "être" — identité vs état temporaire.'},
+  {key:'preterite-vs-imperfect',icon:'⏪',title:'Passé simple vs Imparfait',level:'A2',cefr:'a2',locked:false,desc:'Événements ponctuels vs actions continues/habituelles.'},
+  {key:'future-conditional',icon:'🔮',title:'Futur & Conditionnel',level:'A2',cefr:'a2',locked:false,desc:'Futur simple, irréguliers, conditionnel et hypothèses.'},
+  {key:'object-pronouns',icon:'🔀',title:'Pronoms Compléments',level:'B1',cefr:'b1',locked:false,desc:'Me/te/le/lo/la/nos/les — placement et combinaisons.'},
+  {key:'subjunctive-intro',icon:'🎭',title:'Le Subjonctif',level:'B1',cefr:'b1',locked:false,desc:'Doute, désir, émotion, expressions impersonnelles.'},
+  {key:'por-vs-para',icon:'↔️',title:'Por vs Para',level:'B1',cefr:'b1',locked:false,desc:'Les 8 usages de chaque préposition.'},
+  {key:'relative-clauses',icon:'🔗',title:'Propositions Relatives',level:'B2',cefr:'b2',locked:false,desc:'que, quien, el que, lo que, cuyo.'},
+  {key:'passive-voice',icon:'🎨',title:'Voix Passive',level:'B2',cefr:'b2',locked:false,desc:'Ser + participe et se pasiva.'},
+  {key:'subjunctive-advanced',icon:'🌀',title:'Subjonctif Avancé',level:'C1',cefr:'c1',locked:false,desc:'Temps, hypothèses, concordance des temps.'},
+  {key:'direct-speech',icon:'💬',title:'Discours Rapporté',level:'C1',cefr:'c1',locked:false,desc:'Backshift, changements de pronoms et de temps.'},
+  {key:'idiomatic-expressions',icon:'🧩',title:'Expressions Idiomatiques',level:'C1',cefr:'c1',locked:false,desc:'Echar de menos, dar igual, llevar + gérondif...'},
+  {key:'register-formality',icon:'🎩',title:'Registre & Formalité',level:'C1',cefr:'c1',locked:false,desc:'Tú vs usted, mail formel, langage soutenu.'},
+  {key:'advanced-subjunctive-2',icon:'🌊',title:'Subjonctif C2',level:'C2',cefr:'c1',locked:true,desc:'Nuances avancées, structures rares, niveau natif.'},
+  {key:'historical-spanish',icon:'📜',title:'Espagnol historique',level:'C2',cefr:'c1',locked:true,desc:'Formes archaïques, étymologie, Cervantes.'},
 ];
 
 const SCENARIOS = [
-  {icon:'🏪',label:'Au marché',style:'',desc:'Acheter, demander les prix, négocier.',phrases:['¿Cuánto cuesta esto?','¿Tiene algo más barato?','Me lo llevo, gracias.'],drillPhrase:'¿A qué hora abre el mercado?',drillTrans:'À quelle heure le marché ouvre-t-il ?',aiOpen:'¡Hola! Bienvenido al mercado. ¿En qué le puedo ayudar?',aiOpenTr:'Bonjour ! Comment puis-je vous aider ?'},
-  {icon:'☕',label:'Au café',style:'teal',desc:'Commander, demander la carte.',phrases:['Un café con leche, por favor.','¿Qué recomienda usted?','La cuenta, por favor.'],drillPhrase:'¿Me puede traer la carta, por favor?',drillTrans:'Pouvez-vous m\'apporter la carte ?',aiOpen:'¡Buenos días! ¿Qué le pongo?',aiOpenTr:'Bonjour ! Que vous sers-je ?'},
-  {icon:'🏨',label:'À l\'hôtel',style:'',desc:'Check-in, questions sur l\'hôtel.',phrases:['Tengo una reserva a nombre de…','¿A qué hora es el desayuno?','¿Tiene habitaciones libres?'],drillPhrase:'¿Puede despertarme a las siete?',drillTrans:'Pouvez-vous me réveiller à sept heures ?',aiOpen:'¡Buenas tardes! ¿Tiene usted reserva?',aiOpenTr:'Bonjour ! Avez-vous une réservation ?'},
-  {icon:'✈️',label:'À l\'aéroport',style:'teal',desc:'Enregistrement, embarquement.',phrases:['¿Dónde está la puerta de embarque?','Aquí tiene mi pasaporte.','Mi vuelo está retrasado.'],drillPhrase:'¿A qué hora sale el vuelo para Madrid?',drillTrans:'À quelle heure part le vol pour Madrid ?',aiOpen:'Bienvenido al mostrador. Su pasaporte, por favor.',aiOpenTr:'Bienvenue. Votre passeport, s\'il vous plaît.'},
-  {icon:'🍽️',label:'Au restaurant',style:'purple',desc:'Commander un repas.',phrases:['De primero quiero...','Soy alérgico a los mariscos.','Estaba todo muy rico.'],drillPhrase:'¿Tienen alguna opción vegetariana?',drillTrans:'Avez-vous une option végétarienne ?',aiOpen:'¡Buenas noches! ¿Mesa para cuántos?',aiOpenTr:'Bonsoir ! Table pour combien ?'},
-  {icon:'💼',label:'Entretien',style:'',desc:'Entretien professionnel en espagnol.',phrases:['Tengo experiencia en...','Soy una persona muy responsable.','Me interesa mucho este puesto.'],drillPhrase:'¿Cuáles serían mis responsabilidades principales?',drillTrans:'Quelles seraient mes principales responsabilités ?',aiOpen:'Hola, tome asiento. Hábleme de su experiencia.',aiOpenTr:'Bonjour, asseyez-vous. Parlez-moi de votre expérience.'}
+  {icon:'🏪',label:'Au marché',style:'',desc:'Acheter, demander les prix, négocier.',phrases:['¿Cuánto cuesta esto?','¿Tiene algo más barato?','Me lo llevo, gracias.'],drillPhrase:'¿A qué hora abre el mercado?',drillTrans:'À quelle heure le marché ouvre-t-il ?',aiOpen:'¡Hola! Bienvenido al mercado. ¿En qué le puedo ayudar?',aiOpenTr:'Bonjour ! Comment puis-je vous aider ?'},
+  {icon:'☕',label:'Au café',style:'teal',desc:'Commander, demander la carte.',phrases:['Un café con leche, por favor.','¿Qué recomienda usted?','La cuenta, por favor.'],drillPhrase:'¿Me puede traer la carta, por favor?',drillTrans:'Pouvez-vous m\'apporter la carte ?',aiOpen:'¡Buenos días! ¿Qué le pongo?',aiOpenTr:'Bonjour ! Que vous sers-je ?'},
+  {icon:'🏨',label:'À l\'hôtel',style:'',desc:'Check-in, questions sur l\'hôtel.',phrases:['Tengo una reserva a nombre de…','¿A qué hora es el desayuno?','¿Tiene habitaciones libres?'],drillPhrase:'¿Puede despertarme a las siete?',drillTrans:'Pouvez-vous me réveiller à sept heures ?',aiOpen:'¡Buenas tardes! ¿Tiene usted reserva?',aiOpenTr:'Bonjour ! Avez-vous une réservation ?'},
+  {icon:'✈️',label:'À l\'aéroport',style:'teal',desc:'Enregistrement, embarquement.',phrases:['¿Dónde está la puerta de embarque?','Aquí tiene mi pasaporte.','Mi vuelo está retrasado.'],drillPhrase:'¿A qué hora sale el vuelo para Madrid?',drillTrans:'À quelle heure part le vol pour Madrid ?',aiOpen:'Bienvenido al mostrador. Su pasaporte, por favor.',aiOpenTr:'Bienvenue. Votre passeport, s\'il vous plaît.'},
+  {icon:'🍽️',label:'Au restaurant',style:'purple',desc:'Commander un repas.',phrases:['De primero quiero...','Soy alérgico a los mariscos.','Estaba todo muy rico.'],drillPhrase:'¿Tienen alguna opción vegetariana?',drillTrans:'Avez-vous une option végétarienne ?',aiOpen:'¡Buenas noches! ¿Mesa para cuántos?',aiOpenTr:'Bonsoir ! Table pour combien ?'},
+  {icon:'💼',label:'Entretien',style:'',desc:'Entretien professionnel en espagnol.',phrases:['Tengo experiencia en...','Soy una persona muy responsable.','Me interesa mucho este puesto.'],drillPhrase:'¿Cuáles serían mis responsabilidades principales?',drillTrans:'Quelles seraient mes principales responsabilités ?',aiOpen:'Hola, tome asiento. Hábleme de su experiencia.',aiOpenTr:'Bonjour, asseyez-vous. Parlez-moi de votre expérience.'}
 ];
 
 /* ════════════════════════════════
-   STREAK
+   STREAK
 ════════════════════════════════ */
-function todayISO()     { return new Date().toISOString().slice(0,10); }
+function todayISO()     { return new Date().toISOString().slice(0,10); }
 function yesterdayISO() { return new Date(Date.now()-86400000).toISOString().slice(0,10); }
 
 function handleStreak() {
-  const today = todayISO();
-  if (state.lastStreakDate === today) return; // already done today
-  state.streak = (state.lastStreakDate === yesterdayISO()) ? state.streak + 1 : 1;
-  state.lastStreakDate = today;
+  const today = todayISO();
+  if (state.lastStreakDate === today) return; // already done today
+  state.streak = (state.lastStreakDate === yesterdayISO()) ? state.streak + 1 : 1;
+  state.lastStreakDate = today;
 }
 
 /* ════════════════════════════════
-   APP BOOT (called after auth)
+   APP BOOT (called after auth)
 ════════════════════════════════ */
 let _booting = false;
 async function appBoot() {
-  if (_booting) return;   // prevent double-call during popup flow
-  _booting = true;
-  try {
-    const lm = document.getElementById('loading-msg');
-    if (lm) lm.textContent = 'Chargement du contenu…';
-    await loadContent();
-    if (lm) lm.textContent = 'Chargement de votre progression…';
-    await loadProgress();
-  } catch(e) {
-    console.error('appBoot error:', e);
-  }
-  // Always hide login + loading, even if something above threw
-  document.getElementById('login-screen').classList.remove('show');
-  const ls = document.getElementById('loading-screen');
-  if (ls) { ls.classList.add('hidden'); setTimeout(() => { if (ls.parentNode) ls.remove(); }, 600); }
-  updateUI();
-  updateHomeStats();
-  _booting = false;
+  if (_booting) return;   // prevent double-call during popup flow
+  _booting = true;
+  try {
+    const lm = document.getElementById('loading-msg');
+    if (lm) lm.textContent = 'Chargement du contenu…';
+    await loadContent();
+    if (lm) lm.textContent = 'Chargement de votre progression…';
+    await loadProgress();
+  } catch(e) {
+    console.error('appBoot error:', e);
+  }
+  // Always hide login + loading, even if something above threw
+  document.getElementById('login-screen').classList.remove('show');
+  const ls = document.getElementById('loading-screen');
+  if (ls) { ls.classList.add('hidden'); setTimeout(() => { if (ls.parentNode) ls.remove(); }, 600); }
+  updateUI();
+  updateHomeStats();
+  _booting = false;
 }
 
 function showLoginUI() {
-  // Hide loading screen
-  const ls = document.getElementById('loading-screen');
-  if (ls) { ls.classList.add('hidden'); setTimeout(() => { if(ls.parentNode) ls.remove(); }, 600); }
-  // Show login
-  document.getElementById('login-screen').classList.add('show');
-  // Reset app to home screen, hide nav
-  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-  document.getElementById('screen-home').classList.add('active');
-  document.getElementById('bottom-nav').style.display = 'none';
+  // Hide loading screen
+  const ls = document.getElementById('loading-screen');
+  if (ls) { ls.classList.add('hidden'); setTimeout(() => { if(ls.parentNode) ls.remove(); }, 600); }
+  // Show login
+  document.getElementById('login-screen').classList.add('show');
+  // Reset app to home screen, hide nav
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById('screen-home').classList.add('active');
+  document.getElementById('bottom-nav').style.display = 'none';
 }
 
 /* ════════════════════════════════
-   FIREBASE SAVE/LOAD
+   FIREBASE SAVE/LOAD
 ════════════════════════════════ */
 const SAVE_FIELDS = ['level','xp','streak','lessonsCompleted','lastStreakDate','skills','wordStrengths','grammarProgress'];
 
 async function saveProgress() {
-  if (!window._uid || !window._db) return;
-  try {
-    const data = {};
-    SAVE_FIELDS.forEach(k => { data[k] = JSON.parse(JSON.stringify(state[k])); });
-    await window._db.collection('users').doc(window._uid).set(data, {merge:true});
-  } catch(e) { console.warn('Sauvegarde échouée:', e); }
+  if (!window._uid || !window._db) return;
+  try {
+    const data = {};
+    SAVE_FIELDS.forEach(k => { data[k] = JSON.parse(JSON.stringify(state[k])); });
+    await window._db.collection('users').doc(window._uid).set(data, {merge:true});
+  } catch(e) { console.warn('Sauvegarde échouée:', e); }
 }
 
 async function loadProgress() {
-  if (!window._uid || !window._db) return;
-  try {
-    const snap = await window._db.collection('users').doc(window._uid).get();
-    if (snap.exists) {
-      const data = snap.data();
-      SAVE_FIELDS.forEach(k => { if (data[k] !== undefined) state[k] = data[k]; });
-      // Validate streak
-      const last = state.lastStreakDate || '';
-      if (last && last !== todayISO() && last !== yesterdayISO()) {
-        state.streak = 0; state.lastStreakDate = '';
-        await saveProgress();
-      }
-    }
-  } catch(e) { console.warn('Chargement échoué:', e); }
+  if (!window._uid || !window._db) return;
+  try {
+    const snap = await window._db.collection('users').doc(window._uid).get();
+    if (snap.exists) {
+      const data = snap.data();
+      SAVE_FIELDS.forEach(k => { if (data[k] !== undefined) state[k] = data[k]; });
+      // Validate streak
+      const last = state.lastStreakDate || '';
+      if (last && last !== todayISO() && last !== yesterdayISO()) {
+        state.streak = 0; state.lastStreakDate = '';
+        await saveProgress();
+      }
+    }
+  } catch(e) { console.warn('Chargement échoué:', e); }
 }
 
 /* ════════════════════════════════
-   CONTENT.JSON
+   CONTENT.JSON
 ════════════════════════════════ */
 async function loadContent() {
-  try {
-    const res = await fetch('content.json');
-    if (!res.ok) return;
-    const data = await res.json();
-    if (data.lessons) Object.assign(LESSONS, data.lessons);
-    if (data.words) {
-      const ex = new Set(WORDS.map(w => w.es));
-      data.words.forEach(w => { if (!ex.has(w.es)) WORDS.push(w); });
-    }
-  } catch(e) { console.warn('content.json non chargé:', e); }
+  try {
+    const res = await fetch('content.json');
+    if (!res.ok) return;
+    const data = await res.json();
+    if (data.lessons) Object.assign(LESSONS, data.lessons);
+    if (data.words) {
+      const ex = new Set(WORDS.map(w => w.es));
+      data.words.forEach(w => { if (!ex.has(w.es)) WORDS.push(w); });
+    }
+  } catch(e) { console.warn('content.json non chargé:', e); }
 }
 
 function updateHomeStats() {
-  const sl = document.getElementById('stat-lessons');
-  const sw = document.getElementById('stat-words');
-  if (sl) sl.textContent = Object.keys(LESSONS).length;
-  if (sw) sw.textContent = WORDS.length + '+';
+  const sl = document.getElementById('stat-lessons');
+  const sw = document.getElementById('stat-words');
+  if (sl) sl.textContent = Object.keys(LESSONS).length;
+  if (sw) sw.textContent = WORDS.length + '+';
 }
 
 /* ════════════════════════════════
-   LESSON ENGINE
+   LESSON ENGINE
 ════════════════════════════════ */
 let currentLessonKey = null, currentExIdx = 0, answerLocked = false, previousScreen = 'dashboard';
 
 function startLesson(key) {
-  if (!LESSONS[key]) { alert('Leçon bientôt disponible !'); return; }
-  currentLessonKey = key; currentExIdx = 0; answerLocked = false;
-  previousScreen = document.querySelector('.screen.active')?.id.replace('screen-','') || 'dashboard';
-  hideFeedback(); goTo('lesson'); renderExercise();
+  if (!LESSONS[key]) { alert('Leçon bientôt disponible !'); return; }
+  currentLessonKey = key; currentExIdx = 0; answerLocked = false;
+  previousScreen = document.querySelector('.screen.active')?.id.replace('screen-','') || 'dashboard';
+  hideFeedback(); goTo('lesson'); renderExercise();
 }
 
 function renderExercise() {
-  const lesson = LESSONS[currentLessonKey], ex = lesson.exercises[currentExIdx];
-  document.getElementById('lesson-prog').style.width = (currentExIdx/lesson.exercises.length*100)+'%';
-  document.getElementById('prog-label').textContent  = currentExIdx+' / '+lesson.exercises.length;
-  answerLocked = false;
-  let html = `<div class="ex-tag fade-up">${ex.tag}</div>`;
-  if (ex.type==='speaking') {
-    html += `<div class="ex-question fade-up" style="animation-delay:.04s">Prononcez cette phrase :</div>
-      <div class="speak-area fade-up" style="animation-delay:.08s">
-        <div class="speak-phrase">${ex.phrase}</div><div class="speak-trans">${ex.translation}</div>
-        <button class="mic-btn" id="ex-mic" onclick="handleExMic(this)">🎤</button>
-        <div class="speak-tip">${ex.hint}</div></div>`;
-  } else if (ex.type==='fill-blank') {
-    html += `<div class="ex-question fade-up" style="animation-delay:.04s">${ex.question}</div>
-      ${ex.hint?`<div class="ex-hint fade-up" style="animation-delay:.07s">${ex.hint}</div>`:''}
-      <div class="fade-up" style="animation-delay:.1s">
-        <div class="blank-sentence">${ex.sentence.replace('_____','<span style="color:var(--accent)">_____</span>')}</div>
-        <input class="blank-input" id="blank-input" placeholder="Tapez votre réponse…" onkeydown="if(event.key==='Enter')checkBlank()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
-        <button class="btn-check" onclick="checkBlank()">Vérifier →</button></div>`;
-  } else {
-    html += `<div class="ex-question fade-up" style="animation-delay:.04s">${ex.question}</div>
-      ${ex.hint?`<div class="ex-hint fade-up" style="animation-delay:.07s">${ex.hint}</div>`:''}
-      <div class="choices-grid fade-up" style="animation-delay:.1s">
-        ${ex.choices.map((c,i)=>`<button class="choice-btn" onclick="checkChoice(this,${c.correct})"><span class="choice-letter">${'ABCD'[i]}</span><span>${c.text}</span></button>`).join('')}
-      </div>`;
+  const lesson = LESSONS[currentLessonKey], ex = lesson.exercises[currentExIdx];
+  document.getElementById('lesson-prog').style.width = (currentExIdx/lesson.exercises.length*100)+'%';
+  document.getElementById('prog-label').textContent  = currentExIdx+' / '+lesson.exercises.length;
+  answerLocked = false;
+  
+  let html = '';
+  if (currentExIdx > 0) {
+    html += `<button onclick="prevExercise()" style="background:none;border:none;color:var(--muted);font-size:13px;text-decoration:underline;cursor:pointer;margin-bottom:12px;font-family:'DM Sans',sans-serif;align-self:flex-start;padding:0">← Question précédente</button>`;
   }
-  document.getElementById('exercise-area').innerHTML = html;
-  document.getElementById('exercise-area').scrollTop = 0;
+  
+  html += `<div class="ex-tag fade-up">${ex.tag}</div>`;
+  if (ex.type==='speaking') {
+    html += `<div class="ex-question fade-up" style="animation-delay:.04s">Prononcez cette phrase :</div>
+      <div class="speak-area fade-up" style="animation-delay:.08s">
+        <div class="speak-phrase">${ex.phrase}</div><div class="speak-trans">${ex.translation}</div>
+        <button class="mic-btn" id="ex-mic" onclick="handleExMic(this)">🎤</button>
+        <div class="speak-tip">${ex.hint}</div></div>`;
+  } else if (ex.type==='fill-blank') {
+    html += `<div class="ex-question fade-up" style="animation-delay:.04s">${ex.question}</div>
+      ${ex.hint?`<div class="ex-hint fade-up" style="animation-delay:.07s">${ex.hint}</div>`:''}
+      <div class="fade-up" style="animation-delay:.1s">
+        <div class="blank-sentence">${ex.sentence.replace('_____','<span style="color:var(--accent)">_____</span>')}</div>
+        <input class="blank-input" id="blank-input" placeholder="Tapez votre réponse…" onkeydown="if(event.key==='Enter')checkBlank()" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        <button class="btn-check" onclick="checkBlank()">Vérifier →</button></div>`;
+  } else {
+    html += `<div class="ex-question fade-up" style="animation-delay:.04s">${ex.question}</div>
+      ${ex.hint?`<div class="ex-hint fade-up" style="animation-delay:.07s">${ex.hint}</div>`:''}
+      <div class="choices-grid fade-up" style="animation-delay:.1s">
+        ${ex.choices.map((c,i)=>`<button class="choice-btn" onclick="checkChoice(this,${c.correct})"><span class="choice-letter">${'ABCD'[i]}</span><span>${c.text}</span></button>`).join('')}
+      </div>`;
+  }
+  document.getElementById('exercise-area').innerHTML = html;
+  document.getElementById('exercise-area').scrollTop = 0;
 }
 
 function checkChoice(btn, correct) {
-  if (answerLocked) return; answerLocked = true;
-  document.querySelectorAll('.choice-btn').forEach(b => b.style.pointerEvents='none');
-  btn.classList.add(correct?'correct':'wrong');
-  if (!correct) { const ex=LESSONS[currentLessonKey].exercises[currentExIdx]; document.querySelectorAll('.choice-btn').forEach((b,i)=>{if(ex.choices[i].correct)b.classList.add('reveal-correct');}); }
-  if (correct) { state.xp+=10; spawnXP('+10 XP'); updateXP(); }
-  showFeedback(correct);
+  if (answerLocked) return; answerLocked = true;
+  document.querySelectorAll('.choice-btn').forEach(b => b.style.pointerEvents='none');
+  btn.classList.add(correct?'correct':'wrong');
+  if (!correct) { const ex=LESSONS[currentLessonKey].exercises[currentExIdx]; document.querySelectorAll('.choice-btn').forEach((b,i)=>{if(ex.choices[i].correct)b.classList.add('reveal-correct');}); }
+  if (correct) { state.xp+=10; spawnXP('+10 XP'); updateXP(); }
+  showFeedback(correct);
 }
 
 function checkBlank() {
-  if (answerLocked) return;
-  const input=document.getElementById('blank-input'); if(!input) return;
-  const ex=LESSONS[currentLessonKey].exercises[currentExIdx];
-  const val=input.value.trim().toLowerCase(), ans=ex.answer.toLowerCase();
-  const strip=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  const ok=val===ans||strip(val)===strip(ans);
-  answerLocked=true; input.classList.add(ok?'correct':'wrong'); input.disabled=true;
-  if(!ok) input.value=ex.answer;
-  if(ok){state.xp+=10;spawnXP('+10 XP');updateXP();}
-  showFeedback(ok);
+  if (answerLocked) return;
+  const input=document.getElementById('blank-input'); if(!input) return;
+  const ex=LESSONS[currentLessonKey].exercises[currentExIdx];
+  const val=input.value.trim().toLowerCase(), ans=ex.answer.toLowerCase();
+  const strip=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  const getWords=s=>strip(s).split(/[\s,;/.-]+/).filter(w=>w);
+  const expW=getWords(ans), usrW=getWords(val);
+  const ok = (expW.length === usrW.length && [...expW].sort().join(',') === [...usrW].sort().join(',')) || strip(val)===strip(ans);
+  answerLocked=true; input.classList.add(ok?'correct':'wrong'); input.disabled=true;
+  if(!ok) input.value=ex.answer;
+  if(ok){state.xp+=10;spawnXP('+10 XP');updateXP();}
+  showFeedback(ok);
 }
 
 function handleExMic(btn) {
-  if (btn.classList.contains('recording')) return;
-  btn.classList.add('recording'); btn.textContent='⏹️';
-  setTimeout(()=>{btn.classList.remove('recording');btn.textContent='🎤';state.xp+=5;spawnXP('+5 XP');updateXP();showFeedbackSpeaking();},2500);
+  if (btn.classList.contains('recording')) return;
+  btn.classList.add('recording'); btn.textContent='⏹️';
+  setTimeout(()=>{btn.classList.remove('recording');btn.textContent='🎤';state.xp+=5;spawnXP('+5 XP');updateXP();showFeedbackSpeaking();},2500);
 }
 
 function showFeedback(ok) {
-  const ex=LESSONS[currentLessonKey].exercises[currentExIdx];
-  const panel=document.getElementById('feedback-panel');
-  if(ok){document.getElementById('fb-title').textContent='✓ Correct !';document.getElementById('fb-title').style.color='var(--ok)';document.getElementById('fb-body').textContent=ex.explanation||'Excellent !';panel.className='feedback-panel show fp-ok';document.getElementById('btn-continue').className='btn-continue';}
-  else{document.getElementById('fb-title').textContent='✗ Presque';document.getElementById('fb-title').style.color='var(--err)';document.getElementById('fb-body').textContent=ex.explanation||'Révisez.';panel.className='feedback-panel show fp-err';document.getElementById('btn-continue').className='btn-continue err';}
+  const ex=LESSONS[currentLessonKey].exercises[currentExIdx];
+  const panel=document.getElementById('feedback-panel');
+  if(ok){document.getElementById('fb-title').textContent='✓ Correct !';document.getElementById('fb-title').style.color='var(--ok)';document.getElementById('fb-body').textContent=ex.explanation||'Excellent !';panel.className='feedback-panel show fp-ok';document.getElementById('btn-continue').className='btn-continue';}
+  else{document.getElementById('fb-title').textContent='✗ Presque';document.getElementById('fb-title').style.color='var(--err)';document.getElementById('fb-body').textContent=ex.explanation||'Révisez.';panel.className='feedback-panel show fp-err';document.getElementById('btn-continue').className='btn-continue err';}
 }
-function showFeedbackSpeaking(){document.getElementById('fb-title').textContent='🎤 Bel effort !';document.getElementById('fb-title').style.color='var(--teal)';document.getElementById('fb-body').textContent='Continuez à pratiquer !';document.getElementById('feedback-panel').className='feedback-panel show fp-ok';document.getElementById('btn-continue').className='btn-continue';}
+function showFeedbackSpeaking(){document.getElementById('fb-title').textContent='🎤 Bel effort !';document.getElementById('fb-title').style.color='var(--teal)';document.getElementById('fb-body').textContent='Continuez à practicar !';document.getElementById('feedback-panel').className='feedback-panel show fp-ok';document.getElementById('btn-continue').className='btn-continue';}
 function hideFeedback(){document.getElementById('feedback-panel').className='feedback-panel';}
 
 function nextExercise(){hideFeedback();currentExIdx++;if(currentExIdx>=LESSONS[currentLessonKey].exercises.length)lessonComplete();else renderExercise();}
 
+function prevExercise() {
+  if (currentExIdx > 0) {
+    hideFeedback();
+    currentExIdx--;
+    renderExercise();
+  }
+}
+
 function lessonComplete(){
-  const lesson=LESSONS[currentLessonKey];
-  state.xp+=60; state.lessonsCompleted+=1;
-  Object.entries(lesson.skills).forEach(([k,v])=>{state.skills[k]=Math.min(100,(state.skills[k]||0)+v);});
-  state.grammarProgress[currentLessonKey]=Math.min(100,(state.grammarProgress[currentLessonKey]||0)+40);
-  handleStreak();
-  updateXP(); saveProgress();
-  document.getElementById('lesson-prog').style.width='100%';
-  document.getElementById('prog-label').textContent=lesson.exercises.length+' / '+lesson.exercises.length;
-  document.getElementById('exercise-area').innerHTML=`
-    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;padding:40px 0" class="fade-up">
-      <div style="font-size:68px;animation:pop .5s ease">🎉</div>
-      <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700">Leçon<br><em style="color:var(--accent)">terminée !</em></div>
-      <div style="display:flex;gap:28px">
-        <div><div style="font-size:26px;font-weight:700;color:var(--gold)">${lesson.exercises.length}</div><div style="font-size:11px;color:var(--muted)">Exercices</div></div>
-        <div><div style="font-size:26px;font-weight:700;color:var(--ok)">+${60+lesson.exercises.length*10}</div><div style="font-size:11px;color:var(--muted)">XP gagnés</div></div>
-        <div><div style="font-size:26px;font-weight:700;color:var(--accent)">🔥${state.streak}</div><div style="font-size:11px;color:var(--muted)">Série</div></div>
-      </div>
-      <button class="btn-primary" style="max-width:280px" onclick="navTo('dashboard')">Retour →</button>
-    </div>`;
-  spawnConfetti();
+  const lesson=LESSONS[currentLessonKey];
+  state.xp+=60; state.lessonsCompleted+=1;
+  Object.entries(lesson.skills).forEach(([k,v])=>{state.skills[k]=Math.min(100,(state.skills[k]||0)+v);});
+  state.grammarProgress[currentLessonKey]=Math.min(100,(state.grammarProgress[currentLessonKey]||0)+40);
+  handleStreak();
+  updateXP(); saveProgress();
+  document.getElementById('lesson-prog').style.width='100%';
+  document.getElementById('prog-label').textContent=lesson.exercises.length+' / '+lesson.exercises.length;
+  document.getElementById('exercise-area').innerHTML=`
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:22px;padding:40px 0" class="fade-up">
+      <div style="font-size:68px;animation:pop .5s ease">🎉</div>
+      <div style="font-family:'Playfair Display',serif;font-size:34px;font-weight:700">Leçon<br><em style="color:var(--accent)">terminée !</em></div>
+      <div style="display:flex;gap:28px">
+        <div><div style="font-size:26px;font-weight:700;color:var(--gold)">${lesson.exercises.length}</div><div style="font-size:11px;color:var(--muted)">Exercices</div></div>
+        <div><div style="font-size:26px;font-weight:700;color:var(--ok)">+${60+lesson.exercises.length*10}</div><div style="font-size:11px;color:var(--muted)">XP gagnés</div></div>
+        <div><div style="font-size:26px;font-weight:700;color:var(--accent)">🔥${state.streak}</div><div style="font-size:11px;color:var(--muted)">Série</div></div>
+      </div>
+      <button class="btn-primary" style="max-width:280px" onclick="navTo('dashboard')">Retour →</button>
+    </div>`;
+  spawnConfetti();
 }
 
 function goBackFromLesson(){hideFeedback();goTo(previousScreen);document.getElementById('bottom-nav').style.display='grid';setActiveNav(previousScreen);}
 
 /* ════════════════════════════════
-   VOCAB
+   VOCAB
 ════════════════════════════════ */
 let currentWordIdx=0, cardFlipped=false;
 function initVocab(){currentWordIdx=0;cardFlipped=false;renderWordCard();renderWordList();document.getElementById('vocab-count').textContent=WORDS.length+' mots';}
 function renderWordCard(){
-  const w=WORDS[currentWordIdx];
-  document.getElementById('card-cat').textContent=w.cat||'';
-  document.getElementById('card-word').textContent=w.es;
-  document.getElementById('card-phonetic').textContent=w.phonetic||w.ph||'';
-  document.getElementById('card-trans').textContent=w.en;
-  document.getElementById('card-example').innerHTML=`<em>${w.ex||w.example||''}</em>`;
-  document.getElementById('card-next-review').textContent='Prochaine révision : '+(w.nr||w.nextReview||'?');
-  document.getElementById('flashcard').classList.remove('flipped');
-  document.getElementById('card-actions').style.display='none';
-  cardFlipped=false;
+  const w=WORDS[currentWordIdx];
+  document.getElementById('card-cat').textContent=w.cat||'';
+  document.getElementById('card-word').textContent=w.es;
+  document.getElementById('card-phonetic').textContent=w.phonetic||w.ph||'';
+  document.getElementById('card-trans').textContent=w.en;
+  document.getElementById('card-example').innerHTML=`<em>${w.ex||w.example||''}</em>`;
+  document.getElementById('card-next-review').textContent='Prochaine révision : '+(w.nr||w.nextReview||'?');
+  document.getElementById('flashcard').classList.remove('flipped');
+  document.getElementById('card-actions').style.display='none';
+  cardFlipped=false;
 }
 function flipCard(){cardFlipped=!cardFlipped;document.getElementById('flashcard').classList.toggle('flipped',cardFlipped);document.getElementById('card-actions').style.display=cardFlipped?'flex':'none';}
 function rateCard(rating){
-  const xpMap={easy:5,ok:3,hard:1};state.xp+=xpMap[rating];spawnXP('+'+xpMap[rating]+' XP');
-  const cur=state.wordStrengths[currentWordIdx]||0;
-  if(rating==='easy')state.wordStrengths[currentWordIdx]=Math.min(5,cur+1);
-  else if(rating==='hard')state.wordStrengths[currentWordIdx]=Math.max(0,cur-1);
-  state.skills.reading=Math.min(100,state.skills.reading+2);
-  updateXP();saveProgress();
-  currentWordIdx=(currentWordIdx+1)%WORDS.length;renderWordCard();renderWordList();
+  const xpMap={easy:5,ok:3,hard:1};state.xp+=xpMap[rating];spawnXP('+'+xpMap[rating]+' XP');
+  const cur=state.wordStrengths[currentWordIdx]||0;
+  if(rating==='easy')state.wordStrengths[currentWordIdx]=Math.min(5,cur+1);
+  else if(rating==='hard')state.wordStrengths[currentWordIdx]=Math.max(0,cur-1);
+  state.skills.reading=Math.min(100,state.skills.reading+2);
+  updateXP();saveProgress();
+  currentWordIdx=(currentWordIdx+1)%WORDS.length;renderWordCard();renderWordList();
 }
 function renderWordList(){
-  document.getElementById('word-list').innerHTML=WORDS.map((w,i)=>{
-    const s=state.wordStrengths[i]||0;
-    return `<div class="word-item"><div class="word-es">${w.es}</div><div class="word-en">${w.en}</div><div class="strength-dots">${[1,2,3,4,5].map(n=>`<div class="dot${n<=s?' on':''}"></div>`).join('')}</div></div>`;
-  }).join('');
+  document.getElementById('word-list').innerHTML=WORDS.map((w,i)=>{
+    const s=state.wordStrengths[i]||0;
+    return `<div class="word-item"><div class="word-es">${w.es}</div><div class="word-en">${w.en}</div><div class="strength-dots">${[1,2,3,4,5].map(n=>`<div class="dot${n<=s?' on':''}"></div>`).join('')}</div></div>`;
+  }).join('');
 }
 
 /* ════════════════════════════════
-   GRAMMAR
+   GRAMMAR
 ════════════════════════════════ */
 function initGrammar(){
-  document.getElementById('grammar-list').innerHTML=GRAMMAR_TOPICS.map(t=>{
-    const pct=state.grammarProgress[t.key]||0;
-    if(t.locked) return `<div class="grammar-card locked fade-up"><div class="gc-header"><div class="gc-icon">${t.icon}</div><div class="gc-title">${t.title}</div><div class="cefr cefr-${t.cefr}">${t.level}</div><span style="font-size:15px;margin-left:4px">🔒</span></div><div class="gc-desc">${t.desc}</div><div class="cs-card"><span style="font-size:16px">🚧</span><div class="cs-msg">Cette leçon est en cours de création.</div><span class="cs-badge">Bientôt</span></div></div>`;
-    return `<div class="grammar-card fade-up" onclick="startLesson('${t.key}')"><div class="gc-header"><div class="gc-icon">${t.icon}</div><div class="gc-title">${t.title}</div><div class="cefr cefr-${t.cefr}">${t.level}</div></div><div class="gc-desc">${t.desc}</div><div class="gc-prog-row"><div class="gc-bar-bg"><div class="gc-bar-fill" style="width:${pct}%"></div></div><div class="gc-pct">${pct>0?pct+'%':'Non commencé'}</div></div></div>`;
-  }).join('');
+  document.getElementById('grammar-list').innerHTML=GRAMMAR_TOPICS.map(t=>{
+    const pct=state.grammarProgress[t.key]||0;
+    if(t.locked) return `<div class="grammar-card locked fade-up"><div class="gc-header"><div class="gc-icon">${t.icon}</div><div class="gc-title">${t.title}</div><div class="cefr cefr-${t.cefr}">${t.level}</div><span style="font-size:15px;margin-left:4px">🔒</span></div><div class="gc-desc">${t.desc}</div><div class="cs-card"><span style="font-size:16px">🚧</span><div class="cs-msg">Cette leçon est en cours de création.</div><span class="cs-badge">Bientôt</span></div></div>`;
+    return `<div class="grammar-card fade-up" onclick="startLesson('${t.key}')"><div class="gc-header"><div class="gc-icon">${t.icon}</div><div class="gc-title">${t.title}</div><div class="cefr cefr-${t.cefr}">${t.level}</div></div><div class="gc-desc">${t.desc}</div><div class="gc-prog-row"><div class="gc-bar-bg"><div class="gc-bar-fill" style="width:${pct}%"></div></div><div class="gc-pct">${pct>0?pct+'%':'Non commencé'}</div></div></div>`;
+  }).join('');
 }
 
 /* ════════════════════════════════
-   SPEAKING
+   SPEAKING
 ════════════════════════════════ */
 let activeDrill=null, micRecording=false;
 function initSpeak(){
-  document.getElementById('chat-area').style.display='none';
-  document.getElementById('speak-drill').style.display='none';
-  document.getElementById('convo-cards').innerHTML=SCENARIOS.map((s,i)=>`
-    <div class="convo-card ${s.style||''}">
-      <div class="convo-scenario">${s.icon} ${s.label}</div>
-      <div class="convo-desc">${s.desc}</div>
-      <div class="convo-phrases">${s.phrases.map(p=>`<div class="convo-phrase">${p}</div>`).join('')}</div>
-      <button class="btn-start ${s.style||''}" onclick="startScenario(${i})">Démarrer IA →</button>
-    </div>`).join('');
+  document.getElementById('chat-area').style.display='none';
+  document.getElementById('speak-drill').style.display='none';
+  document.getElementById('convo-cards').innerHTML=SCENARIOS.map((s,i)=>`
+    <div class="convo-card ${s.style||''}">
+      <div class="convo-scenario">${s.icon} ${s.label}</div>
+      <div class="convo-desc">${s.desc}</div>
+      <div class="convo-phrases">${s.phrases.map(p=>`<div class="convo-phrase">${p}</div>`).join('')}</div>
+      <button class="btn-start ${s.style||''}" onclick="startScenario(${i})">Démarrer IA →</button>
+    </div>`).join('');
 }
 function startScenario(idx){
-  activeDrill=SCENARIOS[idx];
-  document.getElementById('drill-phrase').textContent=activeDrill.drillPhrase;
-  document.getElementById('drill-trans').textContent=activeDrill.drillTrans;
-  document.getElementById('speak-drill').style.display='block';
-  const chat=document.getElementById('chat-area');
-  chat.style.display='flex';
-  chat.innerHTML=`<div class="bubble ai">${activeDrill.aiOpen}<div class="tr">${activeDrill.aiOpenTr}</div></div>`;
-  document.getElementById('speak-drill').scrollIntoView({behavior:'smooth'});
+  activeDrill=SCENARIOS[idx];
+  document.getElementById('drill-phrase').textContent=activeDrill.drillPhrase;
+  document.getElementById('drill-trans').textContent=activeDrill.drillTrans;
+  document.getElementById('speak-drill').style.display='block';
+  const chat=document.getElementById('chat-area');
+  chat.style.display='flex';
+  chat.innerHTML=`<div class="bubble ai">${activeDrill.aiOpen}<div class="tr">${activeDrill.aiOpenTr}</div></div>`;
+  document.getElementById('speak-drill').scrollIntoView({behavior:'smooth'});
 }
 function toggleMic(){
-  const btn=document.getElementById('mic-btn');
-  micRecording=!micRecording;btn.classList.toggle('recording',micRecording);btn.textContent=micRecording?'⏹️':'🎤';
-  if(micRecording) setTimeout(()=>{
-    micRecording=false;btn.classList.remove('recording');btn.textContent='🎤';
-    state.xp+=5;state.skills.speaking=Math.min(100,state.skills.speaking+3);updateXP();saveProgress();
-    const chat=document.getElementById('chat-area');
-    chat.innerHTML+=`<div class="bubble user">${activeDrill.drillPhrase}<div class="tr">${activeDrill.drillTrans}</div></div>`;
-    setTimeout(()=>{chat.innerHTML+=`<div class="bubble ai">¡Muy bien! Su pronunciación es clara. ¿Tiene alguna otra pregunta?<div class="tr">Très bien ! Votre prononciation est claire.</div></div>`;chat.scrollTop=chat.scrollHeight;},900);
-  },2500);
+  const btn=document.getElementById('mic-btn');
+  micRecording=!micRecording;btn.classList.toggle('recording',micRecording);btn.textContent=micRecording?'⏹️':'🎤';
+  if(micRecording) setTimeout(()=>{
+    micRecording=false;btn.classList.remove('recording');btn.textContent='🎤';
+    state.xp+=5;state.skills.speaking=Math.min(100,state.skills.speaking+3);updateXP();saveProgress();
+    const chat=document.getElementById('chat-area');
+    chat.innerHTML+=`<div class="bubble user">${activeDrill.drillPhrase}<div class="tr">${activeDrill.drillTrans}</div></div>`;
+    setTimeout(()=>{chat.innerHTML+=`<div class="bubble ai">¡Muy bien! Su pronunciación es clara. ¿Tiene alguna otra pregunta?<div class="tr">Très bien ! Votre prononciation est claire.</div></div>`;chat.scrollTop=chat.scrollHeight;},900);
+  },2500);
 }
 
 /* ════════════════════════════════
-   NAVIGATION
+   NAVIGATION
 ════════════════════════════════ */
 function goTo(id){
-  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
-  document.getElementById('screen-'+id).classList.add('active');
-  document.getElementById('bottom-nav').style.display=['home','lesson'].includes(id)?'none':'grid';
-  if(id==='dashboard')updateUI();
-  if(id==='vocab')initVocab();
-  if(id==='grammar')initGrammar();
-  if(id==='speak')initSpeak();
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  document.getElementById('screen-'+id).classList.add('active');
+  document.getElementById('bottom-nav').style.display=['home','lesson'].includes(id)?'none':'grid';
+  if(id==='dashboard')updateUI();
+  if(id==='vocab')initVocab();
+  if(id==='grammar')initGrammar();
+  if(id==='speak')initSpeak();
 }
 function navTo(id){goTo(id);setActiveNav(id);}
 function setActiveNav(id){document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));const el=document.getElementById('nav-'+id);if(el)el.classList.add('active');}
@@ -921,45 +926,45 @@ function selectLevel(btn,lv){document.querySelectorAll('.level-btn').forEach(b=>
 function startApp(){saveProgress();goTo('dashboard');document.getElementById('bottom-nav').style.display='grid';setActiveNav('dashboard');}
 
 /* ════════════════════════════════
-   PROFILE MENU
+   PROFILE MENU
 ════════════════════════════════ */
 function openProfile(){
-  document.getElementById('ps-streak').textContent=state.streak;
-  document.getElementById('ps-xp').textContent=state.xp.toLocaleString();
-  document.getElementById('ps-lessons').textContent=state.lessonsCompleted;
-  document.getElementById('profile-name-el').textContent=window._userName||'Apprenant';
-  document.getElementById('profile-email-el').textContent=auth.currentUser?.email||'Mode invité';
-  const picEl=document.getElementById('profile-pic');
-  picEl.innerHTML=window._userPic?`<img src="${window._userPic}" alt="photo">`:'🧑';
-  document.getElementById('profile-menu').classList.add('open');
-  document.getElementById('profile-overlay').classList.add('open');
+  document.getElementById('ps-streak').textContent=state.streak;
+  document.getElementById('ps-xp').textContent=state.xp.toLocaleString();
+  document.getElementById('ps-lessons').textContent=state.lessonsCompleted;
+  document.getElementById('profile-name-el').textContent=window._userName||'Apprenant';
+  document.getElementById('profile-email-el').textContent=auth.currentUser?.email||'Mode invité';
+  const picEl=document.getElementById('profile-pic');
+  picEl.innerHTML=window._userPic?`<img src="${window._userPic}" alt="photo">`:'🧑';
+  document.getElementById('profile-menu').classList.add('open');
+  document.getElementById('profile-overlay').classList.add('open');
 }
 function closeProfile(){document.getElementById('profile-menu').classList.remove('open');document.getElementById('profile-overlay').classList.remove('open');}
 
 /* ════════════════════════════════
-   UI
+   UI
 ════════════════════════════════ */
 function updateUI(){
-  updateXP();renderSkillGrid();
-  const avatarEl=document.getElementById('top-avatar');
-  if(avatarEl) avatarEl.innerHTML=window._userPic?`<img src="${window._userPic}" alt="photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:'🧑';
-  const h=new Date().getHours();
-  const el=document.getElementById('dash-greeting');if(el)el.textContent=h<18?'Bonjour':'Bonsoir';
+  updateXP();renderSkillGrid();
+  const avatarEl=document.getElementById('top-avatar');
+  if(avatarEl) avatarEl.innerHTML=window._userPic?`<img src="${window._userPic}" alt="photo" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`:'🧑';
+  const h=new Date().getHours();
+  const el=document.getElementById('dash-greeting');if(el)el.textContent=h<18?'Bonjour':'Bonsoir';
 }
 function updateXP(){
-  const xpEl=document.getElementById('xp-display'),scEl=document.getElementById('streak-count'),ldEl=document.getElementById('level-display');
-  if(xpEl)xpEl.textContent=state.xp.toLocaleString()+' XP';
-  if(scEl)scEl.textContent=state.streak;
-  if(ldEl)ldEl.textContent='Niveau '+state.level;
+  const xpEl=document.getElementById('xp-display'),scEl=document.getElementById('streak-count'),ldEl=document.getElementById('level-display');
+  if(xpEl)xpEl.textContent=state.xp.toLocaleString()+' XP';
+  if(scEl)scEl.textContent=state.streak;
+  if(ldEl)ldEl.textContent='Niveau '+state.level;
 }
 function renderSkillGrid(){
-  const grid=document.getElementById('skill-grid');if(!grid)return;grid.innerHTML='';
-  [{key:'reading',icon:'👁️',name:'Lecture',color:'var(--teal)'},{key:'listening',icon:'👂',name:'Écoute',color:'var(--lilac)'},{key:'speaking',icon:'💬',name:'Parole',color:'var(--accent)'},{key:'writing',icon:'✍️',name:'Écriture',color:'var(--gold)'}]
-  .forEach(s=>{const pct=state.skills[s.key]||0;grid.innerHTML+=`<div class="skill-card"><div class="skill-icon">${s.icon}</div><div class="skill-name">${s.name}</div><div class="skill-pct">${pct>0?pct+'%':'Non commencé'}</div><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${s.color}"></div></div></div>`;});
+  const grid=document.getElementById('skill-grid');if(!grid)return;grid.innerHTML='';
+  [{key:'reading',icon:'👁️',name:'Lecture',color:'var(--teal)'},{key:'listening',icon:'👂',name:'Écoute',color:'var(--lilac)'},{key:'speaking',icon:'💬',name:'Parole',color:'var(--accent)'},{key:'writing',icon:'✍️',name:'Écriture',color:'var(--gold)'}]
+  .forEach(s=>{const pct=state.skills[s.key]||0;grid.innerHTML+=`<div class="skill-card"><div class="skill-icon">${s.icon}</div><div class="skill-name">${s.name}</div><div class="skill-pct">${pct>0?pct+'%':'Non commencé'}</div><div class="bar-bg"><div class="bar-fill" style="width:${pct}%;background:${s.color}"></div></div></div>`;});
 }
 
 /* ════════════════════════════════
-   EFFECTS
+   EFFECTS
 ════════════════════════════════ */
 function spawnXP(label){const el=document.createElement('div');el.className='xp-popup';el.textContent=label;el.style.cssText=`left:${Math.random()*50+25}%;top:${Math.random()*20+45}%`;document.body.appendChild(el);setTimeout(()=>el.remove(),1500);}
 function spawnConfetti(){const colors=['#FF6B35','#F7C59F','#E8C547','#2EC4B6','#A78BFA','#4ADE80'];for(let i=0;i<32;i++)setTimeout(()=>{const d=document.createElement('div');d.className='confetti-dot';const sz=Math.random()*10+5;d.style.cssText=`left:${Math.random()*100}vw;top:${Math.random()*40+20}vh;background:${colors[~~(Math.random()*colors.length)]};width:${sz}px;height:${sz}px;border-radius:${Math.random()>.5?'50%':'3px'}`;document.body.appendChild(d);setTimeout(()=>d.remove(),1300);},i*45);}
