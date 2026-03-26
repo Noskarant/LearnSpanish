@@ -196,6 +196,9 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 .lesson-header{display:flex;align-items:center;gap:14px;padding:52px 28px 18px}
 .back-btn{width:38px;height:38px;border-radius:50%;background:var(--surface);border:none;color:var(--text);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
 .back-btn:active{transform:scale(.9)}
+.prev-btn{width:38px;height:38px;border-radius:50%;background:var(--surface);border:none;color:var(--muted);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .2s}
+.prev-btn:active{transform:scale(.9)}
+.prev-btn:disabled{opacity:.25;cursor:default}
 .prog-outer{flex:1;height:6px;background:rgba(255,255,255,.08);border-radius:6px;overflow:hidden}
 .prog-inner{height:100%;background:linear-gradient(to right,var(--accent),var(--gold));border-radius:6px;transition:width .5s cubic-bezier(.4,0,.2,1)}
 .prog-label{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);flex-shrink:0}
@@ -460,7 +463,8 @@ body::before{content:'';position:fixed;inset:0;background-image:url("data:image/
 <!-- LESSON -->
 <div id="screen-lesson" class="screen">
   <div class="lesson-header">
-    <button class="back-btn" onclick="goBackFromLesson()">←</button>
+    <button class="back-btn" onclick="goBackFromLesson()" title="Quitter">←</button>
+    <button class="prev-btn" id="prev-btn" onclick="prevExercise()" title="Question précédente" disabled>‹</button>
     <div class="prog-outer"><div class="prog-inner" id="lesson-prog" style="width:0%"></div></div>
     <div class="prog-label" id="prog-label">0 / 0</div>
   </div>
@@ -727,10 +731,20 @@ function startLesson(key) {
   hideFeedback(); goTo('lesson'); renderExercise();
 }
 
+function prevExercise() {
+  if (currentExIdx <= 0) return;
+  hideFeedback();
+  currentExIdx--;
+  renderExercise();
+}
+
 function renderExercise() {
   const lesson = LESSONS[currentLessonKey], ex = lesson.exercises[currentExIdx];
   document.getElementById('lesson-prog').style.width = (currentExIdx/lesson.exercises.length*100)+'%';
   document.getElementById('prog-label').textContent  = currentExIdx+' / '+lesson.exercises.length;
+  // Update prev button state
+  const prevBtn = document.getElementById('prev-btn');
+  if (prevBtn) prevBtn.disabled = (currentExIdx === 0);
   answerLocked = false;
   let html = `<div class="ex-tag fade-up">${ex.tag}</div>`;
   if (ex.type==='speaking') {
@@ -766,15 +780,37 @@ function checkChoice(btn, correct) {
   showFeedback(correct);
 }
 
+function normalizeAnswer(s) {
+  // Lowercase, strip accents, collapse spaces, remove punctuation
+  return s.trim().toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .replace(/[^a-z0-9\s]/g,'')
+    .replace(/\s+/g,' ');
+}
+
 function checkBlank() {
   if (answerLocked) return;
   const input=document.getElementById('blank-input'); if(!input) return;
   const ex=LESSONS[currentLessonKey].exercises[currentExIdx];
-  const val=input.value.trim().toLowerCase(), ans=ex.answer.toLowerCase();
-  const strip=s=>s.normalize('NFD').replace(/[\u0300-\u036f]/g,'');
-  const ok=val===ans||strip(val)===strip(ans);
-  answerLocked=true; input.classList.add(ok?'correct':'wrong'); input.disabled=true;
-  if(!ok) input.value=ex.answer;
+  const userVal = normalizeAnswer(input.value);
+
+  // Build list of all accepted answers:
+  // Split the stored answer by "/" or "," or "ou", trim each, also try each part alone
+  const rawAnswers = ex.answer.split(/[/,]|\bou\b/i).map(a => a.trim()).filter(Boolean);
+  // Also accept any individual word inside a multi-word answer (e.g. "soy / estoy" → accept "soy", "estoy", "soy / estoy", "soy estoy" etc.)
+  const allVariants = new Set();
+  rawAnswers.forEach(a => {
+    allVariants.add(normalizeAnswer(a));
+    // also accept the whole joined answer without separator
+    allVariants.add(normalizeAnswer(rawAnswers.join(' ')));
+  });
+
+  const ok = [...allVariants].some(v => userVal === v);
+
+  answerLocked=true;
+  input.classList.add(ok?'correct':'wrong');
+  input.disabled=true;
+  if(!ok) input.value=ex.answer; // show expected on wrong
   if(ok){state.xp+=10;spawnXP('+10 XP');updateXP();}
   showFeedback(ok);
 }
